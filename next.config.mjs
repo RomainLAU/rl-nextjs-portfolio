@@ -3,10 +3,26 @@ const nextConfig = {
     experimental: {
         typedRoutes: true,
     },
-    i18n: {
-        locales: ['en-US', 'fr'],
-        defaultLocale: 'en-US',
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '1337',
+                pathname: '/uploads/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'api.romain-laurent.fr',
+                port: '',
+                pathname: '/uploads/**',
+            },
+        ],
     },
+    // i18n: {
+    //     locales: ['en-US', 'fr'],
+    //     defaultLocale: 'en-US',
+    // },
 }
 
 export default nextConfig

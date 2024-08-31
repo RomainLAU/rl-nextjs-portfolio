@@ -16,6 +16,9 @@ export default function NavBar() {
                 <Link className={`link ${pathname === '/projects' ? 'text-red-700' : ''}`} href='/projects'>
                     Projects
                 </Link>
+                <Link className={`link ${pathname === '/experience' ? 'text-red-700' : ''}`} href='/experience'>
+                    Experience
+                </Link>
                 <Link className={`link ${pathname === '/contact' ? 'text-red-700' : ''}`} href='/contact'>
                     Contact
                 </Link>
