@@ -1,3 +1,5 @@
+import { Skill } from './skill'
+
 export type Experience = {
     id: number
     title: string
@@ -23,6 +25,7 @@ export type Experience = {
     }
     contract: string
     description: string
+    skills: Skill[]
     started_at: string
     finished_at?: string
 }
