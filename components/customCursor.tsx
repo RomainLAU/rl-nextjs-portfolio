@@ -1,23 +1,32 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
+const hoverElements = ['A', 'BUTTON']
+
 export default function CustomCursor() {
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [isHoveringLink, setIsHoveringLink] = useState(false)
+    const [isHoveringButton, setIsHoveringButton] = useState(false)
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
             setPosition({ x: event.clientX, y: event.clientY })
+            document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`)
+            document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`)
         }
 
         const handleMouseOver = (event: MouseEvent) => {
-            if ((event.target as HTMLElement).tagName === 'A') {
+            if ((event.target as HTMLElement).tagName === 'BUTTON') {
+                setIsHoveringButton(true)
+            } else if (hoverElements.includes((event.target as HTMLElement).tagName)) {
                 setIsHoveringLink(true)
             }
         }
 
         const handleMouseOut = (event: MouseEvent) => {
-            if ((event.target as HTMLElement).tagName === 'A') {
+            if ((event.target as HTMLElement).tagName === 'BUTTON') {
+                setIsHoveringButton(false)
+            } else if (hoverElements.includes((event.target as HTMLElement).tagName)) {
                 setIsHoveringLink(false)
             }
         }
@@ -46,12 +55,13 @@ export default function CustomCursor() {
                 willChange: 'transform',
             }}
             animate={{
+                opacity: isHoveringButton ? '0' : '1',
                 x: position.x,
                 y: position.y,
                 scale: isHoveringLink ? 3 : 1,
                 backgroundColor: isHoveringLink ? 'rgba(255, 255, 255, 0.9)' : 'rgb(255, 255, 255, 1)',
             }}
-            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         />
     )
 }

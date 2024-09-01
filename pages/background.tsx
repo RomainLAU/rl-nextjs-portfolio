@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import ExperienceCard from '../components/experienceCard'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import FormationCard from '@/components/formationCard'
+import LinkButton from '@/components/linkButton'
 
 export async function getStaticProps() {
     const experiences: Experience[] = await fetch(endpoints.experiences({ locale: 'fr' })).then((res) => res.json().then((data) => data.data))
@@ -56,6 +57,9 @@ const Experiences = ({ experiences, formations }: { experiences: Experience[]; f
                                 .map((formation: any) => <FormationCard key={`formation-${formation.id}`} formation={formation} />)}
                     </ul>
                 </motion.div>
+            </div>
+            <div className='w-full flex justify-center items-center pb-[30rem]'>
+                <LinkButton text='contact me' link='mailto:dev@romain-laurent.fr' />
             </div>
         </div>
     )
