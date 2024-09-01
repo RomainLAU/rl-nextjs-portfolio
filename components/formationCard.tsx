@@ -12,9 +12,7 @@ export default function FormationCard({ formation }: { formation: Formation }) {
                 <div className='flex flex-col w-full gap-y-4'>
                     <p className='text-4xl text-left self-start'>{formation.title}</p>
                     <div className='text-2xl text-right flex gap-x-4 self-end'>
-                        {formation.skills.map((skill) => (
-                            <p key={`skill-${skill.id}-${formation.title}`}>{skill.title}</p>
-                        ))}
+                        {formation.skills && formation.skills.map((skill) => <p key={`skill-${skill.id}-${formation.title}`}>{skill.title}</p>)}
                     </div>
                 </div>
                 <p className='text-[22em] font-extrabold font-[ui-monospace]'>

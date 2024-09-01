@@ -23,9 +23,7 @@ export default function ExperienceCard({ experience }: { experience: Experience 
                         {experience.company} - {experience.contract}
                     </p>
                     <div className='text-2xl text-right flex gap-x-4 self-end'>
-                        {experience.skills.map((skill) => (
-                            <p key={`skill-${skill.id}-${experience.title}`}>{skill.title}</p>
-                        ))}
+                        {experience.skills && experience.skills.map((skill) => <p key={`skill-${skill.id}-${experience.title}`}>{skill.title}</p>)}
                     </div>
                 </div>
                 <p className='text-[22em] font-extrabold font-[ui-monospace]'>
