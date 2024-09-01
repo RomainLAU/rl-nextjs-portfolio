@@ -6,7 +6,7 @@ export default function ExperienceCard({ experience }: { experience: Experience 
         <div style={{ height: 'calc(100vh - 8rem)' }} className='w-full min-w-max shadow-md rounded-lg text-white flex flex-row items-center gap-x-96'>
             {experience.company_logo && (
                 <Image
-                    src={process.env.NEXT_PUBLIC_BASE_URL + experience.company_logo.url}
+                    src={experience.company_logo.url}
                     alt={experience.company_logo.alternativeText}
                     width={experience.company_logo.width}
                     height={experience.company_logo.height}
