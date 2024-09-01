@@ -29,7 +29,7 @@ const Experiences = ({ experiences, formations }: { experiences: Experience[]; f
 
     return (
         <div>
-            <div ref={proRef} className='relative' style={{ height: `${experiences.length * 600}vh` }}>
+            <div ref={proRef} className='relative' style={{ height: `${experiences && experiences.length * 600}vh` }}>
                 <h1 className='font-extrabold text-8xl mb-8'>Professional Experience</h1>
                 <motion.div
                     style={{ x: proX }}
@@ -44,7 +44,7 @@ const Experiences = ({ experiences, formations }: { experiences: Experience[]; f
                 </motion.div>
             </div>
             <h1 className='font-extrabold text-8xl mb-8'>School Formations</h1>
-            <div ref={schoolRef} className='relative' style={{ height: `${formations.length * 1200}vh` }}>
+            <div ref={schoolRef} className='relative' style={{ height: `${formations && formations.length * 1200}vh` }}>
                 <motion.div
                     style={{ x: schoolX }}
                     className='h-screen sticky top-0 flex flex-row items-center'
