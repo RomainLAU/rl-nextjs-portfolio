@@ -1,7 +1,9 @@
 import { Experience } from '@/types/experience'
 import Image from 'next/image'
 
-export default function ExperienceCard({ experience }: { experience: Experience }) {
+export default function ExperienceCard({ element }: { element: Experience }) {
+    const experience = element
+
     return (
         <div style={{ height: 'calc(100vh - 8rem)' }} className='w-full min-w-max shadow-md rounded-lg text-white flex flex-row items-center gap-x-96'>
             {experience.company_logo && (

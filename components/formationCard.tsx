@@ -1,7 +1,9 @@
 import { Formation } from '@/types/formation'
 import Image from 'next/image'
 
-export default function FormationCard({ formation }: { formation: Formation }) {
+export default function FormationCard({ element }: { element: Formation }) {
+    const formation = element
+
     return (
         <div style={{ height: 'calc(100vh - 8rem)' }} className='w-full min-w-max shadow-md rounded-lg text-white flex flex-row items-center gap-x-96'>
             <h2 className='font-bold text-[16em] max-w-min' style={{ wordSpacing: '440px', lineHeight: '30vh' }}>

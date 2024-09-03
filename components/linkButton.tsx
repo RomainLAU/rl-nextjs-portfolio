@@ -14,7 +14,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
 
     return (
         <motion.div
-            className='w-1/4 h-14 bg-black text-white border border-white rounded-full cursor-none overflow-hidden relative z-[1]'
+            className='w-full h-14 bg-black text-white border border-white rounded-full cursor-none overflow-hidden relative z-[1]'
             onHoverStart={() => setIsHovering(true)}
             onHoverEnd={() => setIsHovering(false)}
             onMouseMove={handleMouseMove}

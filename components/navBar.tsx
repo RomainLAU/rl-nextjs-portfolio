@@ -22,10 +22,13 @@ export default function NavBar() {
                 <Link className={`link ${pathname === '/projects' ? 'active' : ''}`} href='/projects'>
                     Projects
                 </Link>
-                <Link className={`link ${pathname === '/background' ? 'active' : ''}`} href='/background'>
-                    Background
+                <Link className={`link ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
+                    Experience
                 </Link>
-                <Link className={`link ${pathname === '/contact' ? 'active' : ''}`} href='/contact'>
+                <Link className={`link ${pathname === '/formations' ? 'active' : ''}`} href='/formations'>
+                    Formations
+                </Link>
+                <Link className={`link ${pathname === '/contact' ? 'active' : ''}`} href='/#contact'>
                     Contact
                 </Link>
             </div>
