@@ -47,7 +47,7 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
                 </motion.section>
             </motion.div>
             <div ref={ghostRef} style={{ height: scrollRange }} className='ghost' />
-            <motion.div layout layoutRoot className='relative h-screen w-screen'>
+            <motion.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
                 <motion.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
                     <LinkButton text='contact me' link='mailto:dev@romain-laurent.fr' />
                 </motion.div>

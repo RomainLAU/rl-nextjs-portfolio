@@ -28,7 +28,7 @@ export default function NavBar() {
                 <Link className={`link ${pathname === '/formations' ? 'active' : ''}`} href='/formations'>
                     Formations
                 </Link>
-                <Link className={`link ${pathname === '/contact' ? 'active' : ''}`} href='/#contact'>
+                <Link className={`link`} href='#contact'>
                     Contact
                 </Link>
             </div>
