@@ -7,11 +7,17 @@ import PresentationText from '@/components/presentationText'
 import LinkButton from '@/components/linkButton'
 
 export async function getStaticProps() {
-    const me: Me = await fetch(endpoints.me({ locale: 'en' })).then((res) => res.json().then((data) => data.data[0]))
+    const me: Me[] = await fetch(endpoints.me({ locale: 'en' })).then((res) => res.json().then((data) => data.data))
+
+    if (!me) {
+        return {
+            notFound: true,
+        }
+    }
 
     return {
         props: {
-            me,
+            me: me[0],
         },
     }
 }
