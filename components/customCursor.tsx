@@ -55,7 +55,7 @@ export default function CustomCursor() {
                 willChange: 'transform',
             }}
             animate={{
-                opacity: isHoveringButton ? '0' : '1',
+                opacity: isHoveringButton ? 0 : 1,
                 x: position.x,
                 y: position.y,
                 scale: isHoveringLink ? 3 : 1,

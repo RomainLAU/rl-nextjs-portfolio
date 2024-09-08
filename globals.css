@@ -16,6 +16,10 @@
     }
 }
 
+html {
+    scroll-snap-type: both mandatory;
+}
+
 body {
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
@@ -56,4 +60,38 @@ body {
 
 .active::after {
     width: 100%;
+}
+
+p > svg {
+    width: 84px;
+    height: 84px;
+    fill: white;
+}
+
+.alone {
+    line-height: 500px;
+    margin: 500px;
+    color: #9393e9;
+}
+
+.peaceful {
+    color: lightblue;
+}
+
+.energy {
+    color: orange;
+}
+
+.outside {
+    color: green;
+}
+
+.whiteBackground {
+    background-color: white;
+    color: #1f1f1f;
+}
+
+.blackBackground {
+    background-color: #1f1f1f;
+    color: white;
 }

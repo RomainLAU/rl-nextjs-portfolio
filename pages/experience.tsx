@@ -1,7 +1,6 @@
 import endpoints from '@/apiConfig'
 import ExperienceCard from '@/components/experienceCard'
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer'
-import LinkButton from '@/components/linkButton'
 import type { Experience } from '@/types/experience'
 
 export async function getStaticProps() {
