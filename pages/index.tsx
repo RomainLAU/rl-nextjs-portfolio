@@ -1,10 +1,10 @@
-import endpoints from '@/apiConfig'
-import { Me } from '@/types/me'
-import { useEffect, useState } from 'react'
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
-import Image from 'next/image'
-import PresentationText from '@/components/presentationText'
-import LinkButton from '@/components/linkButton'
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+import endpoints from '@/apiConfig';
+import LinkButton from '@/components/linkButton';
+import PresentationText from '@/components/presentationText';
+import { Me } from '@/types/me';
 
 export async function getStaticProps() {
     const me: Me[] = await fetch(endpoints.me({ locale: 'en' })).then((res) => res.json().then((data) => data.data))

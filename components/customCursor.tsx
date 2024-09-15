@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import throttle from 'lodash.throttle';
+import { useEffect, useRef, useState } from 'react';
 
 const hoverElements = ['A', 'BUTTON']
 
@@ -7,13 +8,21 @@ export default function CustomCursor() {
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [isHoveringLink, setIsHoveringLink] = useState(false)
     const [isHoveringButton, setIsHoveringButton] = useState(false)
+    const animationFrameId = useRef<number | null>(null)
 
     useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            setPosition({ x: event.clientX, y: event.clientY })
-            document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`)
-            document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`)
-        }
+        // Utilisation de requestAnimationFrame pour améliorer les performances
+        const handleMouseMove = throttle((event: MouseEvent) => {
+            if (animationFrameId.current) {
+                cancelAnimationFrame(animationFrameId.current)
+            }
+
+            animationFrameId.current = requestAnimationFrame(() => {
+                setPosition({ x: event.clientX, y: event.clientY })
+                document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`)
+                document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`)
+            })
+        }, 16) // Throttling à 60 FPS (~16 ms)
 
         const handleMouseOver = (event: MouseEvent) => {
             if ((event.target as HTMLElement).tagName === 'BUTTON') {
@@ -39,6 +48,9 @@ export default function CustomCursor() {
             window.removeEventListener('mousemove', handleMouseMove)
             window.removeEventListener('mouseover', handleMouseOver)
             window.removeEventListener('mouseout', handleMouseOut)
+            if (animationFrameId.current) {
+                cancelAnimationFrame(animationFrameId.current)
+            }
         }
     }, [])
 
@@ -48,20 +60,19 @@ export default function CustomCursor() {
             style={{
                 top: 0,
                 left: 0,
-                x: position.x,
-                y: position.y,
                 translateX: '-50%',
                 translateY: '-50%',
                 willChange: 'transform',
+                // Déplacer ici les propriétés qui ne changent pas fréquemment
+                backgroundColor: isHoveringLink ? 'rgba(255, 255, 255, 0.9)' : 'rgb(255, 255, 255, 1)',
             }}
             animate={{
-                opacity: isHoveringButton ? 0 : 1,
+                // Animation continue seulement pour les propriétés souvent mises à jour
                 x: position.x,
                 y: position.y,
                 scale: isHoveringLink ? 3 : 1,
-                backgroundColor: isHoveringLink ? 'rgba(255, 255, 255, 0.9)' : 'rgb(255, 255, 255, 1)',
             }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
         />
     )
 }
