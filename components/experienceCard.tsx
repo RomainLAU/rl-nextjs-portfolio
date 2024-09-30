@@ -1,5 +1,6 @@
-import { Experience } from '@/types/experience'
-import Image from 'next/image'
+import Image from 'next/image';
+
+import { Experience } from '@/types/experience';
 
 export default function ExperienceCard({ element }: { element: Experience }) {
     const experience = element

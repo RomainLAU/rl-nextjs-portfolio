@@ -1,6 +1,7 @@
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-import LinkButton from './linkButton'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+
+import LinkButton from './linkButton';
 
 export default function HorizontalScrollingContainer({ list, title, CardComponent }: { list: any[]; title: string; CardComponent: React.ComponentType<any> }) {
     const scrollRef = useRef<HTMLDivElement>(null)

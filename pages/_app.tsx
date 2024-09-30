@@ -1,15 +1,28 @@
-import '@/globals.css'
-import type { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
-import NavBar from '@/components/navBar'
-import CustomCursor from '@/components/customCursor'
-import PageTransition from '@/components/pageTransition'
-import { AnimatePresence, motion, useSpring, useTransform, useScroll } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import '@/globals.css';
 
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { Inter } from 'next/font/google';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useRef } from 'react';
+
+import CustomCursor from '@/components/customCursor';
+import NavBar from '@/components/navBar';
+import PageTransition from '@/components/pageTransition';
+
+import type { AppProps } from 'next/app'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
+    const scrollRef = useRef(null)
+    const { scrollY } = useScroll({ container: scrollRef })
+    const smoothScrollY = useSpring(scrollY, {
+        stiffness: 100,
+        damping: 30,
+        mass: 1,
+    })
+
+    const y = useTransform(smoothScrollY, (value) => -value)
+
     const opacityVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
@@ -22,24 +35,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
         ease: 'easeOut',
     }
 
-    const scrollRef = useRef(null)
-    const { scrollY } = useScroll({ container: scrollRef })
-    const smoothScrollY = useSpring(scrollY, {
-        stiffness: 100,
-        damping: 30,
-        mass: 1,
-    })
-
-    const y = useTransform(smoothScrollY, (value) => -value)
-
-    useEffect(() => {
-        const handleResize = () => {
-            document.body.style.height = `${document.documentElement.scrollHeight}px`
-        }
-        window.addEventListener('resize', handleResize)
-        handleResize()
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
+    const currentPath = router.pathname
 
     return (
         <>
@@ -51,8 +47,8 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                     exit='exit'
                     variants={opacityVariants}
                     transition={opacityTransition}
-                    style={{ position: 'absolute', width: '100%', height: '100dvh', y }}
-                    className={`${inter.className} mt-20 p-24`}
+                    style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
+                    className={`${inter.className} ${currentPath !== '/' && 'relative md:mt-20 md:p-24'} w-max sm:w-full`}
                     ref={scrollRef}>
                     <CustomCursor />
                     <NavBar />

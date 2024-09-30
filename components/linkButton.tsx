@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function LinkButton({ text, link }: { text: string; link: string }) {
     const [isHovering, setIsHovering] = useState(false)
@@ -14,7 +14,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
 
     return (
         <motion.div
-            className='w-full h-14 bg-black text-white border border-white rounded-full cursor-none overflow-hidden relative z-[1]'
+            className='w-full h-14 bg-black text-white border border-solid border-white rounded-full cursor-none overflow-hidden relative z-[1]'
             onHoverStart={() => setIsHovering(true)}
             onHoverEnd={() => setIsHovering(false)}
             onMouseMove={handleMouseMove}

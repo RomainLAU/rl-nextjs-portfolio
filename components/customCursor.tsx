@@ -56,18 +56,16 @@ export default function CustomCursor() {
 
     return (
         <motion.div
-            className={`fixed w-5 h-5 rounded-full pointer-events-none mix-blend-difference z-50`}
+            className={`hidden sm:block fixed w-5 h-5 rounded-full pointer-events-none mix-blend-difference z-50`}
             style={{
                 top: 0,
                 left: 0,
                 translateX: '-50%',
                 translateY: '-50%',
                 willChange: 'transform',
-                // Déplacer ici les propriétés qui ne changent pas fréquemment
                 backgroundColor: isHoveringLink ? 'rgba(255, 255, 255, 0.9)' : 'rgb(255, 255, 255, 1)',
             }}
             animate={{
-                // Animation continue seulement pour les propriétés souvent mises à jour
                 x: position.x,
                 y: position.y,
                 scale: isHoveringLink ? 3 : 1,

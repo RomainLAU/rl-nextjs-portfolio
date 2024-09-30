@@ -1,14 +1,19 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import parse, { domToReact } from 'html-react-parser'
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion';
+import parse, { domToReact } from 'html-react-parser';
+import Image from 'next/image';
+import React, { useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import useIsMobile from '@/hooks/useIsMobile';
 
 export default function PresentationText({ text, image }: { text: string; image: { url: string; width: number; height: number; name: string } }) {
     const textRef = useRef<HTMLDivElement | null>(null)
     const ref = useRef(null)
+    const isMobile = useIsMobile()
 
-    const { scrollYProgress } = useScroll({ target: ref })
+    const { scrollYProgress } = useScroll({ target: ref, layoutEffect: false })
     const y = useTransform(scrollYProgress, [0, 0.5, 1], ['-100vh', '0vh', '100vh'])
+    const [viewRef, inView] = useInView({ threshold: 0.3, triggerOnce: false })
 
     const getColoredText = (text: string) => {
         const letters = text.split('')
@@ -29,7 +34,7 @@ export default function PresentationText({ text, image }: { text: string; image:
                 return <strong className='colors'>{getColoredText(domNode.children[0].data)}</strong>
             }
             if (domNode.name === 'p') {
-                return <p className='text-paragraph'>{domNode.children && domToReact(domNode.children, options)}</p>
+                return <>{domNode.children && domToReact(domNode.children, options)}</>
             }
             if (domNode.children) {
                 return domToReact(domNode.children, options)
@@ -37,8 +42,39 @@ export default function PresentationText({ text, image }: { text: string; image:
         },
     }
 
+    if (isMobile) {
+        return (
+            <motion.div ref={viewRef} className='flex flex-col items-center mb-8 w-screen h-[80vh]'>
+                <motion.div
+                    animate={{
+                        x: inView ? 0 : -20,
+                        opacity: inView ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    className='text-xl mb-4 text-wrap text-center w-3/4'>
+                    {parse(text, options)}
+                </motion.div>
+                {image && (
+                    <Image
+                        priority
+                        style={{
+                            transform: inView ? 'translateX(0)' : 'translateX(-20px)',
+                            opacity: inView ? 1 : 0,
+                            transition: 'all 0.8s ease-out 0.2s',
+                        }}
+                        src={image.url}
+                        alt={image.name}
+                        width={image.width}
+                        height={image.height}
+                        className='w-3/4'
+                    />
+                )}
+            </motion.div>
+        )
+    }
+
     return (
-        <section className='h-screen flex justify-center items-center relative' style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
+        <section className='h-screen w-full flex justify-center items-center relative' style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
             <motion.div
                 ref={ref}
                 className='relative max-h-[90vh] m-5 overflow-hidden'
@@ -61,7 +97,7 @@ export default function PresentationText({ text, image }: { text: string; image:
                     y,
                     x: image ? '50%' : 0,
                     textAlign: image ? 'left' : 'center',
-                    maxWidth: image ? '60%' : '100%',
+                    maxWidth: image ? '30%' : '100%',
                 }}>
                 {parse(text, options)}
             </motion.div>
