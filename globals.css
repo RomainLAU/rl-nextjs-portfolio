@@ -95,8 +95,7 @@ p > svg {
 }
 
 .alone {
-    line-height: 500px;
-    margin: 500px;
+    margin-top: 200px;
     color: #9393e9;
 }
 

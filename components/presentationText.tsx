@@ -97,7 +97,7 @@ export default function PresentationText({ text, image }: { text: string; image:
                     y,
                     x: image ? '50%' : 0,
                     textAlign: image ? 'left' : 'center',
-                    maxWidth: image ? '30%' : '100%',
+                    maxWidth: image ? '30%' : '80%',
                 }}>
                 {parse(text, options)}
             </motion.div>
