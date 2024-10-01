@@ -1,6 +1,7 @@
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Head from 'next/head';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 import endpoints from '@/apiConfig';
 import LinkButton from '@/components/linkButton';
@@ -18,13 +19,8 @@ const apparitionTransition = {
     delay: 1.1,
 }
 
-const mobileDescriptionVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-}
-
-export async function getStaticProps() {
-    const me: Me[] = await fetch(endpoints.me({ locale: 'en' })).then((res) => res.json().then((data) => data.data))
+export async function getStaticProps({ locale }: { locale: string }) {
+    const me: Me[] = await fetch(endpoints.me({ locale })).then((res) => res.json().then((data) => data.data))
 
     if (!me) {
         return {
@@ -112,6 +108,9 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
 }
 
 function DesktopView({ me, description }: { me: Me; description: string[] }) {
+    const router = useRouter()
+    const language = router.locale
+
     return (
         <motion.div className='w-full min-w-screen relative'>
             <motion.div className='h-screen w-full flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
@@ -149,12 +148,23 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
             ))}
             <div id='contact' className='h-screen flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
                 <p className='text-9xl font-extrabold text-center'>
-                    And I am <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>{me.status}</strong>
+                    {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
+                    <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>
+                        {language === 'fr' && me.status === 'available'
+                            ? 'disponible'
+                            : language === 'fr' && me.status !== 'available'
+                            ? 'en train de travailler'
+                            : me.status}
+                    </strong>
                 </p>
-                {me.status === 'working' && <p className='text-xl font-medium text-center'>But you can still contact me for future projects</p>}
-                <p className='text-xl font-medium text-center'>Soooo...</p>
+                {me.status === 'working' && (
+                    <p className='text-xl font-medium text-center'>
+                        {language === 'fr' ? 'Mais vous pouvez toujours me contacter pour un projet futur' : 'But you can still contact me for future projects'}
+                    </p>
+                )}
+                <p className='text-xl font-medium text-center'>{language === 'fr' ? 'Alooooors' : 'Soooo'}...</p>
                 <div className='w-1/4'>
-                    <LinkButton text='contact me' link='mailto:dev@romain-laurent.fr' />
+                    <LinkButton text={language === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
             </div>
         </motion.div>

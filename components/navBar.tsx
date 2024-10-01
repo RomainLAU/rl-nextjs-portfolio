@@ -3,18 +3,22 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 
 import useIsMobile from '@/hooks/useIsMobile';
 
 import useScrollDirection from '../hooks/useScrollDirection';
+import LanguageSwitcher from './languageSwitcher';
 
 export default function NavBar() {
     const pathname = usePathname()
     const { scrollDirection } = useScrollDirection()
     const isMobile = useIsMobile()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const router = useRouter()
+    const language = router.locale
 
     const containerVariants = {
         initial: {
@@ -64,17 +68,18 @@ export default function NavBar() {
                 ) : (
                     <div className='flex gap-x-8'>
                         <Link className={`link ${pathname === '/projects' ? 'active' : ''}`} href='/projects'>
-                            Projects
+                            {language === 'fr' ? 'Projets' : 'Projects'}
                         </Link>
                         <Link className={`link ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
-                            Experience
+                            {language === 'fr' ? 'Expérience' : 'Experience'}
                         </Link>
                         <Link className={`link ${pathname === '/formations' ? 'active' : ''}`} href='/formations'>
-                            Formations
+                            {language === 'fr' ? 'Formations' : 'Formations'}
                         </Link>
                         <Link className={`link`} href='#contact'>
-                            Contact
+                            {language === 'fr' ? 'Contact' : 'Contact'}
                         </Link>
+                        <LanguageSwitcher />
                     </div>
                 )}
             </motion.nav>
@@ -97,7 +102,7 @@ export default function NavBar() {
                                 className={`link mobile-link ${pathname === '/projects' ? 'active' : ''}`}
                                 href='/projects'
                                 onClick={() => setIsMenuOpen(false)}>
-                                Projects
+                                {language === 'fr' ? 'Projets' : 'Projects'}
                             </Link>
                         </motion.div>
                         <motion.div key={'link-experience'} variants={itemVariants}>
@@ -105,7 +110,7 @@ export default function NavBar() {
                                 className={`link mobile-link ${pathname === '/experience' ? 'active' : ''}`}
                                 href='/experience'
                                 onClick={() => setIsMenuOpen(false)}>
-                                Experience
+                                {language === 'fr' ? 'Expérience' : 'Experience'}
                             </Link>
                         </motion.div>
                         <motion.div key={'link-formations'} variants={itemVariants}>
@@ -113,12 +118,12 @@ export default function NavBar() {
                                 className={`link mobile-link ${pathname === '/formations' ? 'active' : ''}`}
                                 href='/formations'
                                 onClick={() => setIsMenuOpen(false)}>
-                                Formations
+                                {language === 'fr' ? 'Formations' : 'Formations'}
                             </Link>
                         </motion.div>
                         <motion.div key={'link-contact'} variants={itemVariants}>
                             <Link className={`link mobile-link`} href='#contact' onClick={() => setIsMenuOpen(false)}>
-                                Contact
+                                {language === 'fr' ? 'Contact' : 'Contact'}
                             </Link>
                         </motion.div>
                     </motion.div>

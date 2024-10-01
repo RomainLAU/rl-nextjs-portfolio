@@ -1,10 +1,13 @@
-import endpoints from '@/apiConfig'
-import ExperienceCard from '@/components/experienceCard'
-import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer'
+import React from 'react';
+
+import endpoints from '@/apiConfig';
+import ExperienceCard from '@/components/experienceCard';
+import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
+
 import type { Experience } from '@/types/experience'
 
-export async function getStaticProps() {
-    const experiences: Experience[] = await fetch(endpoints.experiences({ locale: 'fr' })).then((res) => res.json().then((data) => data.data))
+export async function getStaticProps({ locale }: { locale: string }) {
+    const experiences: Experience[] = await fetch(endpoints.experiences({ locale })).then((res) => res.json().then((data) => data.data))
 
     return {
         props: {

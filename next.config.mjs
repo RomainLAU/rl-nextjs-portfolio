@@ -25,10 +25,10 @@ const nextConfig = {
             },
         ],
     },
-    // i18n: {
-    //     locales: ['en-US', 'fr'],
-    //     defaultLocale: 'en-US',
-    // },
+    i18n: {
+        locales: ['en', 'fr'],
+        defaultLocale: 'fr',
+    },
 }
 
 export default nextConfig
