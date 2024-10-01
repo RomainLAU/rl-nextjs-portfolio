@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 
 import useIsMobile from '@/hooks/useIsMobile';
@@ -19,6 +19,10 @@ export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
     const language = router.locale
+
+    useEffect(() => {
+        setIsMenuOpen(false)
+    }, [language])
 
     const containerVariants = {
         initial: {
@@ -125,6 +129,9 @@ export default function NavBar() {
                             <Link className={`link mobile-link`} href='#contact' onClick={() => setIsMenuOpen(false)}>
                                 {language === 'fr' ? 'Contact' : 'Contact'}
                             </Link>
+                        </motion.div>
+                        <motion.div key={'link-language'} variants={itemVariants}>
+                            <LanguageSwitcher />
                         </motion.div>
                     </motion.div>
                 )}

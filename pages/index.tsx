@@ -65,7 +65,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     animate='visible'
                     variants={apparitionVariants}
                     transition={apparitionTransition}
-                    className='text-4xl md:text-9xl font-extrabold text-center mt-[23rem]'>
+                    className='text-4xl md:text-9xl font-extrabold text-center mt-[20rem]'>
                     {me.fullname}
                 </motion.h1>
                 <motion.h2

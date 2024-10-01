@@ -1,3 +1,6 @@
+import Head from 'next/head';
+import React from 'react';
+
 import endpoints from '@/apiConfig';
 import FormationCard from '@/components/formationCard';
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
@@ -14,5 +17,13 @@ export async function getStaticProps({ locale }: { locale: string }) {
 }
 
 export default function Formations({ formations }: { formations: Formation[] }) {
-    return <HorizontalScrollingContainer list={formations} title={'School Formations'} CardComponent={FormationCard} />
+    return (
+        <>
+            <Head>
+                <title>Romain Laurent - Formations</title>
+                <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+            </Head>
+            <HorizontalScrollingContainer list={formations} title={'School Formations'} CardComponent={FormationCard} />
+        </>
+    )
 }
