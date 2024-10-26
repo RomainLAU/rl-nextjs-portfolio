@@ -59,7 +59,7 @@ export default function Home({ me }: { me: Me }) {
 function MobileView({ me, description }: { me: Me; description: string[] }) {
     return (
         <motion.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
-            <div className='h-screen max-h-screen w-full flex flex-col items-center gap-y-4 border border-red-500'>
+            <div className='h-[75dvh] max-h-screen w-full flex flex-col items-center gap-y-4 border border-red-500'>
                 <motion.h1
                     initial='hidden'
                     animate='visible'

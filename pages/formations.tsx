@@ -4,6 +4,8 @@ import React from 'react';
 import endpoints from '@/apiConfig';
 import FormationCard from '@/components/formationCard';
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
+import MobileContainer from '@/components/mobileContainer';
+import useIsMobile from '@/hooks/useIsMobile';
 import { Formation } from '@/types/formation';
 
 export async function getStaticProps({ locale }: { locale: string }) {
@@ -12,18 +14,25 @@ export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
             formations,
+            locale,
         },
     }
 }
 
-export default function Formations({ formations }: { formations: Formation[] }) {
+export default function Formations({ formations, locale }: { formations: Formation[]; locale: string }) {
+    const isMobile = useIsMobile()
+
     return (
         <>
             <Head>
                 <title>Romain Laurent - Formations</title>
                 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
             </Head>
-            <HorizontalScrollingContainer list={formations} title={'School Formations'} CardComponent={FormationCard} />
+            {isMobile ? (
+                <MobileContainer list={formations} title={locale === 'fr' ? 'Formations' : 'School Formations'} CardComponent={FormationCard} />
+            ) : (
+                <HorizontalScrollingContainer list={formations} title={locale === 'fr' ? 'Formations' : 'School Formations'} CardComponent={FormationCard} />
+            )}
         </>
     )
 }

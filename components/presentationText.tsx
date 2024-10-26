@@ -13,7 +13,7 @@ export default function PresentationText({ text, image }: { text: string; image:
 
     const { scrollYProgress } = useScroll({ target: ref, layoutEffect: false })
     const y = useTransform(scrollYProgress, [0, 0.5, 1], ['-100vh', '0vh', '100vh'])
-    const [viewRef, inView] = useInView({ threshold: 0.3, triggerOnce: false })
+    const [viewRef, inView] = useInView({ threshold: 0.4, triggerOnce: false })
 
     const getColoredText = (text: string) => {
         const letters = text.split('')

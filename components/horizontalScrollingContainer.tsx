@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import LinkButton from './linkButton';
 
@@ -10,7 +10,7 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
     const [scrollRange, setScrollRange] = useState(0)
     const [viewportW, setViewportW] = useState(0)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (scrollRef.current) {
             setScrollRange(scrollRef.current.scrollWidth)
         }
@@ -20,7 +20,7 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
         setViewportW(window.innerWidth)
     }, [])
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         window.addEventListener('resize', onResize)
         onResize()
         return () => window.removeEventListener('resize', onResize)
@@ -36,9 +36,9 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
 
     return (
         <>
-            <h1 className='font-extrabold text-8xl mb-8'>{title}</h1>
+            <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-8'>{title}</h1>
             <motion.div ref={containerRef} className='fixed left-0 right-0 will-change-transform' style={{ y: ySpring }}>
-                <motion.section ref={scrollRef} className='relative h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
+                <motion.section ref={scrollRef} className='relative h-screen max-h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
                     <div className='relative flex gap-x-96'>
                         {list &&
                             list

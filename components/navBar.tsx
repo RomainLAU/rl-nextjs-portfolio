@@ -71,9 +71,9 @@ export default function NavBar() {
                     <VscMenu onClick={() => setIsMenuOpen(!isMenuOpen)} className='text-4xl cursor-pointer mix-blend-difference' />
                 ) : (
                     <div className='flex gap-x-8'>
-                        <Link className={`link ${pathname === '/projects' ? 'active' : ''}`} href='/projects'>
+                        {/* <Link className={`link ${pathname === '/projects' ? 'active' : ''}`} href='/projects'>
                             {language === 'fr' ? 'Projets' : 'Projects'}
-                        </Link>
+                        </Link> */}
                         <Link className={`link ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
                             {language === 'fr' ? 'Expérience' : 'Experience'}
                         </Link>
@@ -96,19 +96,19 @@ export default function NavBar() {
                         animate={'animate'}
                         exit={'exit'}
                         transition={{ duration: 0.5 }}
-                        className='fixed top-0 left-0 w-screen h-screen bg-black bg-opacity flex flex-col items-center justify-center gap-y-8 z-10'>
+                        className='fixed top-0 left-0 w-screen h-[110dvh] bg-black bg-opacity flex flex-col items-center justify-center gap-y-8 z-10'>
                         <VscChromeClose
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className='text-4xl cursor-pointer mix-blend-difference absolute top-8 right-8'
                         />
-                        <motion.div key={'link-projects'} variants={itemVariants}>
+                        {/* <motion.div key={'link-projects'} variants={itemVariants}>
                             <Link
                                 className={`link mobile-link ${pathname === '/projects' ? 'active' : ''}`}
                                 href='/projects'
                                 onClick={() => setIsMenuOpen(false)}>
                                 {language === 'fr' ? 'Projets' : 'Projects'}
                             </Link>
-                        </motion.div>
+                        </motion.div> */}
                         <motion.div key={'link-experience'} variants={itemVariants}>
                             <Link
                                 className={`link mobile-link ${pathname === '/experience' ? 'active' : ''}`}

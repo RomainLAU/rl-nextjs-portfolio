@@ -4,6 +4,8 @@ import React from 'react';
 import endpoints from '@/apiConfig';
 import ExperienceCard from '@/components/experienceCard';
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
+import MobileContainer from '@/components/mobileContainer';
+import useIsMobile from '@/hooks/useIsMobile';
 
 import type { Experience } from '@/types/experience'
 export async function getStaticProps({ locale }: { locale: string }) {
@@ -12,18 +14,33 @@ export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
             experiences,
+            locale,
         },
     }
 }
 
-export default function Experience({ experiences }: { experiences: Experience[] }) {
+export default function Experience({ experiences, locale }: { experiences: Experience[]; locale: string }) {
+    const isMobile = useIsMobile()
+
     return (
         <>
             <Head>
                 <title>Romain Laurent - Experience</title>
                 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
             </Head>
-            <HorizontalScrollingContainer list={experiences} title={'Professional Experience'} CardComponent={ExperienceCard} />
+            {isMobile ? (
+                <MobileContainer
+                    list={experiences}
+                    title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
+                    CardComponent={ExperienceCard}
+                />
+            ) : (
+                <HorizontalScrollingContainer
+                    list={experiences}
+                    title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
+                    CardComponent={ExperienceCard}
+                />
+            )}
         </>
     )
 }
