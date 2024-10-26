@@ -66,13 +66,13 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
 
     return (
         <motion.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
-            <div className='h-[75dvh] max-h-screen w-full flex flex-col items-center gap-y-4 border border-red-500'>
+            <div className='h-[75dvh] max-h-screen w-full flex flex-col items-center gap-y-4'>
                 <motion.h1
                     initial='hidden'
                     animate='visible'
                     variants={apparitionVariants}
                     transition={apparitionTransition}
-                    className='text-4xl md:text-9xl font-extrabold text-center mt-[20rem]'>
+                    className='text-4xl md:text-9xl font-extrabold text-center mt-[20rem] text-white'>
                     {me.fullname}
                 </motion.h1>
                 <motion.h2
@@ -83,7 +83,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                         duration: 1,
                         delay: 1.5,
                     }}
-                    className='text-center text-xl font-medium'>
+                    className='text-center text-xl font-medium text-white'>
                     {me.job}
                 </motion.h2>
             </div>
@@ -100,7 +100,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     />
                 </div>
             ))}
-            <div id='contact' className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4 border border-green-500'>
+            <div id='contact' className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4'>
                 <p className='text-4xl md:text-9xl font-extrabold text-center'>
                     {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
                     <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>
@@ -137,7 +137,7 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                     animate='visible'
                     variants={apparitionVariants}
                     transition={apparitionTransition}
-                    className='text-4xl md:text-9xl font-extrabold text-center'>
+                    className='text-4xl md:text-9xl font-extrabold text-center text-white'>
                     {me.fullname}
                 </motion.h1>
                 <motion.h2
@@ -148,7 +148,7 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                         duration: 1,
                         delay: 1.5,
                     }}
-                    className='text-center text-xl font-medium'>
+                    className='text-center text-xl font-medium text-white'>
                     {me.job}
                 </motion.h2>
             </motion.div>
