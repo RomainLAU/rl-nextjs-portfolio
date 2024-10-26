@@ -65,7 +65,7 @@ export default function NavBar() {
                     delay: !scrollDirection ? 0.3 : 0,
                 }}>
                 <Link href='/'>
-                    <h1>ROMAIN LAURENT</h1>
+                    <p className='text-white'>ROMAIN LAURENT</p>
                 </Link>
                 {isMobile ? (
                     <VscMenu onClick={() => setIsMenuOpen(!isMenuOpen)} className='text-4xl cursor-pointer mix-blend-difference' />
