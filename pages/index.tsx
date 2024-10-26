@@ -50,6 +50,10 @@ export default function Home({ me }: { me: Me }) {
             <Head>
                 <title>Romain Laurent - Portfolio</title>
                 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+                <meta
+                    name='description'
+                    content="I'm a french young developer. I love frontend development, design, art, and discovering cultures. Let me know if you need my services !"
+                />
             </Head>
             {isMobile ? <MobileView me={me} description={description} /> : <DesktopView me={me} description={description} />}
         </>
