@@ -26,7 +26,7 @@ export default function Formations({ formations, locale }: { formations: Formati
         <>
             <Head>
                 <title>Romain Laurent - Formations</title>
-                <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+                <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <meta
                     name='description'
                     content='I started learning development in 2019 in highschool, I never stopped learning new things, and my development studies were the best years I had in a school'
