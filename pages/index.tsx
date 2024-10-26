@@ -57,6 +57,9 @@ export default function Home({ me }: { me: Me }) {
 }
 
 function MobileView({ me, description }: { me: Me; description: string[] }) {
+    const router = useRouter()
+    const language = router.locale
+
     return (
         <motion.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
             <div className='h-[75dvh] max-h-screen w-full flex flex-col items-center gap-y-4 border border-red-500'>
@@ -95,12 +98,23 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
             ))}
             <div id='contact' className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4 border border-green-500'>
                 <p className='text-4xl md:text-9xl font-extrabold text-center'>
-                    And I am <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>{me.status}</strong>
+                    {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
+                    <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>
+                        {language === 'fr' && me.status === 'available'
+                            ? 'disponible'
+                            : language === 'fr' && me.status !== 'available'
+                            ? 'en train de travailler'
+                            : me.status}
+                    </strong>
                 </p>
-                {me.status === 'working' && <p className='text-xl font-medium text-center'>But you can still contact me for future projects</p>}
-                <p className='text-xl font-medium text-center'>Soooo...</p>
+                {me.status === 'working' && (
+                    <p className='text-xl font-medium text-center'>
+                        {language === 'fr' ? 'Mais vous pouvez toujours me contacter pour un projet futur' : 'But you can still contact me for future projects'}
+                    </p>
+                )}
+                <p className='text-xl font-medium text-center'>{language === 'fr' ? 'Alooooors' : 'Soooo'}...</p>
                 <div className='w-1/2'>
-                    <LinkButton text='contact me' link='mailto:dev@romain-laurent.fr' />
+                    <LinkButton text={language === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
             </div>
         </motion.div>

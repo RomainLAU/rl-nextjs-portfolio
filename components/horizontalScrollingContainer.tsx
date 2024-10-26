@@ -1,9 +1,11 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import LinkButton from './linkButton';
 
 export default function HorizontalScrollingContainer({ list, title, CardComponent }: { list: any[]; title: string; CardComponent: React.ComponentType<any> }) {
+    const locale = useRouter().locale
     const scrollRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
     const ghostRef = useRef<HTMLDivElement>(null)
@@ -50,7 +52,7 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
             <div ref={ghostRef} style={{ height: scrollRange }} className='ghost' />
             <motion.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
                 <motion.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
-                    <LinkButton text='contact me' link='mailto:dev@romain-laurent.fr' />
+                    <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </motion.div>
             </motion.div>
         </>
