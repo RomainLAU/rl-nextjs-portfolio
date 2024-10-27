@@ -39,7 +39,7 @@ const nextConfig = {
             'form-action': ["'self'"],
         }
 
-        if (process.env.NEXT_PUBLIC_ENV === 'dev') {
+        if (process.env.NODE_ENV !== 'production') {
             policies['script-src'].push("'unsafe-eval'")
         }
 
