@@ -15,8 +15,8 @@ export default function AnimatedSmiley() {
 
     return (
         <>
-            <svg width='200' height='200' viewBox='0 0 100 100'>
-                <circle cx='50' cy='50' r='45' fill='white' stroke='white' strokeWidth='2' />
+            <svg width='75' height='75' viewBox='0 0 100 100'>
+                <circle cx='50' cy='50' r='45' fill='none' stroke='white' strokeWidth='2' />
                 <circle cx='35' cy='40' r='5' fill='white' />
                 <circle cx='65' cy='40' r='5' fill='white' />
                 <path d='M 50 70 Q 50 70 50 70' fill='none' stroke='white' strokeWidth='2' strokeLinecap='round' className='animate-smile' />
