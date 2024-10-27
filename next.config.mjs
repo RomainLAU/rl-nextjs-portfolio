@@ -30,13 +30,30 @@ const nextConfig = {
         defaultLocale: 'fr',
     },
     async headers() {
+        const policies = {
+            'default-src': ["'self'"],
+            'script-src': ["'self'"],
+            'style-src': ["'self'", "'unsafe-inline'"],
+            'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
+            'font-src': ["'self'"],
+            'form-action': ["'self'"],
+        }
+
+        if (process.env.NEXT_PUBLIC_ENV === 'dev') {
+            policies['script-src'].push("'unsafe-eval'")
+        }
+
+        const csp = Object.entries(policies)
+            .map(([key, val]) => `${key} ${val.join(' ')}`)
+            .join('; ')
+
         return [
             {
                 source: '/:path*',
                 headers: [
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com; font-src 'self';",
+                        value: csp,
                     },
                     {
                         key: 'X-Content-Type-Options',
@@ -75,6 +92,32 @@ const nextConfig = {
                         value: 'index, follow',
                     },
                 ],
+            },
+        ]
+    },
+    async redirects() {
+        return [
+            {
+                source: '/(.*)',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'romain-laurent.fr',
+                    },
+                ],
+                permanent: true,
+                destination: 'https://romain-laurent.fr/:path*',
+            },
+            {
+                source: '/(.*)',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'www.romain-laurent.fr',
+                    },
+                ],
+                permanent: true,
+                destination: 'https://www.romain-laurent.fr/:path*',
             },
         ]
     },
