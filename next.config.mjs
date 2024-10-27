@@ -98,7 +98,7 @@ const nextConfig = {
     async redirects() {
         return [
             {
-                source: '/(.*)',
+                source: 'http://romain-laurent.fr/:path*',
                 has: [
                     {
                         type: 'host',
@@ -109,7 +109,7 @@ const nextConfig = {
                 destination: 'https://romain-laurent.fr/:path*',
             },
             {
-                source: '/(.*)',
+                source: 'http://www.romain-laurent.fr/:path*',
                 has: [
                     {
                         type: 'host',
