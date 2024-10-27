@@ -12,11 +12,15 @@ export default function FormationCard({ element }: { element: Formation }) {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true, amount: 0.2 })
 
-    const getAnimationProps = (index = 0) => ({
-        initial: { opacity: 0, y: 30 },
-        animate: { opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 },
-        transition: { duration: 0.5, delay: isInView ? index * 0.3 : 0 },
-    })
+    const getAnimationProps = (index = 0) => {
+        if (isMobile) {
+            return {
+                initial: { opacity: 0, y: 30 },
+                animate: { opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 },
+                transition: { duration: 0.5, delay: isInView ? index * 0.3 : 0 },
+            }
+        }
+    }
 
     return (
         <AnimatePresence>

@@ -36,7 +36,7 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                         width={experience.company_logo.width}
                         height={experience.company_logo.height}
                         className='w-[80vw] md:w-auto h-[40vh] md:h-full'
-                        quality={isMobile ? 50 : 75}
+                        quality={isMobile ? 50 : 100}
                         priority={isInView}
                     />
                 )}

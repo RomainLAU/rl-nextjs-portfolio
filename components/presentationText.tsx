@@ -6,6 +6,8 @@ import { useInView } from 'react-intersection-observer';
 
 import useIsMobile from '@/hooks/useIsMobile';
 
+import AnimatedSmiley from './animatedSmiley';
+
 export default function PresentationText({ text, image }: { text: string; image: { url: string; width: number; height: number; name: string } }) {
     const textRef = useRef<HTMLDivElement | null>(null)
     const ref = useRef(null)
@@ -32,6 +34,9 @@ export default function PresentationText({ text, image }: { text: string; image:
         replace: (domNode: any) => {
             if (domNode.name === 'strong' && domNode.attribs.class === 'colors') {
                 return <strong className='colors'>{getColoredText(domNode.children[0].data)}</strong>
+            }
+            if (domNode.name === 'p' && domNode.attribs.class === 'smiley') {
+                return <AnimatedSmiley />
             }
             if (domNode.name === 'p') {
                 return <>{domNode.children && domToReact(domNode.children, options)}</>
