@@ -95,32 +95,32 @@ const nextConfig = {
             },
         ]
     },
-    async redirects() {
-        return [
-            {
-                source: 'http://romain-laurent.fr/:path*',
-                has: [
-                    {
-                        type: 'host',
-                        value: 'romain-laurent.fr',
-                    },
-                ],
-                permanent: true,
-                destination: 'https://romain-laurent.fr/:path*',
-            },
-            {
-                source: 'http://www.romain-laurent.fr/:path*',
-                has: [
-                    {
-                        type: 'host',
-                        value: 'www.romain-laurent.fr',
-                    },
-                ],
-                permanent: true,
-                destination: 'https://www.romain-laurent.fr/:path*',
-            },
-        ]
-    },
+    // async redirects() {
+    //     return [
+    //         {
+    //             source: '/(.*)',
+    //             has: [
+    //                 {
+    //                     type: 'host',
+    //                     value: 'romain-laurent.fr',
+    //                 },
+    //             ],
+    //             permanent: true,
+    //             destination: 'https://romain-laurent.fr/:path*',
+    //         },
+    //         {
+    //             source: '/(.*)',
+    //             has: [
+    //                 {
+    //                     type: 'host',
+    //                     value: 'www.romain-laurent.fr',
+    //                 },
+    //             ],
+    //             permanent: true,
+    //             destination: 'https://www.romain-laurent.fr/:path*',
+    //         },
+    //     ]
+    // },
 }
 
 export default nextConfig
