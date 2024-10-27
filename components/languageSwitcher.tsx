@@ -12,7 +12,7 @@ export default function LanguageSwitcher() {
                 defaultValue={locale}
                 className='bg-transparent outline-none !bg-black link'>
                 {locales?.map((element) => (
-                    <option label={`switch-to-${element}`} key={element} value={element}>
+                    <option aria-label={`switch-to-${element}`} key={element} value={element}>
                         {element}
                     </option>
                 ))}
