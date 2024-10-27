@@ -92,6 +92,7 @@ export default function PresentationText({ text, image }: { text: string; image:
                         width={image.width ?? 100}
                         height={image.height ?? 100}
                         alt={image.name ?? ''}
+                        quality={isMobile ? 50 : 100}
                     />
                 )}
             </motion.div>
