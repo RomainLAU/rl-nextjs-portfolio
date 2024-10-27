@@ -11,7 +11,7 @@ export default function MobileContainer({ list, title, CardComponent }: { list: 
             {list.map((element: any) => (
                 <CardComponent key={`component-${element.id}`} element={element} />
             ))}
-            <motion.div className='flex items-center justify-center h-[80dvh]'>
+            <motion.div id='contact' className='flex items-center justify-center h-[80dvh]'>
                 <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
             </motion.div>
         </div>
