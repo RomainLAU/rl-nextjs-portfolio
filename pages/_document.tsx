@@ -15,6 +15,7 @@ export default function Document() {
                     property='description'
                     content="Hey ! I'm Romain LAURENT, a young french developer desiring to discover the world, if you want to help me to do that, contact me with your project and I will be happy to work on it !"
                 />
+                <link rel='dns-prefetch' href='https://res.cloudinary.com' />.
             </Head>
             <body className='font-inter'>
                 <Main />
