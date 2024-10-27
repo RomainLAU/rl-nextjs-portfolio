@@ -36,7 +36,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;",
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com; font-src 'self';",
                     },
                     {
                         key: 'X-Content-Type-Options',
@@ -68,7 +68,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Language',
-                        value: 'en',
+                        value: 'fr',
                     },
                     {
                         key: 'X-Robots-Tag',
