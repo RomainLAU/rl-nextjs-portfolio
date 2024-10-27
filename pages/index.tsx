@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import endpoints from '@/apiConfig';
 import LinkButton from '@/components/linkButton';

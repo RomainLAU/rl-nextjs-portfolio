@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import React from 'react';
 
 import endpoints from '@/apiConfig';
 import FormationCard from '@/components/formationCard';

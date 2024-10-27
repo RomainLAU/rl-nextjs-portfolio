@@ -2,8 +2,7 @@ import '@/globals.css';
 
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Inter } from 'next/font/google';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import CustomCursor from '@/components/customCursor';
 import NavBar from '@/components/navBar';

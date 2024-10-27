@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
 import { Formation } from '@/types/formation';

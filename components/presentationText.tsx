@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import parse, { domToReact } from 'html-react-parser';
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import useIsMobile from '@/hooks/useIsMobile';
