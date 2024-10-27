@@ -66,13 +66,13 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
 
     return (
         <motion.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
-            <div className='h-[75dvh] max-h-screen w-full flex flex-col items-center gap-y-4'>
+            <div className='h-[90dvh] max-h-screen w-full flex flex-col items-center gap-y-4'>
                 <motion.h1
                     initial='hidden'
                     animate='visible'
                     variants={apparitionVariants}
                     transition={apparitionTransition}
-                    className='text-4xl md:text-9xl font-extrabold text-center mt-[20rem] text-white'>
+                    className='text-4xl md:text-9xl font-extrabold text-center mt-[40dvh] text-white'>
                     {me.fullname}
                 </motion.h1>
                 <motion.h2
