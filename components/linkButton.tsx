@@ -24,7 +24,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
                 href={link}
                 className='flex items-center justify-center z-[1] pointer-events-visible font-extrabold h-full w-full text-center'
                 animate={{
-                    color: isHovering ? 'black' : 'white',
+                    color: isHovering ? '#000000' : '#ffffff',
                 }}
                 transition={{
                     duration: 0.5,
@@ -68,7 +68,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
                                 top: '50%',
                                 transform: 'translate(-50%, -50%)',
                                 borderRadius: '100%',
-                                boxShadow: '0 0 0 20px rgba(0, 0, 0, 1)',
+                                boxShadow: '0 0 0 20px black',
                                 filter: 'blur(20px)',
                             }}
                             transition={{

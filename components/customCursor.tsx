@@ -63,7 +63,7 @@ export default function CustomCursor() {
                 translateX: '-50%',
                 translateY: '-50%',
                 willChange: 'transform',
-                backgroundColor: isHoveringLink ? 'rgba(255, 255, 255, 0.9)' : 'rgb(255, 255, 255, 1)',
+                backgroundColor: isHoveringLink ? '#ffffffe5' : '#ffffff',
             }}
             animate={{
                 x: position.x,

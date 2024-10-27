@@ -44,7 +44,7 @@ export default function PresentationText({ text, image }: { text: string; image:
 
     if (isMobile) {
         return (
-            <motion.div ref={viewRef} className='flex flex-col items-center mb-8 w-screen h-[80vh]'>
+            <motion.div ref={viewRef} className='relative flex flex-col items-center mb-8 w-screen h-[80vh]'>
                 <motion.div
                     animate={{
                         x: inView ? 0 : -20,
