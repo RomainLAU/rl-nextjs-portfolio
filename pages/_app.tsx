@@ -1,6 +1,6 @@
 import '@/globals.css';
 
-import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { AnimatePresence, m, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Inter } from 'next/font/google';
 import { useRef } from 'react';
 
@@ -39,7 +39,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <AnimatePresence mode='wait'>
-                <motion.div
+                <m.div
                     key={router.route}
                     initial='hidden'
                     animate='visible'
@@ -52,7 +52,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                     <CustomCursor />
                     <NavBar />
                     <Component {...pageProps} />
-                </motion.div>
+                </m.div>
             </AnimatePresence>
             <PageTransition />
         </>

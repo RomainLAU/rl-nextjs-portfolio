@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import parse, { domToReact } from 'html-react-parser';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -8,7 +8,15 @@ import useIsMobile from '@/hooks/useIsMobile';
 
 import AnimatedSmiley from './animatedSmiley';
 
-export default function PresentationText({ text, image }: { text: string; image: { url: string; width: number; height: number; name: string } }) {
+export default function PresentationText({
+    text,
+    image,
+    index,
+}: {
+    text: string
+    image: { url: string; width: number; height: number; name: string }
+    index: number
+}) {
     const textRef = useRef<HTMLDivElement | null>(null)
     const ref = useRef(null)
     const isMobile = useIsMobile()
@@ -49,8 +57,8 @@ export default function PresentationText({ text, image }: { text: string; image:
 
     if (isMobile) {
         return (
-            <motion.div ref={viewRef} className='relative flex flex-col items-center mb-8 w-screen h-[80vh]'>
-                <motion.div
+            <m.div ref={viewRef} className='relative flex flex-col items-center mb-8 w-screen h-[80vh]'>
+                <m.div
                     animate={{
                         x: inView ? 0 : -20,
                         opacity: inView ? 1 : 0,
@@ -58,10 +66,11 @@ export default function PresentationText({ text, image }: { text: string; image:
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                     className='text-xl mb-4 text-wrap text-center w-3/4'>
                     {parse(text, options)}
-                </motion.div>
+                </m.div>
                 {image && (
                     <Image
-                        priority
+                        priority={index === 0}
+                        quality={isMobile ? 50 : 100}
                         style={{
                             transform: inView ? 'translateX(0)' : 'translateX(-20px)',
                             opacity: inView ? 1 : 0,
@@ -74,19 +83,19 @@ export default function PresentationText({ text, image }: { text: string; image:
                         className='w-3/4'
                     />
                 )}
-            </motion.div>
+            </m.div>
         )
     }
 
     return (
         <section className='h-screen w-full flex justify-center items-center relative' style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
-            <motion.div
+            <m.div
                 ref={ref}
                 className='relative max-h-[90vh] m-5 overflow-hidden'
                 style={{ x: -150, width: image?.width ?? 400, height: image?.height ?? 300 }}>
                 {image && (
                     <Image
-                        priority
+                        priority={index === 0}
                         className='absolute inset-0'
                         src={image.url ?? ''}
                         width={image.width ?? 100}
@@ -95,8 +104,8 @@ export default function PresentationText({ text, image }: { text: string; image:
                         quality={isMobile ? 50 : 100}
                     />
                 )}
-            </motion.div>
-            <motion.div
+            </m.div>
+            <m.div
                 ref={textRef}
                 className='absolute text-9xl font-extrabold mix-blend-difference flex justify-center items-center flex-wrap gap-x-10'
                 style={{
@@ -106,7 +115,7 @@ export default function PresentationText({ text, image }: { text: string; image:
                     maxWidth: image ? '30%' : '80%',
                 }}>
                 {parse(text, options)}
-            </motion.div>
+            </m.div>
         </section>
     )
 }

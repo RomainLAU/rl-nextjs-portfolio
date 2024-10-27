@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -65,17 +65,17 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
     const language = router.locale
 
     return (
-        <motion.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
+        <m.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
             <div className='h-[90dvh] max-h-screen w-full flex flex-col items-center gap-y-4'>
-                <motion.h1
+                <m.h1
                     initial='hidden'
                     animate='visible'
                     variants={apparitionVariants}
                     transition={apparitionTransition}
                     className='text-4xl md:text-9xl font-extrabold text-center mt-[40dvh] text-white'>
                     {me.fullname}
-                </motion.h1>
-                <motion.h2
+                </m.h1>
+                <m.h2
                     initial='hidden'
                     animate='visible'
                     variants={apparitionVariants}
@@ -85,7 +85,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     }}
                     className='text-center text-xl font-medium text-white'>
                     {me.job}
-                </motion.h2>
+                </m.h2>
             </div>
             {description.map((paragraph: string, index: number) => (
                 <div key={index} className='border border-blue-500 relative w-full max-w-screen'>
@@ -97,6 +97,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                             me.images[index]?.formats.small ||
                             me.images[index]?.formats.thumbnail
                         }
+                        index={index}
                     />
                 </div>
             ))}
@@ -121,7 +122,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     <LinkButton text={language === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     )
 }
 
@@ -130,17 +131,17 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
     const language = router.locale
 
     return (
-        <motion.div className='w-full min-w-screen relative'>
-            <motion.div className='h-screen w-full flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
-                <motion.h1
+        <m.div className='w-full min-w-screen relative'>
+            <m.div className='h-screen w-full flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
+                <m.h1
                     initial='hidden'
                     animate='visible'
                     variants={apparitionVariants}
                     transition={apparitionTransition}
                     className='text-4xl md:text-9xl font-extrabold text-center text-white'>
                     {me.fullname}
-                </motion.h1>
-                <motion.h2
+                </m.h1>
+                <m.h2
                     initial='hidden'
                     animate='visible'
                     variants={apparitionVariants}
@@ -150,8 +151,8 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                     }}
                     className='text-center text-xl font-medium text-white'>
                     {me.job}
-                </motion.h2>
-            </motion.div>
+                </m.h2>
+            </m.div>
             {description.map((paragraph, index) => (
                 <PresentationText
                     key={`paragraph-${index}`}
@@ -162,6 +163,7 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                         me.images[index]?.formats.small ||
                         me.images[index]?.formats.thumbnail
                     }
+                    index={index}
                 />
             ))}
             <div id='contact' className='h-screen flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
@@ -185,6 +187,6 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                     <LinkButton text={language === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     )
 }

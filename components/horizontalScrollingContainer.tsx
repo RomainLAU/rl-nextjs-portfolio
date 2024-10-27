@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { m, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -39,22 +39,22 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
     return (
         <>
             <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-8'>{title}</h1>
-            <motion.div ref={containerRef} className='fixed left-0 right-0 will-change-transform' style={{ y: ySpring }}>
-                <motion.section ref={scrollRef} className='relative h-screen max-h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
+            <m.div ref={containerRef} className='fixed left-0 right-0 will-change-transform' style={{ y: ySpring }}>
+                <m.section ref={scrollRef} className='relative h-screen max-h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
                     <div className='relative flex gap-x-96'>
                         {list &&
                             list
                                 .toSorted((elementA, elementB) => ((elementA.finished_at ?? 0) < (elementB.finished_at ?? 0) ? 1 : -1))
                                 .map((element: any) => <CardComponent key={`experience-${element.id}`} element={element} />)}
                     </div>
-                </motion.section>
-            </motion.div>
+                </m.section>
+            </m.div>
             <div ref={ghostRef} style={{ height: scrollRange }} className='ghost' />
-            <motion.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
-                <motion.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
+            <m.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
+                <m.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
-                </motion.div>
-            </motion.div>
+                </m.div>
+            </m.div>
         </>
     )
 }

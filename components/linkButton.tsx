@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { useState } from 'react';
 
 export default function LinkButton({ text, link }: { text: string; link: string }) {
@@ -13,13 +13,13 @@ export default function LinkButton({ text, link }: { text: string; link: string 
     }
 
     return (
-        <motion.div
+        <m.div
             className='w-full h-14 bg-black text-white border border-solid border-white rounded-full cursor-none overflow-hidden relative z-[1]'
             onHoverStart={() => setIsHovering(true)}
             onHoverEnd={() => setIsHovering(false)}
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseMove}>
-            <motion.a
+            <m.a
                 target='_blank'
                 href={link}
                 className='flex items-center justify-center z-[1] pointer-events-visible font-extrabold h-full w-full text-center'
@@ -31,10 +31,10 @@ export default function LinkButton({ text, link }: { text: string; link: string 
                     ease: 'easeOut',
                 }}>
                 {text.toUpperCase()}
-            </motion.a>
+            </m.a>
             {isHovering && (
                 <AnimatePresence>
-                    <motion.div
+                    <m.div
                         className='absolute rounded-full pointer-events-none will-change-transform -z-10'
                         style={{
                             backgroundColor: 'white',
@@ -59,7 +59,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
                             duration: 1.5,
                             ease: 'easeOut',
                         }}>
-                        <motion.div
+                        <m.div
                             className='absolute rounded-full pointer-events-none z-20'
                             style={{
                                 height: '5px',
@@ -77,9 +77,9 @@ export default function LinkButton({ text, link }: { text: string; link: string 
                                 damping: 30,
                             }}
                         />
-                    </motion.div>
+                    </m.div>
                 </AnimatePresence>
             )}
-        </motion.div>
+        </m.div>
     )
 }

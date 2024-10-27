@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import throttle from 'lodash.throttle';
 import { useEffect, useRef, useState } from 'react';
 
@@ -7,7 +7,6 @@ const hoverElements = ['A', 'BUTTON']
 export default function CustomCursor() {
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [isHoveringLink, setIsHoveringLink] = useState(false)
-    const [isHoveringButton, setIsHoveringButton] = useState(false)
     const animationFrameId = useRef<number | null>(null)
 
     useEffect(() => {
@@ -25,17 +24,13 @@ export default function CustomCursor() {
         }, 16) // Throttling à 60 FPS (~16 ms)
 
         const handleMouseOver = (event: MouseEvent) => {
-            if ((event.target as HTMLElement).tagName === 'BUTTON') {
-                setIsHoveringButton(true)
-            } else if (hoverElements.includes((event.target as HTMLElement).tagName)) {
+            if (hoverElements.includes((event.target as HTMLElement).tagName)) {
                 setIsHoveringLink(true)
             }
         }
 
         const handleMouseOut = (event: MouseEvent) => {
-            if ((event.target as HTMLElement).tagName === 'BUTTON') {
-                setIsHoveringButton(false)
-            } else if (hoverElements.includes((event.target as HTMLElement).tagName)) {
+            if (hoverElements.includes((event.target as HTMLElement).tagName)) {
                 setIsHoveringLink(false)
             }
         }
@@ -55,7 +50,7 @@ export default function CustomCursor() {
     }, [])
 
     return (
-        <motion.div
+        <m.div
             className={`hidden sm:block fixed w-5 h-5 rounded-full pointer-events-none mix-blend-difference z-50`}
             style={{
                 top: 0,

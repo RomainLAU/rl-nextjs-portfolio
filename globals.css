@@ -127,3 +127,22 @@ p > svg {
     background-color: #1f1f1f;
     color: white;
 }
+
+@keyframes smileAnimation {
+    0%,
+    100% {
+        d: path('M 40 70 Q 50 80 60 70');
+    }
+    50% {
+        d: path('M 30 65 Q 50 85 70 65');
+    }
+}
+.animate-smile {
+    animation: smileAnimation 2s ease-in-out infinite;
+}
+@media (max-width: 640px) {
+    svg {
+        width: 50px;
+        height: 50px;
+    }
+}

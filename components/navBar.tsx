@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -53,7 +53,7 @@ export default function NavBar() {
 
     return (
         <>
-            <motion.nav
+            <m.nav
                 className='fixed top-0 left-0 w-[calc(100vw-4rem)] p-8 flex items-center text-white font-semibold bg-black justify-between mix-blend-difference z-10'
                 initial={{ y: '-100%' }}
                 animate={{ y: !scrollDirection ? '0%' : scrollDirection === 'down' ? '-100%' : '0%' }}
@@ -86,10 +86,10 @@ export default function NavBar() {
                         <LanguageSwitcher />
                     </div>
                 )}
-            </motion.nav>
+            </m.nav>
             <AnimatePresence mode='wait'>
                 {isMenuOpen && (
-                    <motion.div
+                    <m.div
                         key={'headerMenu'}
                         variants={containerVariants}
                         initial={'initial'}
@@ -101,39 +101,39 @@ export default function NavBar() {
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className='text-4xl cursor-pointer mix-blend-difference absolute top-8 right-8'
                         />
-                        {/* <motion.div key={'link-projects'} variants={itemVariants}>
+                        {/* <m.div key={'link-projects'} variants={itemVariants}>
                             <Link
                                 className={`link mobile-link ${pathname === '/projects' ? 'active' : ''}`}
                                 href='/projects'
                                 onClick={() => setIsMenuOpen(false)}>
                                 {language === 'fr' ? 'Projets' : 'Projects'}
                             </Link>
-                        </motion.div> */}
-                        <motion.div key={'link-experience'} variants={itemVariants}>
+                        </m.div> */}
+                        <m.div key={'link-experience'} variants={itemVariants}>
                             <Link
                                 className={`link mobile-link ${pathname === '/experience' ? 'active' : ''}`}
                                 href='/experience'
                                 onClick={() => setIsMenuOpen(false)}>
                                 {language === 'fr' ? 'Expérience' : 'Experience'}
                             </Link>
-                        </motion.div>
-                        <motion.div key={'link-formations'} variants={itemVariants}>
+                        </m.div>
+                        <m.div key={'link-formations'} variants={itemVariants}>
                             <Link
                                 className={`link mobile-link ${pathname === '/formations' ? 'active' : ''}`}
                                 href='/formations'
                                 onClick={() => setIsMenuOpen(false)}>
                                 {language === 'fr' ? 'Formations' : 'Formations'}
                             </Link>
-                        </motion.div>
-                        <motion.div key={'link-contact'} variants={itemVariants}>
+                        </m.div>
+                        <m.div key={'link-contact'} variants={itemVariants}>
                             <Link className={`link mobile-link`} href='#contact' onClick={() => setIsMenuOpen(false)}>
                                 {language === 'fr' ? 'Contact' : 'Contact'}
                             </Link>
-                        </motion.div>
-                        <motion.div key={'link-language'} variants={itemVariants}>
+                        </m.div>
+                        <m.div key={'link-language'} variants={itemVariants}>
                             <LanguageSwitcher />
-                        </motion.div>
-                    </motion.div>
+                        </m.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 import LinkButton from './linkButton';
@@ -11,9 +11,9 @@ export default function MobileContainer({ list, title, CardComponent }: { list: 
             {list.map((element: any) => (
                 <CardComponent key={`component-${element.id}`} element={element} />
             ))}
-            <motion.div id='contact' className='flex items-center justify-center h-[80dvh]'>
+            <m.div id='contact' className='flex items-center justify-center h-[80dvh]'>
                 <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
-            </motion.div>
+            </m.div>
         </div>
     )
 }
