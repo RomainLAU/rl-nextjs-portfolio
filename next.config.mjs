@@ -95,32 +95,6 @@ const nextConfig = {
             },
         ]
     },
-    async redirects() {
-        return [
-            {
-                source: '/:path*',
-                has: [
-                    {
-                        type: 'host',
-                        value: 'romain-laurent.fr',
-                    },
-                ],
-                permanent: true,
-                destination: 'https://romain-laurent.fr/:path*',
-            },
-            {
-                source: '/:path*',
-                has: [
-                    {
-                        type: 'host',
-                        value: 'www.romain-laurent.fr',
-                    },
-                ],
-                permanent: true,
-                destination: 'https://www.romain-laurent.fr/:path*',
-            },
-        ]
-    },
 }
 
 export default nextConfig
