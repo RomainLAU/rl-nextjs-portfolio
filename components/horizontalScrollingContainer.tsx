@@ -32,7 +32,7 @@ export default function HorizontalScrollingContainer({ list, title, CardComponen
     const containerPosition = containerRef?.current?.getBoundingClientRect().y ?? 0
     const containerHeight = containerRef?.current?.getBoundingClientRect().height ?? 0
     const yTransform = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, -containerPosition, -containerPosition, -containerHeight])
-    const xTransform = useTransform(scrollYProgress, [0.07, 1], [0, (-scrollRange + viewportW) * 1.1])
+    const xTransform = useTransform(scrollYProgress, [0.07, 1], [0, (-scrollRange + viewportW) * 1.2])
     const ySpring = useSpring(yTransform, { damping: 15, mass: 0.27, stiffness: 35 })
     const xSpring = useSpring(xTransform, { damping: 15, mass: 0.27, stiffness: 35 })
 

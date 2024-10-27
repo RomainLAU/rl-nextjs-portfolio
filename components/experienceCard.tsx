@@ -50,6 +50,13 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                     <motion.p {...getAnimationProps(2)} className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace] leading-[normal]'>
                         {new Date(experience.started_at).toLocaleDateString(locale).replaceAll('-', '/')}
                     </motion.p>
+                    {isMobile && (
+                        <motion.p
+                            {...getAnimationProps(2.5)}
+                            className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
+                            {(experience.finished_at && new Date(experience.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
+                        </motion.p>
+                    )}
                     <div className='flex flex-col w-full gap-y-4'>
                         <motion.p {...getAnimationProps(3)} className='text-xl md:text-4xl text-left self-start'>
                             {experience.company} - {experience.contract}
@@ -67,9 +74,13 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                                 ))}
                         </motion.div>
                     </div>
-                    <motion.p {...getAnimationProps(5.5)} className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
-                        {(experience.finished_at && new Date(experience.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
-                    </motion.p>
+                    {!isMobile && (
+                        <motion.p
+                            {...getAnimationProps(5.5)}
+                            className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
+                            {(experience.finished_at && new Date(experience.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
+                        </motion.p>
+                    )}
                 </div>
                 <motion.p
                     {...getAnimationProps(7)}

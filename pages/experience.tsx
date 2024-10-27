@@ -33,13 +33,13 @@ export default function Experience({ experiences, locale }: { experiences: Exper
             </Head>
             {isMobile ? (
                 <MobileContainer
-                    list={experiences}
+                    list={experiences.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
                     title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
                     CardComponent={ExperienceCard}
                 />
             ) : (
                 <HorizontalScrollingContainer
-                    list={experiences}
+                    list={experiences.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
                     title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
                     CardComponent={ExperienceCard}
                 />

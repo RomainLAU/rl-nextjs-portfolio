@@ -32,9 +32,17 @@ export default function Formations({ formations, locale }: { formations: Formati
                 />
             </Head>
             {isMobile ? (
-                <MobileContainer list={formations} title={locale === 'fr' ? 'Formations' : 'School Formations'} CardComponent={FormationCard} />
+                <MobileContainer
+                    list={formations.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
+                    title={locale === 'fr' ? 'Formations' : 'School Formations'}
+                    CardComponent={FormationCard}
+                />
             ) : (
-                <HorizontalScrollingContainer list={formations} title={locale === 'fr' ? 'Formations' : 'School Formations'} CardComponent={FormationCard} />
+                <HorizontalScrollingContainer
+                    list={formations.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
+                    title={locale === 'fr' ? 'Formations' : 'School Formations'}
+                    CardComponent={FormationCard}
+                />
             )}
         </>
     )

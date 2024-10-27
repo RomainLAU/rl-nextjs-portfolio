@@ -31,9 +31,16 @@ export default function FormationCard({ element }: { element: Formation }) {
                     {formation.school}
                 </motion.h2>
                 <div className='md:h-full w-full md:w-max flex flex-col gap-y-8 justify-center'>
-                    <motion.p {...getAnimationProps(2)} className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace]'>
+                    <motion.p {...getAnimationProps(2)} className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace] leading-[normal]'>
                         {new Date(formation.started_at).toLocaleDateString(locale).replaceAll('-', '/')}
                     </motion.p>
+                    {isMobile && (
+                        <motion.p
+                            {...getAnimationProps(2.5)}
+                            className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
+                            {(formation.finished_at && new Date(formation.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
+                        </motion.p>
+                    )}
                     <div className='flex flex-col w-full gap-y-4'>
                         <motion.p {...getAnimationProps(3)} className='text-2xl md:text-4xl text-left self-start'>
                             {formation.title}
@@ -51,9 +58,11 @@ export default function FormationCard({ element }: { element: Formation }) {
                                 ))}
                         </motion.div>
                     </div>
-                    <motion.p {...getAnimationProps(5.5)} className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace]'>
-                        {(formation.finished_at && new Date(formation.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
-                    </motion.p>
+                    {!isMobile && (
+                        <motion.p {...getAnimationProps(5.5)} className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace]'>
+                            {(formation.finished_at && new Date(formation.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
+                        </motion.p>
+                    )}
                 </div>
                 <motion.p
                     {...getAnimationProps(7)}
