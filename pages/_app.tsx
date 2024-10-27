@@ -1,6 +1,8 @@
 import '@/globals.css';
 
-import { AnimatePresence, m, useScroll, useSpring, useTransform } from 'framer-motion';
+import {
+    AnimatePresence, domAnimation, LazyMotion, m, useScroll, useSpring, useTransform
+} from 'framer-motion';
 import { Inter } from 'next/font/google';
 import { useRef } from 'react';
 
@@ -38,23 +40,25 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
 
     return (
         <>
-            <AnimatePresence mode='wait'>
-                <m.div
-                    key={router.route}
-                    initial='hidden'
-                    animate='visible'
-                    exit='exit'
-                    variants={opacityVariants}
-                    transition={opacityTransition}
-                    style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
-                    className={`${inter.className} ${currentPath !== '/' && 'md:mt-20 md:p-24'} relative w-max sm:w-full`}
-                    ref={scrollRef}>
-                    <CustomCursor />
-                    <NavBar />
-                    <Component {...pageProps} />
-                </m.div>
-            </AnimatePresence>
-            <PageTransition />
+            <LazyMotion features={domAnimation}>
+                <AnimatePresence mode='wait'>
+                    <m.div
+                        key={router.route}
+                        initial='hidden'
+                        animate='visible'
+                        exit='exit'
+                        variants={opacityVariants}
+                        transition={opacityTransition}
+                        style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
+                        className={`${inter.className} ${currentPath !== '/' && 'md:mt-20 md:p-24'} relative w-max sm:w-full`}
+                        ref={scrollRef}>
+                        <CustomCursor />
+                        <NavBar />
+                        <Component {...pageProps} />
+                    </m.div>
+                </AnimatePresence>
+                <PageTransition />
+            </LazyMotion>
         </>
     )
 }
