@@ -80,7 +80,7 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                 </div>
                 <m.p
                     {...getAnimationProps(7)}
-                    className='w-full max-w-screen md:w-[32rem] text-xl md:text-[clamp(12px,calc(15%+1.5em),100px)] whitespace-break-spaces'
+                    className='w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(15%+1.5em),100px)] whitespace-break-spaces'
                     style={{ marginTop: experience.id % 2 === 0 ? 'auto' : '0', marginBottom: !(experience.id % 2 === 0) ? 'auto' : '0' }}>
                     {experience.description}
                 </m.p>
