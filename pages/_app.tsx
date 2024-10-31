@@ -14,16 +14,6 @@ import type { AppProps } from 'next/app'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
-    const scrollRef = useRef(null)
-    const { scrollY } = useScroll({ container: scrollRef })
-    const smoothScrollY = useSpring(scrollY, {
-        stiffness: 100,
-        damping: 30,
-        mass: 1,
-    })
-
-    const y = useTransform(smoothScrollY, (value) => -value)
-
     const opacityVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
@@ -49,9 +39,8 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                         exit='exit'
                         variants={opacityVariants}
                         transition={opacityTransition}
-                        style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
-                        className={`${inter.className} ${currentPath !== '/' && 'md:mt-20 md:p-24'} relative w-max sm:w-full`}
-                        ref={scrollRef}>
+                        style={{ height: currentPath !== '/' ? '100dvh' : 'auto' }}
+                        className={`${inter.className} ${currentPath !== '/' && 'md:mt-20'} relative w-max sm:w-full`}>
                         <CustomCursor />
                         <NavBar />
                         <Component {...pageProps} />

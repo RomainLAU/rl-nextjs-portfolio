@@ -1,60 +1,85 @@
-import { m, useScroll, useSpring, useTransform } from 'framer-motion';
+'use client'
+
+import { m, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
+
+import Lenis from '@studio-freight/lenis';
 
 import LinkButton from './linkButton';
 
-export default function HorizontalScrollingContainer({ list, title, CardComponent }: { list: any[]; title: string; CardComponent: React.ComponentType<any> }) {
-    const locale = useRouter().locale
-    const scrollRef = useRef<HTMLDivElement>(null)
+interface HorizontalScrollComponentProps<T> {
+    list: any[]
+    title: string
+    CardComponent: React.ComponentType<any>
+}
+
+export default function HorizontalScrollComponent<T>({ list, title, CardComponent }: HorizontalScrollComponentProps<T>) {
+    const { locale } = useRouter()
     const containerRef = useRef<HTMLDivElement>(null)
-    const ghostRef = useRef<HTMLDivElement>(null)
-    const [scrollRange, setScrollRange] = useState(0)
-    const [viewportW, setViewportW] = useState(0)
+    const horizontalRef = useRef<HTMLDivElement>(null)
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ['start start', 'end end'],
+    })
+
+    const smoothX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    })
+
+    const x = useTransform(smoothX, [0, 0.05, 0.95, 1], ['0%', '-5%', '-95%', '-100%'])
+    const buttonOpacity = useTransform(smoothX, [0, 0.95, 1], [0, 0, 1])
+    const titleOpacity = useTransform(smoothX, [0, 0.001, 0.01], [1, 0.5, 0])
 
     useEffect(() => {
-        if (scrollRef.current) {
-            setScrollRange(scrollRef.current.scrollWidth)
-        }
-    }, [scrollRef, containerRef])
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => t, // Easing linéaire
+            smoothWheel: true,
+            wheelMultiplier: 0.3, // Réduit la vitesse du défilement à la molette
+            touchMultiplier: 0.5,
+        })
 
-    const onResize = useCallback(() => {
-        setViewportW(window.innerWidth)
+        function raf(time: number) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+
+        return () => {
+            lenis.destroy()
+        }
     }, [])
 
-    useEffect(() => {
-        window.addEventListener('resize', onResize)
-        onResize()
-        return () => window.removeEventListener('resize', onResize)
-    }, [onResize])
-
-    const { scrollYProgress } = useScroll()
-    const containerPosition = containerRef?.current?.getBoundingClientRect().y ?? 0
-    const containerHeight = containerRef?.current?.getBoundingClientRect().height ?? 0
-    const yTransform = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, -containerPosition, -containerPosition, -containerHeight])
-    const xTransform = useTransform(scrollYProgress, [0.07, 1], [0, (-scrollRange + viewportW) * 1.2])
-    const ySpring = useSpring(yTransform, { damping: 15, mass: 0.27, stiffness: 35 })
-    const xSpring = useSpring(xTransform, { damping: 15, mass: 0.27, stiffness: 35 })
+    const memoizedCards = useMemo(
+        () =>
+            list.map((item, index) => (
+                <div key={index} className='flex-shrink-0'>
+                    <CardComponent key={`experience-${item.id}`} element={item} />
+                </div>
+            )),
+        [list, CardComponent]
+    )
 
     return (
-        <>
-            <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-8'>{title}</h1>
-            <m.div ref={containerRef} className='fixed left-0 right-0 will-change-transform' style={{ y: ySpring }}>
-                <m.section ref={scrollRef} className='relative h-screen max-h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
-                    <div className='relative flex gap-x-96'>
-                        {list &&
-                            list
-                                .toSorted((elementA, elementB) => ((elementA.finished_at ?? 0) < (elementB.finished_at ?? 0) ? 1 : -1))
-                                .map((element: any) => <CardComponent key={`experience-${element.id}`} element={element} />)}
-                    </div>
-                </m.section>
+        <div ref={containerRef} className='h-[300vh]'>
+            <motion.h1 style={{ opacity: titleOpacity }} className='fixed top-1/5 left-[3%] text-4xl font-bold'>
+                {title}
+            </motion.h1>
+
+            <div className='sticky top-0 h-screen flex items-center overflow-hidden'>
+                <motion.div ref={horizontalRef} style={{ x }} className='flex gap-x-96 px-10'>
+                    {memoizedCards}
+                </motion.div>
+            </div>
+
+            <m.div style={{ opacity: buttonOpacity }} className='w-1/4 max-w-[300px] fixed left-1/2 top-1/2 transform -translate-x-1/2'>
+                <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
             </m.div>
-            <div ref={ghostRef} style={{ height: scrollRange }} className='ghost' />
-            <m.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
-                <m.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
-                    <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
-                </m.div>
-            </m.div>
-        </>
+        </div>
     )
 }

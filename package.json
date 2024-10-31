@@ -9,6 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@studio-freight/react-lenis": "^0.0.47",
         "@types/lodash.throttle": "^4.1.9",
         "framer-motion": "^11.3.31",
         "html-react-parser": "^5.1.15",
