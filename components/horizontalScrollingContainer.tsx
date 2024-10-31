@@ -1,3 +1,5 @@
+'use client'
+
 import { m, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';

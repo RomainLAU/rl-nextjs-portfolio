@@ -1,3 +1,5 @@
+'use client'
+
 import { AnimatePresence, m, useInView } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
