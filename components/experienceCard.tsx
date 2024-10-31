@@ -30,15 +30,17 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                 {...getAnimationProps()}
                 className='flex w-full flex-col rounded-lg text-white shadow-md md:h-[calc(100dvh-12rem)] md:min-w-max md:flex-row md:items-center gap-8 md:gap-96'>
                 {experience.company_logo && (
-                    <Image
-                        src={experience.company_logo.url}
-                        alt={experience.company_logo.alternativeText}
-                        width={experience.company_logo.width}
-                        height={experience.company_logo.height}
-                        className='w-[80vw] md:w-auto h-[40vh] md:h-full'
-                        quality={isMobile ? 50 : 100}
-                        priority={isInView}
-                    />
+                    <div className={`w-[80vw] md:w-auto h-[40vh] md:h-full ${experience.company === 'COM4DESIGN' ? 'svg-container' : ''}`}>
+                        <Image
+                            src={experience.company_logo.url}
+                            alt={experience.company_logo.alternativeText}
+                            width={experience.company_logo.width}
+                            height={experience.company_logo.height}
+                            className='svg-image w-auto h-full'
+                            quality={isMobile ? 50 : 100}
+                            priority={isInView}
+                        />
+                    </div>
                 )}
                 <m.h2
                     {...getAnimationProps(1)}

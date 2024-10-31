@@ -37,7 +37,6 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => t, // Easing linéaire
             smoothWheel: true,
             wheelMultiplier: 0.3, // Réduit la vitesse du défilement à la molette
             touchMultiplier: 0.5,
