@@ -36,8 +36,8 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 opacity: 0,
                 scrollTrigger: {
                     trigger: container,
-                    start: '5vh top',
-                    end: '40vh top',
+                    start: '100vh top',
+                    end: '150vh top',
                     scrub: true,
                 },
             })
