@@ -57,7 +57,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                         variants={opacityVariants}
                         transition={opacityTransition}
                         style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
-                        className={`${inter.className} ${currentPath !== '/' && 'md:mt-20 md:p-24'} relative w-max sm:w-full`}
+                        className={`${inter.className} relative w-max sm:w-full`}
                         ref={scrollRef}>
                         <CustomCursor />
                         <NavBar />

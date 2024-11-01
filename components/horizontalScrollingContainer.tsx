@@ -1,54 +1,101 @@
 'use client'
 
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import LinkButton from './linkButton';
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function HorizontalScrollingContainer({ list, title, CardComponent }: { list: any[]; title: string; CardComponent: React.ComponentType<any> }) {
-    const locale = useRouter().locale
+interface HorizontalScrollComponentProps<T> {
+    list: any[]
+    title: string
+    CardComponent: React.ComponentType<any>
+}
+
+export default function HorizontalScrollComponent<T>({ list, title, CardComponent }: HorizontalScrollComponentProps<T>) {
+    const { locale } = useRouter()
     const containerRef = useRef<HTMLDivElement>(null)
+    const horizontalRef = useRef<HTMLDivElement>(null)
+    const titleRef = useRef<HTMLHeadingElement>(null)
+    const buttonRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (containerRef.current) {
-            const elements = containerRef.current.children // Obtenir les enfants du conteneur
+        if (containerRef.current && horizontalRef.current && titleRef.current && buttonRef.current) {
+            const container = containerRef.current
+            const horizontal = horizontalRef.current
+            const titleElement = titleRef.current
+            const button = buttonRef.current
 
-            const totalWidth = Array.from(elements).reduce((acc, element) => {
-                return acc + element.clientWidth // Calcule la largeur totale des éléments
-            }, 0)
+            const totalScroll = horizontal.scrollWidth - window.innerWidth
 
-            // Crée l'animation de défilement horizontal avec GSAP
-            gsap.to(elements, {
-                xPercent: -100 * (elements.length - 1), // Scrolling horizontal
+            gsap.to(horizontal, {
+                x: -totalScroll,
                 ease: 'none',
                 scrollTrigger: {
-                    trigger: containerRef.current,
-                    pin: true,
-                    scrub: true,
+                    trigger: horizontal,
                     start: 'center center',
-                    end: () => `+=${totalWidth}`, // Utiliser totalWidth pour la fin du défilement
+                    end: () => `+=${(totalScroll + window.innerHeight) * 1.5}`,
+                    scrub: 1.5,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    markers: true,
                 },
             })
+
+            gsap.to(titleElement, {
+                y: -100,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top top',
+                    end: '10% top',
+                    scrub: true,
+                },
+            })
+
+            gsap.fromTo(
+                button,
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scrollTrigger: {
+                        trigger: container,
+                        start: () => `+=${totalScroll}`,
+                        end: () => `+=${totalScroll + window.innerHeight * 0.5}`,
+                        scrub: true,
+                    },
+                }
+            )
         }
-    }, [list]) // Dépendre de `list` pour s'assurer que cela se met à jour quand `list` change
+
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+        }
+    }, [list])
 
     return (
-        <div className='h-[300vh]'>
-            <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-24'>{title}</h1>
-            <div ref={containerRef} className='horizontalContainer flex gap-x-24 h-screen pt-48' style={{ width: `${list.length * 4000}px` }}>
-                {list &&
-                    list
-                        .toSorted((elementA, elementB) => ((elementA.finished_at ?? 0) < (elementB.finished_at ?? 0) ? 1 : -1))
-                        .map((element: any) => <CardComponent key={`experience-${element.id}`} element={element} />)}
-            </div>
-            <div id='contact' className='relative h-screen w-screen'>
-                <div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
-                    <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
+        <div ref={containerRef} className='h-[300vh]'>
+            <h1 ref={titleRef} className='fixed top-[15%] left-[3%] text-4xl font-bold z-10'>
+                {title}
+            </h1>
+
+            <div className='min-h-screen flex items-center overflow-hidden'>
+                <div ref={horizontalRef} className='flex gap-x-96 px-10 mt-[15%]'>
+                    {list.map((item, index) => (
+                        <div key={index} className='flex-shrink-0'>
+                            <CardComponent key={`experience-${item.id}`} element={item} />
+                        </div>
+                    ))}
                 </div>
+            </div>
+
+            <div ref={buttonRef} className='w-1/4 max-w-[300px] fixed left-1/2 bottom-1/4 transform -translate-x-1/2 opacity-0 z-10'>
+                <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
             </div>
         </div>
     )
