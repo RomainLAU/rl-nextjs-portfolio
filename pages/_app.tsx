@@ -3,15 +3,22 @@ import '@/globals.css';
 import {
     AnimatePresence, domAnimation, LazyMotion, m, useScroll, useSpring, useTransform
 } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Inter } from 'next/font/google';
 import { useRef } from 'react';
 
 import CustomCursor from '@/components/customCursor';
 import NavBar from '@/components/navBar';
 import PageTransition from '@/components/pageTransition';
+import { useGSAP } from '@gsap/react';
 
 import type { AppProps } from 'next/app'
 const inter = Inter({ subsets: ['latin'] })
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(useGSAP, ScrollTrigger)
+}
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
     const scrollRef = useRef(null)

@@ -1,62 +1,55 @@
 'use client'
 
-import { m, useScroll, useSpring, useTransform } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import LinkButton from './linkButton';
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function HorizontalScrollingContainer({ list, title, CardComponent }: { list: any[]; title: string; CardComponent: React.ComponentType<any> }) {
     const locale = useRouter().locale
-    const scrollRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
-    const ghostRef = useRef<HTMLDivElement>(null)
-    const [scrollRange, setScrollRange] = useState(0)
-    const [viewportW, setViewportW] = useState(0)
 
     useEffect(() => {
-        if (scrollRef.current) {
-            setScrollRange(scrollRef.current.scrollWidth)
+        if (containerRef.current) {
+            const elements = containerRef.current.children // Obtenir les enfants du conteneur
+
+            const totalWidth = Array.from(elements).reduce((acc, element) => {
+                return acc + element.clientWidth // Calcule la largeur totale des éléments
+            }, 0)
+
+            // Crée l'animation de défilement horizontal avec GSAP
+            gsap.to(elements, {
+                xPercent: -100 * (elements.length - 1), // Scrolling horizontal
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    pin: true,
+                    scrub: true,
+                    start: 'center center',
+                    end: () => `+=${totalWidth}`, // Utiliser totalWidth pour la fin du défilement
+                },
+            })
         }
-    }, [scrollRef, containerRef])
-
-    const onResize = useCallback(() => {
-        setViewportW(window.innerWidth)
-    }, [])
-
-    useEffect(() => {
-        window.addEventListener('resize', onResize)
-        onResize()
-        return () => window.removeEventListener('resize', onResize)
-    }, [onResize])
-
-    const { scrollYProgress } = useScroll()
-    const containerPosition = containerRef?.current?.getBoundingClientRect().y ?? 0
-    const containerHeight = containerRef?.current?.getBoundingClientRect().height ?? 0
-    const yTransform = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, -containerPosition, -containerPosition, -containerHeight])
-    const xTransform = useTransform(scrollYProgress, [0.07, 1], [0, (-scrollRange + viewportW) * 1.2])
-    const ySpring = useSpring(yTransform, { damping: 15, mass: 0.27, stiffness: 35 })
-    const xSpring = useSpring(xTransform, { damping: 15, mass: 0.27, stiffness: 35 })
+    }, [list]) // Dépendre de `list` pour s'assurer que cela se met à jour quand `list` change
 
     return (
-        <>
-            <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-8'>{title}</h1>
-            <m.div ref={containerRef} className='fixed left-0 right-0 will-change-transform' style={{ y: ySpring }}>
-                <m.section ref={scrollRef} className='relative h-screen max-h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
-                    <div className='relative flex gap-x-96'>
-                        {list &&
-                            list
-                                .toSorted((elementA, elementB) => ((elementA.finished_at ?? 0) < (elementB.finished_at ?? 0) ? 1 : -1))
-                                .map((element: any) => <CardComponent key={`experience-${element.id}`} element={element} />)}
-                    </div>
-                </m.section>
-            </m.div>
-            <div ref={ghostRef} style={{ height: scrollRange }} className='ghost' />
-            <m.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
-                <m.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
+        <div className='h-[300vh]'>
+            <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-24'>{title}</h1>
+            <div ref={containerRef} className='horizontalContainer flex gap-x-24 h-screen pt-48' style={{ width: `${list.length * 4000}px` }}>
+                {list &&
+                    list
+                        .toSorted((elementA, elementB) => ((elementA.finished_at ?? 0) < (elementB.finished_at ?? 0) ? 1 : -1))
+                        .map((element: any) => <CardComponent key={`experience-${element.id}`} element={element} />)}
+            </div>
+            <div id='contact' className='relative h-screen w-screen'>
+                <div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
-                </m.div>
-            </m.div>
-        </>
+                </div>
+            </div>
+        </div>
     )
 }

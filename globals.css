@@ -49,9 +49,9 @@ body {
     cursor: none;
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
     display: none;
-}
+} */
 
 @layer utilities {
     .text-balance {
