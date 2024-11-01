@@ -13,7 +13,13 @@ export default function ExperienceCard({ element }: { element: Experience }) {
     const isMobile = useIsMobile()
     const { locale } = useRouter()
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, amount: 0.4 })
+    const dateRef = useRef(null)
+    const companyRef = useRef(null)
+    const tagsRef = useRef(null)
+    const isInView = useInView(ref, { once: false, amount: isMobile ? 0.4 : 0.25 })
+    const isDateInView = useInView(dateRef, { once: false, amount: 0.5 })
+    const isCompanyInView = useInView(companyRef, { once: false, amount: 0.6 })
+    const isTagsInView = useInView(tagsRef, { once: false, amount: 0.4 })
 
     const getAnimationProps = (index = 0) => {
         if (isMobile) {
@@ -51,33 +57,51 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                     {experience.title}
                 </m.h2>
                 <div className='md:h-full w-full md:w-max flex flex-col gap-y-8 justify-center'>
-                    <m.p {...getAnimationProps(2)} className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace] leading-[normal]'>
+                    <m.p
+                        ref={dateRef}
+                        initial={{ opacity: 0, y: -30 }}
+                        animate={{ opacity: isDateInView ? 1 : 0, y: isDateInView ? 0 : -30 }}
+                        transition={{ duration: 0.6 }}
+                        className='text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace] leading-[normal]'>
                         {new Date(experience.started_at).toLocaleDateString(locale).replaceAll('-', '/')}
                     </m.p>
                     {isMobile && (
-                        <m.p {...getAnimationProps(2.5)} className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
+                        <m.p
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: isDateInView ? 1 : 0, y: isDateInView ? 0 : -30 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
                             {(experience.finished_at && new Date(experience.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
                         </m.p>
                     )}
                     <div className='flex flex-col w-full gap-y-4'>
-                        <m.p {...getAnimationProps(3)} className='text-xl md:text-4xl text-left self-start'>
+                        <m.p
+                            ref={companyRef}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: isCompanyInView ? 1 : 0, y: isCompanyInView ? 0 : 10 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className='text-xl md:text-4xl text-left self-start'>
                             {experience.company} - {experience.contract}
                         </m.p>
-                        <m.div className='text-xl md:text-2xl md:text-right flex-wrap flex w-full md:w-auto md:flex-nowrap gap-x-4 md:self-end'>
+                        <m.div ref={tagsRef} className='text-xl md:text-2xl md:text-right flex-wrap flex w-full md:w-auto md:flex-nowrap gap-x-4 md:self-end'>
                             {experience.skills &&
                                 experience.skills.map((skill, index) => (
                                     <m.p
                                         key={`skill-${skill.id}-${experience.title}`}
                                         initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: isInView || !isMobile ? 1 : 0, y: isInView || !isMobile ? 0 : 10 }}
-                                        transition={{ duration: 0.3, delay: isInView ? 1.3 + index * 0.1 : 0 }}>
+                                        animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : 10 }}
+                                        transition={{ duration: 0.3, delay: isTagsInView ? index * 0.1 : 0 }}>
                                         {skill.title}
                                     </m.p>
                                 ))}
                         </m.div>
                     </div>
                     {!isMobile && (
-                        <m.p {...getAnimationProps(5.5)} className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
+                        <m.p
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: isDateInView ? 1 : 0, y: isDateInView ? 0 : -30 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className='text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]'>
                             {(experience.finished_at && new Date(experience.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
                         </m.p>
                     )}
