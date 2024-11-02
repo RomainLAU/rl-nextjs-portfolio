@@ -5,6 +5,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef } from 'react';
 
+import useIsMobile from '@/hooks/useIsMobile';
+
 import LinkButton from './linkButton';
 
 gsap.registerPlugin(ScrollTrigger)
@@ -17,12 +19,16 @@ interface HorizontalScrollComponentProps<T> {
 
 export default function HorizontalScrollComponent<T>({ list, title, CardComponent }: HorizontalScrollComponentProps<T>) {
     const { locale } = useRouter()
+    const isMobile = useIsMobile()
+
     const containerRef = useRef<HTMLDivElement>(null)
     const horizontalRef = useRef<HTMLDivElement>(null)
     const titleRef = useRef<HTMLHeadingElement>(null)
     const buttonRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
+        if (isMobile === null || isMobile === true) return
+
         if (containerRef.current && horizontalRef.current && titleRef.current && buttonRef.current) {
             const container = containerRef.current
             const horizontal = horizontalRef.current
@@ -70,7 +76,9 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
         }
-    }, [list])
+    }, [list, isMobile])
+
+    if (isMobile === null || isMobile === true) return null
 
     return (
         <div ref={containerRef} className='min-h-[100vh]'>
@@ -78,7 +86,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 {title}
             </h1>
 
-            <div className='min-h-[110vh] flex items-end overflow-hidden'>
+            <div className='min-h-[110vh] flex items-end'>
                 <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
                     {list.map((item, index) => (
                         <div key={index} className='flex-shrink-0'>
