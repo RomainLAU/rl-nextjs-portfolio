@@ -1,12 +1,15 @@
-import { m, useScroll, useTransform } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import parse, { domToReact } from 'html-react-parser';
 import Image from 'next/image';
-import { useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useLayoutEffect, useRef } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
 
 import AnimatedSmiley from './animatedSmiley';
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function PresentationText({
     text,
@@ -17,25 +20,55 @@ export default function PresentationText({
     image: { url: string; width: number; height: number; name: string }
     index: number
 }) {
-    const textRef = useRef<HTMLDivElement | null>(null)
-    const ref = useRef(null)
     const isMobile = useIsMobile()
+    const viewRef = useRef<HTMLDivElement | null>(null)
+    const isInView = useInView(viewRef, { once: true, amount: 0 })
+    const containerRef = useRef<HTMLDivElement | null>(null)
+    const textRef = useRef<HTMLDivElement | null>(null)
+    const imageRef = useRef<HTMLDivElement | null>(null)
 
-    const { scrollYProgress } = useScroll({ target: ref, layoutEffect: false })
-    const y = useTransform(scrollYProgress, [0, 0.5, 1], ['-100vh', '0vh', '100vh'])
-    const [viewRef, inView] = useInView({ threshold: 0.4, triggerOnce: false })
+    useLayoutEffect(() => {
+        if (!containerRef.current || !textRef.current || !imageRef.current) return
+
+        gsap.set(textRef.current, { yPercent: index === 0 ? 500 : 300 })
+        gsap.set(imageRef.current, { yPercent: 100 })
+
+        const timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top bottom',
+                end: 'center center',
+                scrub: true,
+            },
+        })
+
+        timeline.to(textRef.current, { yPercent: 0, duration: 3 }, 0).to(imageRef.current, { yPercent: 0, duration: 3 }, 0)
+
+        const exitTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'center center',
+                end: 'bottom top',
+                scrub: true,
+            },
+        })
+
+        exitTimeline.to(textRef.current, { yPercent: -300, duration: 3 }, 0).to(imageRef.current, { yPercent: -100, duration: 3 }, 0)
+
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+            timeline.kill()
+            exitTimeline.kill()
+        }
+    }, [])
 
     const getColoredText = (text: string) => {
         const letters = text.split('')
-        const coloredText = letters.map((letter, index) => {
-            return (
-                <span key={`letter-${index}`} style={{ color: `hsl(${Math.random() * 360}, 100%, 50%)` }}>
-                    {letter}
-                </span>
-            )
-        })
-
-        return coloredText
+        return letters.map((letter, index) => (
+            <span key={`letter-${index}`} style={{ color: `hsl(${Math.random() * 360}, 100%, 50%)` }}>
+                {letter}
+            </span>
+        ))
     }
 
     const options = {
@@ -60,8 +93,8 @@ export default function PresentationText({
             <m.div ref={viewRef} className='relative flex flex-col items-center mb-8 w-screen h-[80vh]'>
                 <m.div
                     animate={{
-                        x: inView ? 0 : -20,
-                        opacity: inView ? 1 : 0,
+                        x: isInView ? 0 : -20,
+                        opacity: isInView ? 1 : 0,
                     }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                     className='text-xl mb-4 text-wrap text-center w-3/4'>
@@ -72,8 +105,8 @@ export default function PresentationText({
                         priority={index === 0}
                         quality={isMobile ? 50 : 100}
                         style={{
-                            transform: inView ? 'translateX(0)' : 'translateX(-20px)',
-                            opacity: inView ? 1 : 0,
+                            transform: isInView ? 'translateX(0)' : 'translateX(-20px)',
+                            opacity: isInView ? 1 : 0,
                             transition: 'all 0.8s ease-out 0.2s',
                         }}
                         src={image.url}
@@ -88,34 +121,33 @@ export default function PresentationText({
     }
 
     return (
-        <section className='h-screen w-full flex justify-center items-center relative' style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
-            <m.div
-                ref={ref}
-                className='relative max-h-[90vh] m-5 overflow-hidden'
-                style={{ x: -150, width: image?.width ?? 400, height: image?.height ?? 300 }}>
-                {image && (
+        <section
+            ref={containerRef}
+            className='h-screen w-full flex justify-center items-center relative'
+            style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
+            {image && (
+                <div ref={imageRef} className='absolute max-h-[90vh] w-1/4 h-auto' style={{ left: '25%' }}>
                     <Image
                         priority={index === 0}
-                        className='absolute inset-0'
+                        className='h-full w-full'
                         src={image.url ?? ''}
                         width={image.width ?? 100}
                         height={image.height ?? 100}
                         alt={image.name ?? ''}
-                        quality={isMobile ? 50 : 100}
+                        quality={100}
                     />
-                )}
-            </m.div>
-            <m.div
+                </div>
+            )}
+            <div
                 ref={textRef}
                 className='absolute text-9xl font-extrabold mix-blend-difference flex justify-center items-center flex-wrap gap-x-10'
                 style={{
-                    y,
-                    x: image ? '50%' : 0,
+                    right: image ? '15%' : '',
                     textAlign: image ? 'left' : 'center',
                     maxWidth: image ? '30%' : '80%',
                 }}>
                 {parse(text, options)}
-            </m.div>
+            </div>
         </section>
     )
 }
