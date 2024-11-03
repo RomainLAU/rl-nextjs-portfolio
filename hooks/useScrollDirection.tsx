@@ -21,7 +21,7 @@ export default function useScrollDirection() {
     })
 
     const handleScroll = useCallback((direction: undefined | 'up' | 'down') => {
-        const scrollY = window.pageYOffset
+        const scrollY = window.scrollY || document.documentElement.scrollTop
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight
         const isAtPageBottom = Math.abs(scrollY - maxScroll) < 50 // 50px threshold
 
