@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger)
@@ -11,6 +12,8 @@ interface ScrollInfo {
 }
 
 export default function useScrollDirection() {
+    const { pathname } = useRouter()
+    const [prevPath, setPrevPath] = useState<null | string>(null)
     const [scrollInfo, setScrollInfo] = useState<ScrollInfo>({
         direction: null,
         isAtPageBottom: false,
@@ -37,13 +40,21 @@ export default function useScrollDirection() {
             onUpdate: (self) => handleScroll(self.direction === -1 ? 'up' : 'down'),
         })
 
-        // Trigger the handleScroll function once to update the initial state
         handleScroll(undefined)
 
         return () => {
             trigger.kill()
         }
     }, [handleScroll])
+
+    useEffect(() => {
+        if (prevPath !== pathname) {
+            setScrollInfo({ ...scrollInfo, isInitialLoad: true })
+        }
+        return () => {
+            setPrevPath(pathname)
+        }
+    }, [pathname, prevPath, scrollInfo])
 
     return scrollInfo
 }
