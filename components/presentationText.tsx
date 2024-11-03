@@ -21,14 +21,14 @@ export default function PresentationText({
     index: number
 }) {
     const isMobile = useIsMobile()
-    const viewRef = useRef<HTMLDivElement | null>(null)
-    const isInView = useInView(viewRef, { once: true, amount: 0 })
     const containerRef = useRef<HTMLDivElement | null>(null)
     const textRef = useRef<HTMLDivElement | null>(null)
     const imageRef = useRef<HTMLDivElement | null>(null)
 
+    const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
     useLayoutEffect(() => {
-        if (!containerRef.current || !textRef.current || !imageRef.current) return
+        if (!containerRef.current || !textRef.current || !imageRef.current || isMobile !== false) return
 
         gsap.set(textRef.current, { yPercent: index === 0 ? 500 : 300 })
         gsap.set(imageRef.current, { yPercent: 100 })
@@ -60,7 +60,7 @@ export default function PresentationText({
             timeline.kill()
             exitTimeline.kill()
         }
-    }, [])
+    }, [index, isMobile])
 
     const getColoredText = (text: string) => {
         const letters = text.split('')
@@ -88,12 +88,13 @@ export default function PresentationText({
         },
     }
 
-    if (isMobile) {
+    if (isMobile !== false) {
         return (
-            <m.div ref={viewRef} className='relative flex flex-col items-center mb-8 w-screen h-[80vh]'>
+            <m.div ref={containerRef} className={`relative flex flex-col items-center mb-8 w-screen ${image ? 'h-[80vh]' : 'h-[50vh]'}`}>
                 <m.div
+                    initial={{ y: -20, opacity: 0 }}
                     animate={{
-                        x: isInView ? 0 : -20,
+                        y: isInView ? 0 : -20,
                         opacity: isInView ? 1 : 0,
                     }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -105,7 +106,7 @@ export default function PresentationText({
                         priority={index === 0}
                         quality={isMobile ? 50 : 100}
                         style={{
-                            transform: isInView ? 'translateX(0)' : 'translateX(-20px)',
+                            transform: isInView ? 'translateY(0)' : 'translateY(-20px)',
                             opacity: isInView ? 1 : 0,
                             transition: 'all 0.8s ease-out 0.2s',
                         }}
