@@ -13,7 +13,6 @@ interface ScrollInfo {
 
 export default function useScrollDirection() {
     const { pathname } = useRouter()
-    const [prevPath, setPrevPath] = useState<null | string>(null)
     const [scrollInfo, setScrollInfo] = useState<ScrollInfo>({
         direction: null,
         isAtPageBottom: false,
@@ -37,7 +36,10 @@ export default function useScrollDirection() {
         const trigger = ScrollTrigger.create({
             start: 0,
             end: 'max',
-            onUpdate: (self) => handleScroll(self.direction === -1 ? 'up' : 'down'),
+            onUpdate: (self) => {
+                console.log(self.direction)
+                handleScroll(self.direction === -1 ? 'up' : 'down')
+            },
         })
 
         handleScroll(undefined)
@@ -48,13 +50,8 @@ export default function useScrollDirection() {
     }, [handleScroll])
 
     useEffect(() => {
-        if (prevPath !== pathname) {
-            setScrollInfo({ ...scrollInfo, isInitialLoad: true })
-        }
-        return () => {
-            setPrevPath(pathname)
-        }
-    }, [pathname, prevPath, scrollInfo])
+        setScrollInfo((prev) => ({ ...prev, isInitialLoad: true }))
+    }, [pathname])
 
     return scrollInfo
 }
