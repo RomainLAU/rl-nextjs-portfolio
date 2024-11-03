@@ -4,7 +4,7 @@ import endpoints from '@/apiConfig';
 import FormationCard from '@/components/formationCard';
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
 import MobileContainer from '@/components/mobileContainer';
-import useIsMobile from '@/hooks/useIsMobile';
+import MobileOrDesktop from '@/components/mobileOrDesktop';
 import { Formation } from '@/types/formation';
 
 export async function getStaticProps({ locale }: { locale: string }) {
@@ -19,8 +19,6 @@ export async function getStaticProps({ locale }: { locale: string }) {
 }
 
 export default function Formations({ formations, locale }: { formations: Formation[]; locale: string }) {
-    const isMobile = useIsMobile()
-
     return (
         <>
             <Head>
@@ -31,17 +29,22 @@ export default function Formations({ formations, locale }: { formations: Formati
                     content='I started learning development in 2019 in highschool, I never stopped learning new things, and my development studies were the best years I had in a school'
                 />
             </Head>
-            {isMobile ? (
-                <MobileContainer
-                    list={formations.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
-                    title={locale === 'fr' ? 'Formations' : 'School Formations'}
-                    CardComponent={FormationCard}
-                />
-            ) : (
-                <HorizontalScrollingContainer
-                    list={formations.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
-                    title={locale === 'fr' ? 'Formations' : 'School Formations'}
-                    CardComponent={FormationCard}
+            {formations && (
+                <MobileOrDesktop
+                    mobile={() => (
+                        <MobileContainer
+                            list={formations.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
+                            title={locale === 'fr' ? 'Formations' : 'School Formations'}
+                            CardComponent={FormationCard}
+                        />
+                    )}
+                    desktop={() => (
+                        <HorizontalScrollingContainer
+                            list={formations.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
+                            title={locale === 'fr' ? 'Formations' : 'School Formations'}
+                            CardComponent={FormationCard}
+                        />
+                    )}
                 />
             )}
         </>

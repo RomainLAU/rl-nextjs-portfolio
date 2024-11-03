@@ -10,8 +10,6 @@ import { useGSAP } from '@gsap/react';
 
 import LinkButton from './linkButton';
 
-gsap.registerPlugin(ScrollTrigger)
-
 interface HorizontalScrollComponentProps<T> {
     list: any[]
     title: string

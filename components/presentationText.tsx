@@ -9,8 +9,6 @@ import useIsMobile from '@/hooks/useIsMobile';
 
 import AnimatedSmiley from './animatedSmiley';
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function PresentationText({
     text,
     image,

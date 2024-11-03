@@ -37,7 +37,6 @@ export default function useScrollDirection() {
             start: 0,
             end: 'max',
             onUpdate: (self) => {
-                console.log(self.direction)
                 handleScroll(self.direction === -1 ? 'up' : 'down')
             },
         })

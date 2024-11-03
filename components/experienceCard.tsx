@@ -10,8 +10,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import useIsMobile from '@/hooks/useIsMobile';
 import { Experience } from '@/types/experience';
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function ExperienceCard({ element }: { element: Experience }) {
     const experience = element
     const isMobile = useIsMobile()

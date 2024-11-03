@@ -29,22 +29,24 @@ export default function Experience({ experiences, locale }: { experiences: Exper
                     content='I always worked for tiny companies, at Station F, Versailles and in Tusinisa. I love being close to the team and spending time discovering their passions'
                 />
             </Head>
-            <MobileOrDesktop
-                mobile={() => (
-                    <MobileContainer
-                        list={experiences.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
-                        title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
-                        CardComponent={ExperienceCard}
-                    />
-                )}
-                desktop={() => (
-                    <HorizontalScrollingContainer
-                        list={experiences.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
-                        title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
-                        CardComponent={ExperienceCard}
-                    />
-                )}
-            />
+            {experiences && (
+                <MobileOrDesktop
+                    mobile={() => (
+                        <MobileContainer
+                            list={experiences.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
+                            title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
+                            CardComponent={ExperienceCard}
+                        />
+                    )}
+                    desktop={() => (
+                        <HorizontalScrollingContainer
+                            list={experiences.sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())}
+                            title={locale === 'fr' ? 'Expérience Professionnelle' : 'Professional Experience'}
+                            CardComponent={ExperienceCard}
+                        />
+                    )}
+                />
+            )}
         </>
     )
 }

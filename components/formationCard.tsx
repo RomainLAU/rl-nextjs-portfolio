@@ -9,8 +9,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import useIsMobile from '@/hooks/useIsMobile';
 import { Formation } from '@/types/formation';
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function FormationCard({ element }: { element: Formation }) {
     const formation = element
     const { locale } = useRouter()
