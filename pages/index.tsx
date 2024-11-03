@@ -66,7 +66,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
 
     return (
         <m.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
-            <div className='h-[90dvh] max-h-screen w-full flex flex-col items-center gap-y-4'>
+            <div className='h-screen max-h-screen w-full flex flex-col items-center gap-y-4'>
                 <m.h1
                     initial='hidden'
                     animate='visible'

@@ -1,62 +1,106 @@
 'use client'
 
-import { m, useScroll, useSpring, useTransform } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+
+import useIsMobile from '@/hooks/useIsMobile';
 
 import LinkButton from './linkButton';
 
-export default function HorizontalScrollingContainer({ list, title, CardComponent }: { list: any[]; title: string; CardComponent: React.ComponentType<any> }) {
-    const locale = useRouter().locale
-    const scrollRef = useRef<HTMLDivElement>(null)
+gsap.registerPlugin(ScrollTrigger)
+
+interface HorizontalScrollComponentProps<T> {
+    list: any[]
+    title: string
+    CardComponent: React.ComponentType<any>
+}
+
+export default function HorizontalScrollComponent<T>({ list, title, CardComponent }: HorizontalScrollComponentProps<T>) {
+    const { locale } = useRouter()
+    const isMobile = useIsMobile()
+
     const containerRef = useRef<HTMLDivElement>(null)
-    const ghostRef = useRef<HTMLDivElement>(null)
-    const [scrollRange, setScrollRange] = useState(0)
-    const [viewportW, setViewportW] = useState(0)
+    const horizontalRef = useRef<HTMLDivElement>(null)
+    const titleRef = useRef<HTMLHeadingElement>(null)
+    const buttonRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (scrollRef.current) {
-            setScrollRange(scrollRef.current.scrollWidth)
+        if (isMobile === null || isMobile === true) return
+
+        if (containerRef.current && horizontalRef.current && titleRef.current && buttonRef.current) {
+            const container = containerRef.current
+            const horizontal = horizontalRef.current
+            const titleElement = titleRef.current
+            const button = buttonRef.current
+
+            const totalScroll = horizontal.scrollWidth - window.innerWidth
+
+            gsap.to(titleElement, {
+                y: -100,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: container,
+                    start: '100vh top',
+                    end: '150vh top',
+                    scrub: true,
+                },
+            })
+
+            gsap.to(horizontal, {
+                x: -totalScroll,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: container,
+                    start: '200vh top',
+                    end: () => `+=${totalScroll + window.innerHeight}`,
+                    scrub: 1.5,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                },
+            })
+
+            gsap.to(button, {
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'end end',
+                    end: '200vh end',
+                    scrub: true,
+                },
+            })
         }
-    }, [scrollRef, containerRef])
 
-    const onResize = useCallback(() => {
-        setViewportW(window.innerWidth)
-    }, [])
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+        }
+    }, [list, isMobile])
 
-    useEffect(() => {
-        window.addEventListener('resize', onResize)
-        onResize()
-        return () => window.removeEventListener('resize', onResize)
-    }, [onResize])
-
-    const { scrollYProgress } = useScroll()
-    const containerPosition = containerRef?.current?.getBoundingClientRect().y ?? 0
-    const containerHeight = containerRef?.current?.getBoundingClientRect().height ?? 0
-    const yTransform = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, -containerPosition, -containerPosition, -containerHeight])
-    const xTransform = useTransform(scrollYProgress, [0.07, 1], [0, (-scrollRange + viewportW) * 1.2])
-    const ySpring = useSpring(yTransform, { damping: 15, mass: 0.27, stiffness: 35 })
-    const xSpring = useSpring(xTransform, { damping: 15, mass: 0.27, stiffness: 35 })
+    if (isMobile === null || isMobile === true) return null
 
     return (
-        <>
-            <h1 className='font-extrabold text-8xl ml-[190px+10dvh] mb-8'>{title}</h1>
-            <m.div ref={containerRef} className='fixed left-0 right-0 will-change-transform' style={{ y: ySpring }}>
-                <m.section ref={scrollRef} className='relative h-screen max-h-screen w-max flex items-center px-[100px]' style={{ x: xSpring }}>
-                    <div className='relative flex gap-x-96'>
-                        {list &&
-                            list
-                                .toSorted((elementA, elementB) => ((elementA.finished_at ?? 0) < (elementB.finished_at ?? 0) ? 1 : -1))
-                                .map((element: any) => <CardComponent key={`experience-${element.id}`} element={element} />)}
-                    </div>
-                </m.section>
-            </m.div>
-            <div ref={ghostRef} style={{ height: scrollRange }} className='ghost' />
-            <m.div id='contact' layout layoutRoot className='relative h-screen w-screen'>
-                <m.div className='w-1/4 sticky left-1/2 top-1/2 transform -translate-x-1/2'>
+        <div ref={containerRef} className='min-h-[100vh]'>
+            <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold z-10'>
+                {title}
+            </h1>
+
+            <div className='min-h-[110vh] flex items-end'>
+                <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
+                    {list.map((item, index) => (
+                        <div key={index} className='flex-shrink-0'>
+                            <CardComponent key={`experience-${item.id}`} element={item} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className='h-screen flex items-center justify-center'>
+                <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12'>
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
-                </m.div>
-            </m.div>
-        </>
+                </div>
+            </div>
+        </div>
     )
 }

@@ -1,37 +1,33 @@
-import { m } from 'framer-motion';
-import throttle from 'lodash.throttle';
+import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 
 const hoverElements = ['A', 'BUTTON']
 
 export default function CustomCursor() {
-    const [position, setPosition] = useState({ x: 0, y: 0 })
-    const [isHoveringLink, setIsHoveringLink] = useState(false)
-    const animationFrameId = useRef<number | null>(null)
+    const cursorRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
-        // Utilisation de requestAnimationFrame pour améliorer les performances
-        const handleMouseMove = throttle((event: MouseEvent) => {
-            if (animationFrameId.current) {
-                cancelAnimationFrame(animationFrameId.current)
-            }
+        const xTo = gsap.quickTo(cursorRef.current, 'x', { duration: 0.3, ease: 'power2.out' })
+        const yTo = gsap.quickTo(cursorRef.current, 'y', { duration: 0.3, ease: 'power2.out' })
+        const scaleXTo = gsap.quickTo(cursorRef.current, 'scaleX', { duration: 0.3, ease: 'power2.out' })
+        const scaleYTo = gsap.quickTo(cursorRef.current, 'scaleY', { duration: 0.3, ease: 'power2.out' })
 
-            animationFrameId.current = requestAnimationFrame(() => {
-                setPosition({ x: event.clientX, y: event.clientY })
-                document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`)
-                document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`)
-            })
-        }, 16) // Throttling à 60 FPS (~16 ms)
+        const handleMouseMove = (event: MouseEvent) => {
+            xTo(event.clientX)
+            yTo(event.clientY)
+        }
 
         const handleMouseOver = (event: MouseEvent) => {
             if (hoverElements.includes((event.target as HTMLElement).tagName)) {
-                setIsHoveringLink(true)
+                scaleXTo(1.5)
+                scaleYTo(1.5)
             }
         }
 
         const handleMouseOut = (event: MouseEvent) => {
             if (hoverElements.includes((event.target as HTMLElement).tagName)) {
-                setIsHoveringLink(false)
+                scaleXTo(0.5)
+                scaleYTo(0.5)
             }
         }
 
@@ -43,29 +39,18 @@ export default function CustomCursor() {
             window.removeEventListener('mousemove', handleMouseMove)
             window.removeEventListener('mouseover', handleMouseOver)
             window.removeEventListener('mouseout', handleMouseOut)
-            if (animationFrameId.current) {
-                cancelAnimationFrame(animationFrameId.current)
-            }
         }
     }, [])
 
     return (
-        <m.div
-            className={`hidden sm:block fixed w-5 h-5 rounded-full pointer-events-none mix-blend-difference z-50`}
+        <div
+            ref={cursorRef}
+            className={`hidden sm:block fixed w-10 h-10 rounded-full pointer-events-none mix-blend-difference z-50`}
             style={{
-                top: 0,
-                left: 0,
-                translateX: '-50%',
-                translateY: '-50%',
+                transform: 'translate(-50%, -50%) scale(0.5, 0.5)',
                 willChange: 'transform',
-                backgroundColor: isHoveringLink ? '#ffffffe5' : '#ffffff',
+                backgroundColor: '#ffffff',
             }}
-            animate={{
-                x: position.x,
-                y: position.y,
-                scale: isHoveringLink ? 3 : 1,
-            }}
-            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
         />
     )
 }
