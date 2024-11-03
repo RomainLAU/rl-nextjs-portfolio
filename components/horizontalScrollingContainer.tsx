@@ -3,9 +3,10 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
+import { useGSAP } from '@gsap/react';
 
 import LinkButton from './linkButton';
 
@@ -25,9 +26,10 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
     const horizontalRef = useRef<HTMLDivElement>(null)
     const titleRef = useRef<HTMLHeadingElement>(null)
     const buttonRef = useRef<HTMLDivElement>(null)
+    const contactRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        if (isMobile === null || isMobile === true) return
+    useGSAP(() => {
+        if (isMobile !== false) return
 
         if (containerRef.current && horizontalRef.current && titleRef.current && buttonRef.current) {
             const container = containerRef.current
@@ -41,7 +43,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 y: -100,
                 opacity: 0,
                 scrollTrigger: {
-                    trigger: container,
+                    trigger: container ?? undefined,
                     start: '100vh top',
                     end: '150vh top',
                     scrub: true,
@@ -52,7 +54,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 x: -totalScroll,
                 ease: 'none',
                 scrollTrigger: {
-                    trigger: container,
+                    trigger: container ?? undefined,
                     start: '200vh top',
                     end: () => `+=${totalScroll + window.innerHeight}`,
                     scrub: 1.5,
@@ -65,7 +67,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
             gsap.to(button, {
                 opacity: 1,
                 scrollTrigger: {
-                    trigger: container,
+                    trigger: container ?? undefined,
                     start: 'end end',
                     end: '200vh end',
                     scrub: true,
@@ -78,7 +80,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
         }
     }, [list, isMobile])
 
-    if (isMobile === null || isMobile === true) return null
+    if (isMobile !== false) return null
 
     return (
         <div ref={containerRef} className='min-h-[100vh]'>
@@ -96,7 +98,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 </div>
             </div>
 
-            <div className='h-screen flex items-center justify-center'>
+            <div ref={contactRef} className='h-screen flex items-center justify-center'>
                 <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12'>
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>

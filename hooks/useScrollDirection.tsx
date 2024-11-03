@@ -1,25 +1,49 @@
-import { useState, useEffect } from 'react'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useCallback, useEffect, useState } from 'react';
+
+gsap.registerPlugin(ScrollTrigger)
+
+interface ScrollInfo {
+    direction: 'up' | 'down' | null | undefined
+    isAtPageBottom: boolean
+    isInitialLoad: boolean
+}
 
 export default function useScrollDirection() {
-    const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null)
+    const [scrollInfo, setScrollInfo] = useState<ScrollInfo>({
+        direction: null,
+        isAtPageBottom: false,
+        isInitialLoad: true,
+    })
+
+    const handleScroll = useCallback((direction: undefined | 'up' | 'down') => {
+        const scrollY = window.pageYOffset
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+        const isAtPageBottom = Math.abs(scrollY - maxScroll) < 50 // 50px threshold
+
+        setScrollInfo((prevInfo) => {
+            if (prevInfo.direction !== direction || prevInfo.isAtPageBottom !== isAtPageBottom || prevInfo.isInitialLoad) {
+                return { direction, isAtPageBottom, isInitialLoad: false }
+            }
+            return prevInfo
+        })
+    }, [])
 
     useEffect(() => {
-        let lastScrollY = window.pageYOffset
+        const trigger = ScrollTrigger.create({
+            start: 0,
+            end: 'max',
+            onUpdate: (self) => handleScroll(self.direction === -1 ? 'up' : 'down'),
+        })
 
-        const handleScroll = () => {
-            const scrollY = window.pageYOffset
-            const direction = scrollY > lastScrollY ? 'down' : 'up'
-            if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
-                setScrollDirection(direction)
-            }
-            lastScrollY = scrollY > 0 ? scrollY : 0
-        }
+        // Trigger the handleScroll function once to update the initial state
+        handleScroll(undefined)
 
-        window.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            trigger.kill()
         }
-    }, [scrollDirection])
+    }, [handleScroll])
 
-    return { scrollDirection }
+    return scrollInfo
 }

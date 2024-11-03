@@ -101,7 +101,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     />
                 </div>
             ))}
-            <div id='contact' className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4'>
+            <div className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4'>
                 <p className='text-4xl md:text-9xl font-extrabold text-center'>
                     {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
                     <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>
