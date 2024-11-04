@@ -1,58 +1,77 @@
+'use client'
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger)
 
 interface ScrollInfo {
-    direction: 'up' | 'down' | null | undefined
+    direction: 'up' | 'down' | null
     isAtPageBottom: boolean
-    isInitialLoad: boolean
+    isAtPageTop: boolean
 }
 
 export default function useScrollDirection() {
-    const { pathname } = useRouter()
+    const pathname = usePathname()
     const [scrollInfo, setScrollInfo] = useState<ScrollInfo>({
         direction: null,
         isAtPageBottom: false,
-        isInitialLoad: true,
+        isAtPageTop: true,
     })
+    const lastScrollY = useRef(0)
+    const ticking = useRef(false)
 
-    const handleScroll = useCallback((direction: undefined | 'up' | 'down') => {
-        const scrollY = window.scrollY || document.documentElement.scrollTop
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-        const isAtPageBottom = Math.abs(scrollY - maxScroll) < 50 // 50px threshold
+    const handleScroll = useCallback(() => {
+        if (!ticking.current) {
+            window.requestAnimationFrame(() => {
+                const scrollY = window.scrollY
+                const direction = scrollY > lastScrollY.current ? 'down' : 'up'
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+                const isAtPageBottom = Math.abs(scrollY - maxScroll) < 50 // 50px threshold
+                const isAtPageTop = scrollY < 50 // 50px threshold
 
-        setScrollInfo((prevInfo) => {
-            if (prevInfo.direction !== direction || prevInfo.isAtPageBottom !== isAtPageBottom || prevInfo.isInitialLoad) {
-                return { direction, isAtPageBottom, isInitialLoad: false }
-            }
-            return prevInfo
-        })
+                setScrollInfo({
+                    direction,
+                    isAtPageBottom,
+                    isAtPageTop,
+                })
+
+                lastScrollY.current = scrollY
+                ticking.current = false
+            })
+
+            ticking.current = true
+        }
     }, [])
 
     useGSAP(() => {
-        const trigger = ScrollTrigger.create({
+        ScrollTrigger.create({
             start: 0,
             end: 'max',
-            onUpdate: (self) => {
-                handleScroll(self.direction === -1 ? 'up' : 'down')
-            },
+            onUpdate: handleScroll,
         })
 
-        handleScroll(undefined)
-
         return () => {
-            trigger.kill()
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
         }
     }, [handleScroll])
 
     useEffect(() => {
-        setScrollInfo((prev) => ({ ...prev, isInitialLoad: true }))
-    }, [pathname])
+        handleScroll() // Initial call to set correct state on page load
+        window.addEventListener('scroll', handleScroll, { passive: true })
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [handleScroll])
+
+    useEffect(() => {
+        handleScroll() // Reset scroll info on page change
+    }, [pathname, handleScroll])
 
     return scrollInfo
 }

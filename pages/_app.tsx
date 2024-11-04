@@ -6,6 +6,7 @@ import {
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Inter } from 'next/font/google';
+import Head from 'next/head';
 import { useRef } from 'react';
 
 import CustomCursor from '@/components/customCursor';
@@ -48,6 +49,9 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <LazyMotion features={domAnimation}>
+                <Head>
+                    <meta name='viewport' content='width=device-width, initial-scale=1' />
+                </Head>
                 <AnimatePresence mode='wait'>
                     <m.div
                         key={router.route}

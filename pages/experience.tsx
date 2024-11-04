@@ -23,7 +23,6 @@ export default function Experience({ experiences, locale }: { experiences: Exper
         <>
             <Head>
                 <title>Romain Laurent - Experience</title>
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <meta
                     name='description'
                     content='I always worked for tiny companies, at Station F, Versailles and in Tusinisa. I love being close to the team and spending time discovering their passions'

@@ -15,7 +15,7 @@ import LanguageSwitcher from './languageSwitcher';
 
 export default function NavBar() {
     const pathname = usePathname()
-    const { direction, isAtPageBottom, isInitialLoad } = useScrollDirection()
+    const { direction, isAtPageBottom, isAtPageTop } = useScrollDirection()
     const isMobile = useIsMobile()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
@@ -52,7 +52,7 @@ export default function NavBar() {
         exit: { opacity: 0, x: -10, transition: { duration: 0.2 } },
     }
 
-    const shouldShowNavbar = isInitialLoad || direction === 'up' || isAtPageBottom
+    const shouldShowNavbar = isAtPageTop || direction === 'up' || isAtPageBottom
 
     return (
         <>
@@ -61,11 +61,11 @@ export default function NavBar() {
                 initial={{ y: '-100%' }}
                 animate={{ y: shouldShowNavbar ? '0%' : '-100%' }}
                 transition={{
-                    type: isInitialLoad || isAtPageBottom ? 'tween' : 'spring',
-                    stiffness: isInitialLoad || isAtPageBottom ? 100 : 300,
-                    damping: isInitialLoad || isAtPageBottom ? 10 : 30,
-                    duration: isInitialLoad || isAtPageBottom ? 1 : 0.2,
-                    delay: isInitialLoad || isAtPageBottom ? 0.3 : 0,
+                    type: isAtPageTop || isAtPageBottom ? 'tween' : 'spring',
+                    stiffness: isAtPageTop || isAtPageBottom ? 100 : 300,
+                    damping: isAtPageTop || isAtPageBottom ? 10 : 30,
+                    duration: isAtPageTop || isAtPageBottom ? 1 : 0.2,
+                    delay: isAtPageTop || isAtPageBottom ? 0.3 : 0,
                 }}>
                 <Link href='/'>
                     <p className='text-white pointer-events-none'>ROMAIN LAURENT</p>
