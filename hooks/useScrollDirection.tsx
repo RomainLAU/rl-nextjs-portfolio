@@ -3,6 +3,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
+import { useGSAP } from '@gsap/react';
+
 gsap.registerPlugin(ScrollTrigger)
 
 interface ScrollInfo {
@@ -32,7 +34,7 @@ export default function useScrollDirection() {
         })
     }, [])
 
-    useEffect(() => {
+    useGSAP(() => {
         const trigger = ScrollTrigger.create({
             start: 0,
             end: 'max',

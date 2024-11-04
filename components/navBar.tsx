@@ -61,11 +61,11 @@ export default function NavBar() {
                 initial={{ y: '-100%' }}
                 animate={{ y: shouldShowNavbar ? '0%' : '-100%' }}
                 transition={{
-                    type: isInitialLoad ? 'tween' : 'spring',
-                    stiffness: isInitialLoad ? 100 : 300,
-                    damping: isInitialLoad ? 10 : 30,
-                    duration: isInitialLoad ? 1 : 0.2,
-                    delay: isInitialLoad ? 0.3 : 0,
+                    type: isInitialLoad || isAtPageBottom ? 'tween' : 'spring',
+                    stiffness: isInitialLoad || isAtPageBottom ? 100 : 300,
+                    damping: isInitialLoad || isAtPageBottom ? 10 : 30,
+                    duration: isInitialLoad || isAtPageBottom ? 1 : 0.2,
+                    delay: isInitialLoad || isAtPageBottom ? 0.3 : 0,
                 }}>
                 <Link href='/'>
                     <p className='text-white pointer-events-none'>ROMAIN LAURENT</p>
