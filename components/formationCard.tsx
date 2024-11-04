@@ -145,7 +145,7 @@ export default function FormationCard({ element }: { element: Formation }) {
                 </div>
                 <m.div
                     ref={paragraphRef}
-                    className='w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(15%+1.5em),100px)] whitespace-break-spaces'
+                    className='w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(0.5vh+1em),42px)] whitespace-break-spaces'
                     style={{
                         marginTop: formation.id % 2 === 0 ? 'auto' : '0',
                         marginBottom: !(formation.id % 2 === 0) ? 'auto' : '0',
