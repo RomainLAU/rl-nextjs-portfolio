@@ -1,6 +1,7 @@
 'use client'
 
 import { AnimatePresence, m } from 'framer-motion';
+import gsap from 'gsap';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -14,7 +15,7 @@ import LanguageSwitcher from './languageSwitcher';
 
 export default function NavBar() {
     const pathname = usePathname()
-    const { scrollDirection } = useScrollDirection()
+    const { direction, isAtPageBottom, isAtPageTop } = useScrollDirection()
     const isMobile = useIsMobile()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
@@ -51,21 +52,23 @@ export default function NavBar() {
         exit: { opacity: 0, x: -10, transition: { duration: 0.2 } },
     }
 
+    const shouldShowNavbar = isAtPageTop || direction === 'up' || isAtPageBottom
+
     return (
         <>
             <m.nav
                 className='fixed top-0 left-0 w-[calc(100vw-4rem)] p-8 flex items-center text-white font-semibold bg-black justify-between mix-blend-difference z-10'
                 initial={{ y: '-100%' }}
-                animate={{ y: !scrollDirection ? '0%' : scrollDirection === 'down' ? '-100%' : '0%' }}
+                animate={{ y: shouldShowNavbar ? '0%' : '-100%' }}
                 transition={{
-                    type: !scrollDirection ? 'tween' : 'spring',
-                    stiffness: !scrollDirection ? 100 : 300,
-                    damping: !scrollDirection ? 10 : 30,
-                    duration: !scrollDirection ? 1 : 0.2,
-                    delay: !scrollDirection ? 0.3 : 0,
+                    type: isAtPageTop || isAtPageBottom ? 'tween' : 'spring',
+                    stiffness: isAtPageTop || isAtPageBottom ? 100 : 300,
+                    damping: isAtPageTop || isAtPageBottom ? 10 : 30,
+                    duration: isAtPageTop || isAtPageBottom ? 1 : 0.2,
+                    delay: isAtPageTop || isAtPageBottom ? 0.3 : 0,
                 }}>
                 <Link href='/'>
-                    <p className='text-white'>ROMAIN LAURENT</p>
+                    <p className='text-white pointer-events-none'>ROMAIN LAURENT</p>
                 </Link>
                 {isMobile ? (
                     <VscMenu onClick={() => setIsMenuOpen(!isMenuOpen)} className='text-4xl cursor-pointer mix-blend-difference' />
@@ -80,7 +83,14 @@ export default function NavBar() {
                         <Link className={`link ${pathname === '/formations' ? 'active' : ''}`} href='/formations'>
                             {language === 'fr' ? 'Formations' : 'Formations'}
                         </Link>
-                        <Link className={`link`} href='#contact'>
+                        <Link
+                            className={`link`}
+                            href='#contact'
+                            scroll={pathname === '/'}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                window.scrollTo(0, document.body.scrollHeight)
+                            }}>
                             {language === 'fr' ? 'Contact' : 'Contact'}
                         </Link>
                         <LanguageSwitcher />

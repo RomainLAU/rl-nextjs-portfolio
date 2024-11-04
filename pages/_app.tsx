@@ -3,15 +3,23 @@ import '@/globals.css';
 import {
     AnimatePresence, domAnimation, LazyMotion, m, useScroll, useSpring, useTransform
 } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Inter } from 'next/font/google';
+import Head from 'next/head';
 import { useRef } from 'react';
 
 import CustomCursor from '@/components/customCursor';
 import NavBar from '@/components/navBar';
 import PageTransition from '@/components/pageTransition';
+import { useGSAP } from '@gsap/react';
 
 import type { AppProps } from 'next/app'
 const inter = Inter({ subsets: ['latin'] })
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(useGSAP, ScrollTrigger)
+}
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
     const scrollRef = useRef(null)
@@ -41,6 +49,9 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <LazyMotion features={domAnimation}>
+                <Head>
+                    <meta name='viewport' content='width=device-width, initial-scale=1' />
+                </Head>
                 <AnimatePresence mode='wait'>
                     <m.div
                         key={router.route}
@@ -50,7 +61,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                         variants={opacityVariants}
                         transition={opacityTransition}
                         style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
-                        className={`${inter.className} ${currentPath !== '/' && 'md:mt-20 md:p-24'} relative w-max sm:w-full`}
+                        className={`${inter.className} relative w-max sm:w-full`}
                         ref={scrollRef}>
                         <CustomCursor />
                         <NavBar />

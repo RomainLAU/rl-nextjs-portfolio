@@ -1,25 +1,77 @@
-import { useState, useEffect } from 'react'
+'use client'
+
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger)
+
+interface ScrollInfo {
+    direction: 'up' | 'down' | null
+    isAtPageBottom: boolean
+    isAtPageTop: boolean
+}
 
 export default function useScrollDirection() {
-    const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null)
+    const pathname = usePathname()
+    const [scrollInfo, setScrollInfo] = useState<ScrollInfo>({
+        direction: null,
+        isAtPageBottom: false,
+        isAtPageTop: true,
+    })
+    const lastScrollY = useRef(0)
+    const ticking = useRef(false)
+
+    const handleScroll = useCallback(() => {
+        if (!ticking.current) {
+            window.requestAnimationFrame(() => {
+                const scrollY = window.scrollY
+                const direction = scrollY > lastScrollY.current ? 'down' : 'up'
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+                const isAtPageBottom = Math.abs(scrollY - maxScroll) < 50 // 50px threshold
+                const isAtPageTop = scrollY < 50 // 50px threshold
+
+                setScrollInfo({
+                    direction,
+                    isAtPageBottom,
+                    isAtPageTop,
+                })
+
+                lastScrollY.current = scrollY
+                ticking.current = false
+            })
+
+            ticking.current = true
+        }
+    }, [])
+
+    useGSAP(() => {
+        ScrollTrigger.create({
+            start: 0,
+            end: 'max',
+            onUpdate: handleScroll,
+        })
+
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+        }
+    }, [handleScroll])
 
     useEffect(() => {
-        let lastScrollY = window.pageYOffset
+        handleScroll() // Initial call to set correct state on page load
+        window.addEventListener('scroll', handleScroll, { passive: true })
 
-        const handleScroll = () => {
-            const scrollY = window.pageYOffset
-            const direction = scrollY > lastScrollY ? 'down' : 'up'
-            if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
-                setScrollDirection(direction)
-            }
-            lastScrollY = scrollY > 0 ? scrollY : 0
-        }
-
-        window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [scrollDirection])
+    }, [handleScroll])
 
-    return { scrollDirection }
+    useEffect(() => {
+        handleScroll() // Reset scroll info on page change
+    }, [pathname, handleScroll])
+
+    return scrollInfo
 }

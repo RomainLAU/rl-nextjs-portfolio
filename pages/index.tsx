@@ -49,7 +49,6 @@ export default function Home({ me }: { me: Me }) {
         <>
             <Head>
                 <title>Romain Laurent - Portfolio</title>
-                <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <meta
                     name='description'
                     content="I'm a french young developer. I love frontend development, design, art, and discovering cultures. Let me know if you need my services !"
@@ -66,7 +65,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
 
     return (
         <m.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
-            <div className='h-[90dvh] max-h-screen w-full flex flex-col items-center gap-y-4'>
+            <div className='h-screen max-h-screen w-full flex flex-col items-center gap-y-4'>
                 <m.h1
                     initial='hidden'
                     animate='visible'
@@ -101,7 +100,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     />
                 </div>
             ))}
-            <div id='contact' className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4'>
+            <div className='h-screen w-full flex flex-col items-center justify-center gap-y-8 md:px-4'>
                 <p className='text-4xl md:text-9xl font-extrabold text-center'>
                     {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
                     <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>

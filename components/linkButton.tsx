@@ -14,6 +14,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
 
     return (
         <m.div
+            id='contact'
             className='w-full h-14 bg-black text-white border border-solid border-white rounded-full cursor-none overflow-hidden relative z-[1]'
             onHoverStart={() => setIsHovering(true)}
             onHoverEnd={() => setIsHovering(false)}
