@@ -161,8 +161,7 @@ export default function ExperienceCard({ element }: { element: Experience }) {
                     ref={paragraphRef}
                     className='w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(15%+1.5em),100px)] whitespace-break-spaces'
                     style={{
-                        marginTop: experience.id % 2 === 0 ? 'auto' : '0',
-                        marginBottom: !(experience.id % 2 === 0) ? 'auto' : '0',
+                        marginTop: '0',
                         opacity: isParagraphInView ? 1 : 0,
                         transition: 'opacity 0.3s ease-in-out',
                     }}>
