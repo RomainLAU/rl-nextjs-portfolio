@@ -46,7 +46,7 @@ body {
 }
 
 * {
-    cursor: none;
+    cursor: none !important;
 }
 
 *::-webkit-scrollbar {
@@ -108,6 +108,12 @@ p > svg {
 
 .peaceful {
     color: lightblue;
+    -webkit-text-stroke: 1px lightblue;
+    transition: color 0.5s ease-in-out;
+}
+
+.peaceful:hover {
+    color: black;
 }
 
 .energy {
@@ -121,11 +127,13 @@ p > svg {
 .whiteBackground {
     background-color: white;
     color: #1f1f1f;
+    transition: all 0.5s ease-in-out;
 }
 
 .blackBackground {
     background-color: #1f1f1f;
     color: white;
+    transition: all 0.5s ease-in-out;
 }
 
 @keyframes smileAnimation {

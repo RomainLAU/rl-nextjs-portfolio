@@ -1,7 +1,8 @@
 import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const hoverElements = ['A', 'BUTTON']
+const blacklist: string[] = ['outside']
 
 export default function CustomCursor() {
     const cursorRef = useRef<HTMLDivElement | null>(null)
@@ -22,10 +23,17 @@ export default function CustomCursor() {
                 scaleXTo(1.5)
                 scaleYTo(1.5)
             }
+            if (blacklist.some((className) => (event.target as HTMLElement).className.includes(className))) {
+                scaleXTo(0)
+                scaleYTo(0)
+            }
         }
 
         const handleMouseOut = (event: MouseEvent) => {
-            if (hoverElements.includes((event.target as HTMLElement).tagName)) {
+            if (
+                hoverElements.includes((event.target as HTMLElement).tagName) ||
+                blacklist.some((className) => (event.target as HTMLElement).className.includes(className))
+            ) {
                 scaleXTo(0.5)
                 scaleYTo(0.5)
             }
