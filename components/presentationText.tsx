@@ -3,7 +3,7 @@
 import image1 from '/public/images/image1.jpg';
 import image2 from '/public/images/image2.jpg';
 import image3 from '/public/images/image3.jpg';
-import plage from '/public/images/plage.jpg';
+// import plage from '/public/images/plage.jpg';
 import { AnimatePresence, m, useInView } from 'framer-motion';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -192,7 +192,7 @@ export default function PresentationText({
 
     const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 })
     const [imageIndex, setImageIndex] = useState(-1)
-    const images = [image1, image2, image3, plage]
+    const images = [image1, image2, image3]
 
     const handleHoverOutside = (e: React.MouseEvent<HTMLElement>, isEntering: boolean) => {
         const handleMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
