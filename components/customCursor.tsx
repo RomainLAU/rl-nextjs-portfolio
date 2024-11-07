@@ -19,21 +19,24 @@ export default function CustomCursor() {
         }
 
         const handleMouseOver = (event: MouseEvent) => {
-            if (hoverElements.includes((event.target as HTMLElement).tagName)) {
+            const target = event.target as HTMLElement
+            const className = typeof target.className === 'string' ? target.className : (target.className as unknown as { baseVal: string }).baseVal
+
+            if (hoverElements.includes(target.tagName)) {
                 scaleXTo(1.5)
                 scaleYTo(1.5)
             }
-            if (blacklist.some((className) => (event.target as HTMLElement).className.includes(className))) {
+            if (blacklist.some((blacklistedClass) => className.includes(blacklistedClass))) {
                 scaleXTo(0)
                 scaleYTo(0)
             }
         }
 
         const handleMouseOut = (event: MouseEvent) => {
-            if (
-                hoverElements.includes((event.target as HTMLElement).tagName) ||
-                blacklist.some((className) => (event.target as HTMLElement).className.includes(className))
-            ) {
+            const target = event.target as HTMLElement
+            const className = typeof target.className === 'string' ? target.className : (target.className as unknown as { baseVal: string }).baseVal
+
+            if (hoverElements.includes(target.tagName) || blacklist.some((blacklistedClass) => className.includes(blacklistedClass))) {
                 scaleXTo(0.5)
                 scaleYTo(0.5)
             }

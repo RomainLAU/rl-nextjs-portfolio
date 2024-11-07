@@ -9,6 +9,10 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
 
+import image1 from '../public/images/image1.jpg';
+import image2 from '../public/images/image2.jpg';
+import image3 from '../public/images/image3.jpg';
+import plage from '../public/images/plage.jpg';
 import AnimatedSmiley from './animatedSmiley';
 
 export default function PresentationText({
@@ -72,15 +76,14 @@ export default function PresentationText({
                 const distanceY = e.clientY - (rect.top + rect.height / 2)
                 const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 
-                const maxDistance = 200 // Distance maximale d'effet
-                const minDistance = 50 // Distance minimale avant que l'élément ne commence à bouger
+                const maxDistance = 200
+                const minDistance = 50
 
                 if (distance < maxDistance) {
                     const factor = Math.min(1, (maxDistance - distance) / (maxDistance - minDistance))
                     let moveX = -distanceX * factor
                     let moveY = -distanceY * factor
 
-                    // Vérifier les limites de l'écran
                     moveX = Math.max(-rect.left, Math.min(moveX, window.innerWidth - rect.right))
                     moveY = Math.max(-rect.top, Math.min(moveY, window.innerHeight - rect.bottom))
                     ;(element as HTMLElement).style.transform = `translate(${moveX}px, ${moveY}px)`
@@ -118,7 +121,6 @@ export default function PresentationText({
             originalTextRef.current = originalText
         }
 
-        // Fonction pour créer du texte coloré
         const colorText = () => {
             setColoredText(
                 originalText.split('').map((letter, index) => (
@@ -191,7 +193,7 @@ export default function PresentationText({
 
     const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 })
     const [imageIndex, setImageIndex] = useState(-1)
-    const images = ['/images/image1.jpg', '/images/image2.jpg', '/images/image3.jpg', '/images/plage.JPG']
+    const images = [image1, image2, image3, plage]
 
     const handleHoverOutside = (e: React.MouseEvent<HTMLElement>, isEntering: boolean) => {
         const handleMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
