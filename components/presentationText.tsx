@@ -1,5 +1,9 @@
 'use client'
 
+import image1 from '/public/images/image1.jpg';
+import image2 from '/public/images/image2.jpg';
+import image3 from '/public/images/image3.jpg';
+import plage from '/public/images/plage.jpg';
 import { AnimatePresence, m, useInView } from 'framer-motion';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -9,10 +13,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
 
-import image1 from '../public/images/image1.jpg';
-import image2 from '../public/images/image2.jpg';
-import image3 from '../public/images/image3.jpg';
-import plage from '../public/images/plage.jpg';
 import AnimatedSmiley from './animatedSmiley';
 
 export default function PresentationText({
@@ -28,7 +28,6 @@ export default function PresentationText({
     const containerRef = useRef<HTMLDivElement | null>(null)
     const textRef = useRef<HTMLDivElement | null>(null)
     const imageRef = useRef<HTMLDivElement | null>(null)
-    const [, setRerender] = useState(0)
 
     const isInView = useInView(containerRef, { once: true, amount: 0.1 })
 
