@@ -1,17 +1,17 @@
 'use client'
 
-import { AnimatePresence, m } from 'framer-motion';
-import gsap from 'gsap';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { VscChromeClose, VscMenu } from 'react-icons/vsc';
+import { AnimatePresence, m } from 'framer-motion'
+import gsap from 'gsap'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { VscChromeClose, VscMenu } from 'react-icons/vsc'
 
-import useIsMobile from '@/hooks/useIsMobile';
+import useIsMobile from '@/hooks/useIsMobile'
 
-import useScrollDirection from '../hooks/useScrollDirection';
-import LanguageSwitcher from './languageSwitcher';
+import useScrollDirection from '../hooks/useScrollDirection'
+import LanguageSwitcher from './languageSwitcher'
 
 export default function NavBar() {
     const pathname = usePathname()
@@ -68,10 +68,10 @@ export default function NavBar() {
                     delay: isAtPageTop || isAtPageBottom ? 0.3 : 0,
                 }}>
                 <Link href='/'>
-                    <p className='text-white pointer-events-none'>ROMAIN LAURENT</p>
+                    <p className='text-white'>ROMAIN LAURENT</p>
                 </Link>
                 {isMobile ? (
-                    <VscMenu onClick={() => setIsMenuOpen(!isMenuOpen)} className='text-4xl cursor-pointer mix-blend-difference' />
+                    <VscMenu onClick={() => setIsMenuOpen(!isMenuOpen)} className='text-4xl mix-blend-difference' />
                 ) : (
                     <div className='flex gap-x-8'>
                         {/* <Link className={`link ${pathname === '/projects' ? 'active' : ''}`} href='/projects'>
@@ -107,10 +107,7 @@ export default function NavBar() {
                         exit={'exit'}
                         transition={{ duration: 0.5 }}
                         className='fixed top-0 left-0 w-screen h-[110dvh] bg-black bg-opacity flex flex-col items-center justify-center gap-y-8 z-10'>
-                        <VscChromeClose
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className='text-4xl cursor-pointer mix-blend-difference absolute top-8 right-8'
-                        />
+                        <VscChromeClose onClick={() => setIsMenuOpen(!isMenuOpen)} className='text-4xl mix-blend-difference absolute top-8 right-8' />
                         {/* <m.div key={'link-projects'} variants={itemVariants}>
                             <Link
                                 className={`link mobile-link ${pathname === '/projects' ? 'active' : ''}`}

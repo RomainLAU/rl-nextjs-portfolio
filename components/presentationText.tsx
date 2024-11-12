@@ -1,19 +1,19 @@
 'use client'
 
-import image1 from '/public/images/image1.jpg';
-import image2 from '/public/images/image2.jpg';
-import image3 from '/public/images/image3.jpg';
-import plage from '/public/images/plage.png';
-import { AnimatePresence, m, useInView } from 'framer-motion';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import parse, { domToReact } from 'html-react-parser';
-import Image from 'next/image';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import image1 from '/public/images/image1.jpg'
+import image2 from '/public/images/image2.jpg'
+import image3 from '/public/images/image3.jpg'
+import plage from '/public/images/plage.png'
+import { AnimatePresence, m, useInView } from 'framer-motion'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import parse, { domToReact } from 'html-react-parser'
+import Image from 'next/image'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-import useIsMobile from '@/hooks/useIsMobile';
+import useIsMobile from '@/hooks/useIsMobile'
 
-import AnimatedSmiley from './animatedSmiley';
+import AnimatedSmiley from './animatedSmiley'
 
 export default function PresentationText({
     text,
@@ -146,7 +146,7 @@ export default function PresentationText({
         const strong = e.currentTarget.querySelector('strong')
         if (strong) {
             if (isEntering) {
-                strong.style.transform = 'rotate3d(0, 1, 1, 6.29rad)'
+                strong.style.transform = 'rotate3d(0, 1, 1, 0.2rad)'
                 strong.style.backgroundColor = strong.classList.contains('whiteBackground') ? '#1f1f1f' : 'white'
                 strong.style.color = strong.classList.contains('whiteBackground') ? 'white' : '#1f1f1f'
             } else {

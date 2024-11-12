@@ -1,44 +1,71 @@
-import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
+import gsap from 'gsap'
+import { useEffect, useRef, useState } from 'react'
 
-const hoverElements = ['A', 'BUTTON']
-const blacklist: string[] = ['outside']
+const HOVER_ELEMENTS = ['A', 'BUTTON']
+const BLACKLIST_CLASSES = ['outside']
+const CURSOR_SCALE = {
+    DEFAULT: 0.5,
+    HOVER: 1.5,
+    HIDDEN: 0,
+}
+const ANIMATION_CONFIG = {
+    duration: 0.3,
+    ease: 'power2.out',
+}
 
 export default function CustomCursor() {
     const cursorRef = useRef<HTMLDivElement | null>(null)
+    const [isCursorHidden, setIsCursorHidden] = useState(false) // Track cursor visibility
 
     useEffect(() => {
-        const xTo = gsap.quickTo(cursorRef.current, 'x', { duration: 0.3, ease: 'power2.out' })
-        const yTo = gsap.quickTo(cursorRef.current, 'y', { duration: 0.3, ease: 'power2.out' })
-        const scaleXTo = gsap.quickTo(cursorRef.current, 'scaleX', { duration: 0.3, ease: 'power2.out' })
-        const scaleYTo = gsap.quickTo(cursorRef.current, 'scaleY', { duration: 0.3, ease: 'power2.out' })
+        const cursor = cursorRef.current
+        if (!cursor) return
+
+        const animations = {
+            x: gsap.quickTo(cursor, 'x', ANIMATION_CONFIG),
+            y: gsap.quickTo(cursor, 'y', ANIMATION_CONFIG),
+            scaleX: gsap.quickTo(cursor, 'scaleX', ANIMATION_CONFIG),
+            scaleY: gsap.quickTo(cursor, 'scaleY', ANIMATION_CONFIG),
+        }
+
+        const getClassName = (target: HTMLElement) => {
+            return typeof target.className === 'string' ? target.className : (target.className as unknown as { baseVal: string }).baseVal
+        }
+
+        const setCursorScale = (scale: number) => {
+            animations.scaleX(scale)
+            animations.scaleY(scale)
+        }
 
         const handleMouseMove = (event: MouseEvent) => {
-            xTo(event.clientX)
-            yTo(event.clientY)
+            animations.x(event.clientX)
+            animations.y(event.clientY)
+
+            // Aggressively hide the default cursor on every mouse move
+            if (!isCursorHidden) {
+                document.body.style.cursor = 'none'
+            }
         }
 
         const handleMouseOver = (event: MouseEvent) => {
             const target = event.target as HTMLElement
-            const className = typeof target.className === 'string' ? target.className : (target.className as unknown as { baseVal: string }).baseVal
+            const className = getClassName(target)
 
-            if (hoverElements.includes(target.tagName)) {
-                scaleXTo(1.5)
-                scaleYTo(1.5)
-            }
-            if (blacklist.some((blacklistedClass) => className.includes(blacklistedClass))) {
-                scaleXTo(0)
-                scaleYTo(0)
+            if (HOVER_ELEMENTS.includes(target.tagName)) {
+                setCursorScale(CURSOR_SCALE.HOVER)
+                setIsCursorHidden(true) // Hide default cursor on hover
+            } else if (BLACKLIST_CLASSES.some((blacklisted) => className.includes(blacklisted))) {
+                setCursorScale(CURSOR_SCALE.HIDDEN)
             }
         }
 
         const handleMouseOut = (event: MouseEvent) => {
             const target = event.target as HTMLElement
-            const className = typeof target.className === 'string' ? target.className : (target.className as unknown as { baseVal: string }).baseVal
+            const className = getClassName(target)
 
-            if (hoverElements.includes(target.tagName) || blacklist.some((blacklistedClass) => className.includes(blacklistedClass))) {
-                scaleXTo(0.5)
-                scaleYTo(0.5)
+            if (HOVER_ELEMENTS.includes(target.tagName) || BLACKLIST_CLASSES.some((blacklisted) => className.includes(blacklisted))) {
+                setCursorScale(CURSOR_SCALE.DEFAULT)
+                setIsCursorHidden(false) // Show default cursor after hover
             }
         }
 
@@ -51,14 +78,14 @@ export default function CustomCursor() {
             window.removeEventListener('mouseover', handleMouseOver)
             window.removeEventListener('mouseout', handleMouseOut)
         }
-    }, [])
+    }, [isCursorHidden]) // Include isCursorHidden in the dependency array
 
     return (
         <div
             ref={cursorRef}
-            className={`hidden sm:block fixed w-10 h-10 rounded-full pointer-events-none mix-blend-difference z-50`}
+            className='hidden sm:block fixed w-10 h-10 rounded-full pointer-events-none mix-blend-difference z-50'
             style={{
-                transform: 'translate(-50%, -50%) scale(0.5, 0.5)',
+                transform: `translate(-50%, -50%) scale(${CURSOR_SCALE.DEFAULT}, ${CURSOR_SCALE.DEFAULT})`,
                 willChange: 'transform',
                 backgroundColor: '#ffffff',
             }}
