@@ -15,7 +15,6 @@ const ANIMATION_CONFIG = {
 
 export default function CustomCursor() {
     const cursorRef = useRef<HTMLDivElement | null>(null)
-    const [isCursorHidden, setIsCursorHidden] = useState(false) // Track cursor visibility
 
     useEffect(() => {
         const cursor = cursorRef.current
@@ -40,11 +39,6 @@ export default function CustomCursor() {
         const handleMouseMove = (event: MouseEvent) => {
             animations.x(event.clientX)
             animations.y(event.clientY)
-
-            // Aggressively hide the default cursor on every mouse move
-            if (!isCursorHidden) {
-                document.body.style.cursor = 'none'
-            }
         }
 
         const handleMouseOver = (event: MouseEvent) => {
@@ -53,7 +47,6 @@ export default function CustomCursor() {
 
             if (HOVER_ELEMENTS.includes(target.tagName)) {
                 setCursorScale(CURSOR_SCALE.HOVER)
-                setIsCursorHidden(true) // Hide default cursor on hover
             } else if (BLACKLIST_CLASSES.some((blacklisted) => className.includes(blacklisted))) {
                 setCursorScale(CURSOR_SCALE.HIDDEN)
             }
@@ -65,7 +58,6 @@ export default function CustomCursor() {
 
             if (HOVER_ELEMENTS.includes(target.tagName) || BLACKLIST_CLASSES.some((blacklisted) => className.includes(blacklisted))) {
                 setCursorScale(CURSOR_SCALE.DEFAULT)
-                setIsCursorHidden(false) // Show default cursor after hover
             }
         }
 
@@ -78,7 +70,7 @@ export default function CustomCursor() {
             window.removeEventListener('mouseover', handleMouseOver)
             window.removeEventListener('mouseout', handleMouseOut)
         }
-    }, [isCursorHidden]) // Include isCursorHidden in the dependency array
+    }, [])
 
     return (
         <div

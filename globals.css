@@ -45,10 +45,6 @@ body {
     }
 }
 
-* {
-    cursor: none !important;
-}
-
 *::-webkit-scrollbar {
     display: none;
 }
