@@ -90,7 +90,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
                     {list.map((item, index) => (
                         <div key={index} className='flex-shrink-0'>
-                            <CardComponent key={`experience-${item.id}`} element={item} />
+                            <CardComponent key={`experience-${item.id}`} element={item} index={index} />
                         </div>
                     ))}
                 </div>
