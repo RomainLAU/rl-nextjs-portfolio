@@ -8,6 +8,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import useIsMobile from '@/hooks/useIsMobile';
 import { Experience } from '@/types/experience';
 
+import LinkButton from './linkButton';
+
 export default function ExperienceCard({ element, index }: { element: Experience; index: number }) {
     const experience = element
     const isMobile = useIsMobile() ?? true
@@ -91,7 +93,7 @@ export default function ExperienceCard({ element, index }: { element: Experience
                 {experience.company_logo && (
                     <m.div
                         {...initialTransition}
-                        className={`w-[80vw] md:w-full h-[40vh] md:h-full md:max-h-[60dvh] ${experience.company === 'COM4DESIGN' ? 'svg-container' : ''}`}>
+                        className={`w-[80vw] md:w-full h-[40vh] md:h-full md:max-h-[50dvh] ${experience.company === 'COM4DESIGN' ? 'svg-container' : ''}`}>
                         <Image
                             src={experience.company_logo.url}
                             alt={experience.company_logo.alternativeText}
@@ -123,7 +125,7 @@ export default function ExperienceCard({ element, index }: { element: Experience
                         {(experience.finished_at && new Date(experience.finished_at).toLocaleDateString(locale).replaceAll('-', '/')) ?? 'Present'}
                     </m.p>
                 </div>
-                <div className='flex flex-col w-full gap-y-4'>
+                <div className='flex flex-col w-full md:gap-y-24 md:h-full'>
                     {/* <m.p
                         ref={companyRef}
                         initial={{ opacity: 0, y: 10 }}
@@ -139,10 +141,18 @@ export default function ExperienceCard({ element, index }: { element: Experience
                                     key={`skill-${skill.id}-${experience.title}`}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : 10 }}
-                                    transition={{ duration: 0.3, delay: isTagsInView ? (index === 0 ? 2.9 + skillIndex * 0.1 : 1.6 + skillIndex * 0.1) : 0 }}>
+                                    transition={{ duration: 0.3, delay: isTagsInView ? (index === 0 ? 2.6 + skillIndex * 0.1 : 1.3 + skillIndex * 0.1) : 0 }}>
                                     {skill.title}
                                 </m.p>
                             ))}
+                    </m.div>
+
+                    <m.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : -10 }}
+                        transition={{ duration: 0.5, delay: index === 0 ? 2.5 + experience.skills.length * 0.1 : 1.5 + experience.skills.length * 0.1 }}
+                        className='w-1/2'>
+                        <LinkButton link={`#${experience.company}`} text={locale === 'fr' ? 'En savoir plus' : 'Learn more'} />
                     </m.div>
                 </div>
                 {/* <m.div
