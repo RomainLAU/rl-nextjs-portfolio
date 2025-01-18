@@ -10,7 +10,7 @@ import { Experience } from '@/types/experience';
 
 import LinkButton from './linkButton';
 
-export default function ExperienceCard({ element, index }: { element: Experience; index: number }) {
+export default function ExperienceCard({ element, index, setSelectedItem }: { element: Experience; index: number; setSelectedItem: React.Dispatch<any> }) {
     const experience = element
     const isMobile = useIsMobile() ?? true
     const { locale } = useRouter()
@@ -151,8 +151,12 @@ export default function ExperienceCard({ element, index }: { element: Experience
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : -10 }}
                         transition={{ duration: 0.5, delay: index === 0 ? 2.5 + experience.skills.length * 0.1 : 1.5 + experience.skills.length * 0.1 }}
-                        className='w-1/2'>
-                        <LinkButton link={`#${experience.company}`} text={locale === 'fr' ? 'En savoir plus' : 'Learn more'} />
+                        className='w-1/2'
+                        onClick={(e) => {
+                            e.preventDefault()
+                            setSelectedItem(experience)
+                        }}>
+                        <LinkButton blank={false} link={``} text={locale === 'fr' ? 'En savoir plus' : 'Learn more'} />
                     </m.div>
                 </div>
                 {/* <m.div

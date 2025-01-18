@@ -1,7 +1,7 @@
-import { AnimatePresence, m } from 'framer-motion'
-import { useState } from 'react'
+import { AnimatePresence, m } from 'framer-motion';
+import { useState } from 'react';
 
-export default function LinkButton({ text, link }: { text: string; link: string }) {
+export default function LinkButton({ text, link, blank = true }: { text: string; link: string; blank?: boolean }) {
     const [isHovering, setIsHovering] = useState(false)
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
 
@@ -21,7 +21,7 @@ export default function LinkButton({ text, link }: { text: string; link: string 
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseMove}>
             <m.a
-                target='_blank'
+                target={blank ? '_blank' : '_self'}
                 href={link}
                 className='flex items-center justify-center z-[1] pointer-events-visible font-extrabold h-full w-full text-center'
                 animate={{

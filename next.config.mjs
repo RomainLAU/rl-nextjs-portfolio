@@ -37,6 +37,7 @@ const nextConfig = {
             'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
             'font-src': ["'self'"],
             'form-action': ["'self'"],
+            'connect-src': ["'self'", process.env.NODE_ENV !== 'production' && 'ws://127.0.0.1:52947'],
         }
 
         if (process.env.NODE_ENV !== 'production') {
