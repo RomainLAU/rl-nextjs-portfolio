@@ -35,6 +35,7 @@ const nextConfig = {
             'script-src': ["'self'"],
             'style-src': ["'self'", "'unsafe-inline'"],
             'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
+            'media-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
             'font-src': ["'self'"],
             'form-action': ["'self'"],
             'connect-src': ["'self'", process.env.NODE_ENV !== 'production' && 'ws://127.0.0.1:52947'],
