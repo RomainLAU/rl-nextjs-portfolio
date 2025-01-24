@@ -32,11 +32,12 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
 
     return (
         <m.div
+            key={`modal-${element.id}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={`experience-modal fixed inset-0 w-screen h-screen bg-black/75 z-[1000] flex justify-center items-center`}
+            className={`sticky inset-0 w-screen h-screen bg-black/75 z-[1000] flex justify-center items-center`}
             onClick={() => {
                 setSelectedElement(null)
             }}>
@@ -44,7 +45,7 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
                 onClick={(e) => {
                     e.stopPropagation()
                 }}
-                className='w-[80%] h-[-webkit-fill-available] overflow-y-scroll bg-black rounded-3xl p-24 my-12 flex flex-col gap-y-48'>
+                className='experience-modal w-[80%] h-[-webkit-fill-available] overflow-y-scroll bg-black rounded-3xl p-24 mt-12 flex flex-col gap-y-48'>
                 <VscChromeClose
                     onClick={() => setSelectedElement(null)}
                     className='text-4xl mix-blend-difference fixed top-20 right-[6.5%] cursor-pointer hover:text-red-200 transition-colors'
@@ -54,8 +55,7 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
                         (element.feature_media.mime.includes('video') ? (
                             <video src={element.feature_media.url} controls autoPlay className='w-[40%] md:w-auto h-[40vh] md:h-auto md:max-h-[50dvh]' />
                         ) : (
-                            <m.div
-                                className={`w-[40%] md:w-auto h-[40vh] md:h-auto md:max-h-[50dvh] ${element.company === 'COM4DESIGN' ? 'svg-container' : ''}`}>
+                            <m.div className={`w-[40%] md:w-auto md:min-w-[35vw] h-[40vh] md:h-auto md:min-h-[30vh] md:max-h-[50dvh]`}>
                                 <Image
                                     src={element.feature_media.url}
                                     alt={element.feature_media.alternativeText}

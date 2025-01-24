@@ -20,7 +20,7 @@ interface HorizontalScrollComponentProps<T> {
 
 export default function HorizontalScrollComponent<T>({ list, title, CardComponent }: HorizontalScrollComponentProps<T>) {
     const { locale } = useRouter()
-    const isMobile = useIsMobile()
+    const isMobile = useIsMobile() ?? true
 
     const [selectedItem, setSelectedItem] = useState<null | any>(null)
 
@@ -31,7 +31,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
     const contactRef = useRef<HTMLDivElement>(null)
 
     useGSAP(() => {
-        if (isMobile !== false || selectedItem) return
+        if (isMobile !== false) return
 
         if (containerRef.current && horizontalRef.current && titleRef.current && buttonRef.current) {
             const container = containerRef.current
@@ -78,15 +78,16 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
         }
 
         return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+            ScrollTrigger.getAll().forEach((trigger) => trigger.refresh())
         }
-    }, [list, isMobile, selectedItem, containerRef])
+    }, [list, isMobile, containerRef])
 
     useEffect(() => {
         if (selectedItem) {
             document.body.style.overflow = 'hidden'
         } else {
             document.body.style.overflow = ''
+            ScrollTrigger.getAll().forEach((trigger) => trigger.refresh())
         }
     }, [selectedItem])
 

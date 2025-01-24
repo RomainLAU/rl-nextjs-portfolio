@@ -26,7 +26,7 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
                 trigger: containerRef.current,
                 start: 'center bottom',
                 end: 'bottom center',
-                scrub: 0.3,
+                scrub: 1.3,
             },
         })
 
@@ -36,7 +36,7 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
                 { opacity: 0.3 },
                 {
                     opacity: 1,
-                    duration: 0.5,
+                    duration: 1,
                     ease: 'power1.inOut',
                 },
                 index * 0.05
@@ -44,7 +44,7 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
         })
 
         return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+            tl.kill()
         }
     }, [text])
 

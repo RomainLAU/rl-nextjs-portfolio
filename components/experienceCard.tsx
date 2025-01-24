@@ -147,17 +147,20 @@ export default function ExperienceCard({ element, index, setSelectedItem }: { el
                             ))}
                     </m.div>
 
-                    <m.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : -10 }}
-                        transition={{ duration: 0.5, delay: index === 0 ? 2.5 + experience.skills.length * 0.1 : 1.5 + experience.skills.length * 0.1 }}
-                        className='w-1/2'
-                        onClick={(e) => {
-                            e.preventDefault()
-                            setSelectedItem(experience)
-                        }}>
-                        <LinkButton blank={false} link={``} text={locale === 'fr' ? 'En savoir plus' : 'Learn more'} />
-                    </m.div>
+                    {experience && (
+                        <m.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : -10 }}
+                            transition={{ duration: 0.5, delay: index === 0 ? 2.5 + experience.skills.length * 0.1 : 1.5 + experience.skills.length * 0.1 }}
+                            className='w-1/2'
+                            onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                setSelectedItem(experience)
+                            }}>
+                            <LinkButton blank={false} link={``} text={locale === 'fr' ? 'En savoir plus' : 'Learn more'} />
+                        </m.div>
+                    )}
                 </div>
                 {/* <m.div
                     ref={paragraphRef}
