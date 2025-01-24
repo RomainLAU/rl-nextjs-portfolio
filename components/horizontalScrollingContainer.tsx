@@ -1,9 +1,10 @@
 'use client'
 
+import { AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
 import { useGSAP } from '@gsap/react';
@@ -30,7 +31,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
     const contactRef = useRef<HTMLDivElement>(null)
 
     useGSAP(() => {
-        if (isMobile !== false) return
+        if (isMobile !== false || selectedItem) return
 
         if (containerRef.current && horizontalRef.current && titleRef.current && buttonRef.current) {
             const container = containerRef.current
@@ -79,13 +80,21 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
         }
-    }, [list, isMobile])
+    }, [list, isMobile, selectedItem, containerRef])
+
+    useEffect(() => {
+        if (selectedItem) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+    }, [selectedItem])
 
     if (isMobile !== false) return null
 
     return (
         <div ref={containerRef} className='min-h-[100vh]'>
-            <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />
+            <AnimatePresence>{selectedItem && <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />}</AnimatePresence>
             <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold z-10'>
                 {title}
             </h1>
