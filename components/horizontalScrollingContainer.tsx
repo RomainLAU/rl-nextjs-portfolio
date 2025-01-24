@@ -1,13 +1,15 @@
 'use client'
 
+import { AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import useIsMobile from '@/hooks/useIsMobile';
 import { useGSAP } from '@gsap/react';
 
+import DescriptionModal from './descriptionModal';
 import LinkButton from './linkButton';
 
 interface HorizontalScrollComponentProps<T> {
@@ -18,7 +20,9 @@ interface HorizontalScrollComponentProps<T> {
 
 export default function HorizontalScrollComponent<T>({ list, title, CardComponent }: HorizontalScrollComponentProps<T>) {
     const { locale } = useRouter()
-    const isMobile = useIsMobile()
+    const isMobile = useIsMobile() ?? true
+
+    const [selectedItem, setSelectedItem] = useState<null | any>(null)
 
     const containerRef = useRef<HTMLDivElement>(null)
     const horizontalRef = useRef<HTMLDivElement>(null)
@@ -74,14 +78,24 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
         }
 
         return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+            ScrollTrigger.getAll().forEach((trigger) => trigger.refresh())
         }
-    }, [list, isMobile])
+    }, [list, isMobile, containerRef])
+
+    useEffect(() => {
+        if (selectedItem) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+            ScrollTrigger.getAll().forEach((trigger) => trigger.refresh())
+        }
+    }, [selectedItem])
 
     if (isMobile !== false) return null
 
     return (
         <div ref={containerRef} className='min-h-[100vh]'>
+            <AnimatePresence>{selectedItem && <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />}</AnimatePresence>
             <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold z-10'>
                 {title}
             </h1>
@@ -90,7 +104,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
                     {list.map((item, index) => (
                         <div key={index} className='flex-shrink-0'>
-                            <CardComponent key={`experience-${item.id}`} element={item} />
+                            <CardComponent key={`${title}-${item.id}`} element={item} index={index} setSelectedItem={setSelectedItem} />
                         </div>
                     ))}
                 </div>
