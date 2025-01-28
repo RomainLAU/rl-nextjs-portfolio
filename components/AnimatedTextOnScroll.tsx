@@ -1,9 +1,11 @@
 'use client'
 
 import type React from 'react'
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useEffect, useRef } from 'react'
+
+import useIsMobile from '@/hooks/useIsMobile'
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -11,9 +13,11 @@ if (typeof window !== 'undefined') {
 
 interface ScrollAnimatedTextProps {
     text: string
+    customScroller?: string
 }
 
-const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
+const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text, customScroller }) => {
+    const isMobile = useIsMobile() ?? true
     const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -22,9 +26,9 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
         const words = containerRef.current.querySelectorAll('.word')
         const tl = gsap.timeline({
             scrollTrigger: {
-                scroller: '.experience-modal',
+                scroller: customScroller || window,
                 trigger: containerRef.current,
-                start: 'center bottom',
+                start: isMobile ? 'top bottom' : 'center bottom',
                 end: 'bottom center',
                 scrub: 1.5,
             },
@@ -46,7 +50,7 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
         return () => {
             tl.kill()
         }
-    }, [text])
+    }, [text, customScroller, isMobile])
 
     return (
         <div ref={containerRef} className='text-white text-xl leading-10 tracking-widest'>

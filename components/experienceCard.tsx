@@ -1,14 +1,15 @@
 'use client'
 
-import { AnimatePresence, m, useInView } from 'framer-motion';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { AnimatePresence, m, useInView } from 'framer-motion'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-import useIsMobile from '@/hooks/useIsMobile';
-import { Experience } from '@/types/experience';
+import useIsMobile from '@/hooks/useIsMobile'
+import { Experience } from '@/types/experience'
 
-import LinkButton from './linkButton';
+import AnimatedTextOnScroll from './animatedTextOnScroll'
+import LinkButton from './linkButton'
 
 export default function ExperienceCard({ element, index, setSelectedItem }: { element: Experience; index: number; setSelectedItem: React.Dispatch<any> }) {
     const experience = element
@@ -147,7 +148,7 @@ export default function ExperienceCard({ element, index, setSelectedItem }: { el
                             ))}
                     </m.div>
 
-                    {experience && (
+                    {experience && !isMobile && (
                         <m.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: isTagsInView ? 1 : 0, y: isTagsInView ? 0 : -10 }}
@@ -162,6 +163,7 @@ export default function ExperienceCard({ element, index, setSelectedItem }: { el
                         </m.div>
                     )}
                 </div>
+                {isMobile && <AnimatedTextOnScroll text={experience.description} />}
                 {/* <m.div
                     ref={paragraphRef}
                     className='w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(0.5vh+1em),42px)] whitespace-break-spaces'

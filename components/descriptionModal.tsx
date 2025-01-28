@@ -1,15 +1,15 @@
 'use client'
 
-import { m } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { VscChromeClose } from 'react-icons/vsc';
+import { m } from 'framer-motion'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { VscChromeClose } from 'react-icons/vsc'
 
-import AnimatedTextOnScroll from './AnimatedTextOnScroll';
-import LinkButton from './linkButton';
+import AnimatedTextOnScroll from './animatedTextOnScroll'
+import LinkButton from './linkButton'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -76,7 +76,7 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
                     {element.feature_description && <m.div className='text-lg leading-10 tracking-widest px-8'>{element.feature_description}</m.div>}
                 </div>
 
-                <AnimatedTextOnScroll text={element.description} />
+                <AnimatedTextOnScroll text={element.description} customScroller='.experience-modal' />
 
                 {element.project_url && (
                     <m.div className='w-1/4 self-center'>
