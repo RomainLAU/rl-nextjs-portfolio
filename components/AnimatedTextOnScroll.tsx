@@ -1,11 +1,11 @@
 'use client'
 
 import type React from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useEffect, useRef } from 'react';
 
-import useIsMobile from '@/hooks/useIsMobile'
+import useIsMobile from '@/hooks/useIsMobile';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -16,7 +16,7 @@ interface ScrollAnimatedTextProps {
     customScroller?: string
 }
 
-const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text, customScroller }) => {
+export default function AnimatedTextOnScroll({ text, customScroller }: ScrollAnimatedTextProps) {
     const isMobile = useIsMobile() ?? true
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -62,5 +62,3 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text, customS
         </div>
     )
 }
-
-export default AnimatedTextOnScroll
