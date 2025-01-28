@@ -1,5 +1,5 @@
-import gsap from 'gsap'
-import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap';
+import { useEffect, useRef, useState } from 'react';
 
 const HOVER_ELEMENTS = ['A', 'BUTTON']
 const BLACKLIST_CLASSES = ['outside']
@@ -75,7 +75,7 @@ export default function CustomCursor() {
     return (
         <div
             ref={cursorRef}
-            className='hidden sm:block fixed w-10 h-10 rounded-full pointer-events-none mix-blend-difference z-50'
+            className='hidden sm:block fixed w-10 h-10 rounded-full pointer-events-none mix-blend-difference z-[1000]'
             style={{
                 transform: `translate(-50%, -50%) scale(${CURSOR_SCALE.DEFAULT}, ${CURSOR_SCALE.DEFAULT})`,
                 willChange: 'transform',

@@ -28,15 +28,23 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
         }
     }, [setSelectedElement])
 
+    useEffect(() => {
+        document.body.classList.add('modal-open')
+
+        return () => {
+            document.body.classList.remove('modal-open')
+        }
+    }, [])
+
     if (!element) return null
 
     return (
         <m.div
             key={`modal-${element.id}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.4, ease: 'easeIn' }}
             className={`sticky inset-0 w-screen h-screen bg-black/75 z-[1000] flex justify-center items-center`}
             onClick={() => {
                 setSelectedElement(null)
@@ -45,10 +53,10 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
                 onClick={(e) => {
                     e.stopPropagation()
                 }}
-                className='experience-modal w-[80%] h-[-webkit-fill-available] overflow-y-scroll bg-black rounded-3xl p-24 mt-12 flex flex-col gap-y-48'>
+                className='experience-modal w-full h-[-webkit-fill-available] overflow-y-scroll bg-black border border-solid border-white rounded-md p-24 flex flex-col gap-y-48'>
                 <VscChromeClose
                     onClick={() => setSelectedElement(null)}
-                    className='text-4xl mix-blend-difference fixed top-20 right-[6.5%] cursor-pointer hover:text-red-200 transition-colors'
+                    className='text-4xl mix-blend-difference absolute top-10 right-10 cursor-pointer hover:text-red-200 transition-colors'
                 />
                 <div className='flex items-start justify-between'>
                     {element.feature_media &&

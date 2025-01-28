@@ -26,7 +26,7 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
                 trigger: containerRef.current,
                 start: 'center bottom',
                 end: 'bottom center',
-                scrub: 1.3,
+                scrub: 1.5,
             },
         })
 
@@ -37,9 +37,9 @@ const AnimatedTextOnScroll: React.FC<ScrollAnimatedTextProps> = ({ text }) => {
                 {
                     opacity: 1,
                     duration: 1,
-                    ease: 'power1.inOut',
+                    ease: 'power2.in',
                 },
-                index * 0.05
+                index * 0.03
             )
         })
 

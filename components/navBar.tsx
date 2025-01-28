@@ -1,17 +1,17 @@
 'use client'
 
-import { AnimatePresence, m } from 'framer-motion'
-import gsap from 'gsap'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { VscChromeClose, VscMenu } from 'react-icons/vsc'
+import { AnimatePresence, m } from 'framer-motion';
+import gsap from 'gsap';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 
-import useIsMobile from '@/hooks/useIsMobile'
+import useIsMobile from '@/hooks/useIsMobile';
 
-import useScrollDirection from '../hooks/useScrollDirection'
-import LanguageSwitcher from './languageSwitcher'
+import useScrollDirection from '../hooks/useScrollDirection';
+import LanguageSwitcher from './languageSwitcher';
 
 export default function NavBar() {
     const pathname = usePathname()
@@ -57,7 +57,7 @@ export default function NavBar() {
     return (
         <>
             <m.nav
-                className='fixed top-0 left-0 w-[calc(100vw-4rem)] p-8 flex items-center text-white font-semibold bg-black justify-between mix-blend-difference z-10'
+                className='nav-bar fixed top-0 left-0 w-[calc(100vw-4rem)] p-8 flex items-center text-white font-semibold bg-black justify-between mix-blend-difference'
                 initial={{ y: '-100%' }}
                 animate={{ y: shouldShowNavbar ? '0%' : '-100%' }}
                 transition={{

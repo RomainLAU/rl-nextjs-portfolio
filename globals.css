@@ -55,10 +55,19 @@ body {
     }
 }
 
+.modal-open .nav-bar {
+    z-index: -1;
+}
+
+.nav-bar {
+    z-index: 10;
+}
+
 .link {
     position: relative;
     text-transform: uppercase;
     font-weight: 700;
+    pointer-events: fill;
 }
 
 .mobile-link {

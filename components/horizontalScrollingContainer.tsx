@@ -59,9 +59,8 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                     trigger: container ?? undefined,
                     start: '200vh top',
                     end: () => `+=${totalScroll + window.innerHeight}`,
-                    scrub: 1.5,
+                    scrub: 2,
                     pin: true,
-                    anticipatePin: 1,
                     invalidateOnRefresh: true,
                 },
             })
@@ -95,8 +94,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
 
     return (
         <div ref={containerRef} className='min-h-[100vh]'>
-            <AnimatePresence>{selectedItem && <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />}</AnimatePresence>
-            <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold z-10'>
+            <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold'>
                 {title}
             </h1>
 
@@ -115,6 +113,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
             </div>
+            <AnimatePresence>{selectedItem && <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />}</AnimatePresence>
         </div>
     )
 }
