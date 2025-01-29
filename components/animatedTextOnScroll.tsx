@@ -17,7 +17,7 @@ interface ScrollAnimatedTextProps {
 }
 
 const ANIMATION_DELAY = 100
-const INITIAL_OPACITY = 0.1
+const INITIAL_OPACITY = 0.2
 const WORD_STAGGER = 0.03
 const ANIMATION_DURATION = 0.3
 
@@ -95,7 +95,7 @@ export default function AnimatedTextOnScroll({ text, customScroller, containerRe
     }, [customScroller, isMobile, containerRef])
 
     return (
-        <div ref={textContainerRef} className='text-white text-xl leading-10 tracking-widest'>
+        <div ref={textContainerRef} className='text-white text-xl font-light leading-10 tracking-widest'>
             {text.split(' ').map((word, index) => (
                 <span key={index} className='word inline-block mr-2'>
                     {word}

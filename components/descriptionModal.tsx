@@ -97,6 +97,11 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
                     className='text-4xl mix-blend-difference absolute top-10 right-10 cursor-pointer hover:text-red-200 transition-colors'
                 />
 
+                <div className='flex w-full justify-center flex-col items-center gap-y-4'>
+                    <m.h2 className='text-6xl font-bold text-center'>{element.company}</m.h2>
+                    <m.h3 className='text-xl font-extralight text-center'>{element.title}</m.h3>
+                </div>
+
                 <div className='flex items-start justify-between'>
                     {element.feature_media && <MediaContent media={element.feature_media} />}
                     {element.feature_description && <m.div className='text-lg leading-10 tracking-widest px-8'>{element.feature_description}</m.div>}
