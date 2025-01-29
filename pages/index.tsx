@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import endpoints from '@/apiConfig';
 import LinkButton from '@/components/linkButton';
 import PresentationText from '@/components/presentationText';
+import SplashCursor from '@/components/react-bits/SplashCursor';
 import useIsMobile from '@/hooks/useIsMobile';
 import { Me } from '@/types/me';
 
@@ -132,6 +133,7 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
     return (
         <m.div className='w-full min-w-screen relative'>
             <m.div className='h-screen w-full flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
+                <SplashCursor />
                 <m.h1
                     initial='hidden'
                     animate='visible'
@@ -165,7 +167,8 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                     index={index}
                 />
             ))}
-            <div id='contact' className='h-screen flex items-center justify-center flex-col gap-y-10' style={{ scrollSnapAlign: 'center' }}>
+            <div id='contact' className='h-screen flex items-center justify-center flex-col gap-y-10 relative' style={{ scrollSnapAlign: 'center' }}>
+                <SplashCursor />
                 <p className='text-9xl font-extrabold text-center'>
                     {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
                     <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>

@@ -12,6 +12,7 @@ import useIsMobile from '@/hooks/useIsMobile';
 
 import useScrollDirection from '../hooks/useScrollDirection';
 import LanguageSwitcher from './languageSwitcher';
+import Magnet from './react-bits/Magnet';
 
 export default function NavBar() {
     const pathname = usePathname()
@@ -77,22 +78,28 @@ export default function NavBar() {
                         {/* <Link className={`link ${pathname === '/projects' ? 'active' : ''}`} href='/projects'>
                             {language === 'fr' ? 'Projets' : 'Projects'}
                         </Link> */}
-                        <Link className={`link ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
-                            {language === 'fr' ? 'Expérience' : 'Experience'}
-                        </Link>
-                        <Link className={`link ${pathname === '/formations' ? 'active' : ''}`} href='/formations'>
-                            {language === 'fr' ? 'Formations' : 'Formations'}
-                        </Link>
-                        <Link
-                            className={`link`}
-                            href='#contact'
-                            scroll={pathname === '/'}
-                            onClick={(e) => {
-                                e.preventDefault()
-                                window.scrollTo(0, document.body.scrollHeight)
-                            }}>
-                            {language === 'fr' ? 'Contact' : 'Contact'}
-                        </Link>
+                        <Magnet wrapperClassName='w-full' padding={20} disabled={false} magnetStrength={2}>
+                            <Link className={`link ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
+                                {language === 'fr' ? 'Expérience' : 'Experience'}
+                            </Link>
+                        </Magnet>
+                        <Magnet wrapperClassName='w-full' padding={20} disabled={false} magnetStrength={2}>
+                            <Link className={`link ${pathname === '/formations' ? 'active' : ''}`} href='/formations'>
+                                {language === 'fr' ? 'Formations' : 'Formations'}
+                            </Link>
+                        </Magnet>
+                        <Magnet wrapperClassName='w-full' padding={20} disabled={false} magnetStrength={2}>
+                            <Link
+                                className={`link`}
+                                href='#contact'
+                                scroll={pathname === '/'}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    window.scrollTo(0, document.body.scrollHeight)
+                                }}>
+                                {language === 'fr' ? 'Contact' : 'Contact'}
+                            </Link>
+                        </Magnet>
                         <LanguageSwitcher />
                     </div>
                 )}

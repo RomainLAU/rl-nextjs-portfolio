@@ -11,6 +11,7 @@ import { useGSAP } from '@gsap/react';
 
 import DescriptionModal from './descriptionModal';
 import LinkButton from './linkButton';
+import SplashCursor from './react-bits/SplashCursor';
 
 interface HorizontalScrollComponentProps<T> {
     list: any[]
@@ -76,8 +77,15 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
             })
         }
 
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh()
+        })
+
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.refresh())
+            window.removeEventListener('resize', () => {
+                ScrollTrigger.refresh()
+            })
         }
     }, [list, isMobile, containerRef])
 
@@ -108,7 +116,8 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 </div>
             </div>
 
-            <div ref={contactRef} className='h-screen flex items-center justify-center'>
+            <div ref={contactRef} className='h-screen flex items-center justify-center relative'>
+                <SplashCursor />
                 <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12'>
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>

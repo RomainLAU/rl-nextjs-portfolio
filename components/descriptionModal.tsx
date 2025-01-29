@@ -10,6 +10,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 
 import AnimatedTextOnScroll from './animatedTextOnScroll';
 import LinkButton from './linkButton';
+import Waves from './react-bits/Waves';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -28,6 +29,19 @@ interface MediaProps {
         url: string
         alternativeText?: string
     }
+}
+
+interface DescriptionModalProps {
+    element: {
+        id: string
+        company: string
+        title: string
+        feature_media?: MediaProps['media']
+        feature_description?: string
+        description?: string
+        project_url?: string
+    }
+    setSelectedElement: React.Dispatch<React.SetStateAction<any>>
 }
 
 const MediaContent = ({ media }: MediaProps) => {
@@ -50,7 +64,7 @@ const MediaContent = ({ media }: MediaProps) => {
     )
 }
 
-export default function DescriptionModal({ element, setSelectedElement }: { element: any; setSelectedElement: React.Dispatch<any> }) {
+export default function DescriptionModal({ element, setSelectedElement }: DescriptionModalProps) {
     const { locale } = useRouter()
     const modalRef = useRef<HTMLDivElement>(null)
     const [isModalMounted, setIsModalMounted] = useState(false)
@@ -88,40 +102,58 @@ export default function DescriptionModal({ element, setSelectedElement }: { elem
             {...modalAnimationProps}
             className='sticky inset-0 w-screen h-screen bg-black/75 z-[1000] flex justify-center items-center'
             onClick={handleClose}>
-            <div
-                ref={modalRef}
-                onClick={(e) => e.stopPropagation()}
-                className='experience-modal w-full h-[-webkit-fill-available] overflow-y-scroll bg-black border border-solid border-white rounded-md p-24 pb-96 flex flex-col gap-y-48'>
-                <VscChromeClose
-                    onClick={handleClose}
-                    className='text-4xl mix-blend-difference absolute top-10 right-10 cursor-pointer hover:text-red-200 transition-colors'
-                />
+            {isModalMounted && (
+                <Waves
+                    lineColor='#fecaca'
+                    backgroundColor='rgb(0, 0, 0)'
+                    waveSpeedX={0.05}
+                    waveSpeedY={0.05}
+                    waveAmpX={40}
+                    waveAmpY={20}
+                    friction={0.9}
+                    tension={0.005}
+                    maxCursorMove={1000}
+                    xGap={12}
+                    yGap={36}
+                    className='w-full h-[-webkit-fill-available] border border-solid border-white rounded-md'>
+                    <div
+                        ref={modalRef}
+                        onClick={(e) => e.stopPropagation()}
+                        className='experience-modal w-[95%] h-[95%] bg-black overflow-y-scroll absolute left-[2.5%] top-[2.5%] p-12 pb-96 flex flex-col gap-y-48'>
+                        <VscChromeClose
+                            onClick={handleClose}
+                            className='text-4xl mix-blend-difference absolute top-10 right-10 cursor-pointer hover:text-red-200 transition-colors z-10'
+                        />
 
-                <div className='flex w-full justify-center flex-col items-center gap-y-4'>
-                    <m.h2 className='text-6xl font-bold text-center'>{element.company}</m.h2>
-                    <m.h3 className='text-xl font-extralight text-center'>{element.title}</m.h3>
-                </div>
+                        <div className='flex w-full justify-center flex-col items-center gap-y-4 relative'>
+                            <m.h2 className='text-6xl font-bold text-center'>{element.company}</m.h2>
+                            <m.h3 className='text-xl font-extralight text-center'>{element.title}</m.h3>
+                        </div>
 
-                <div className='flex items-start justify-between'>
-                    {element.feature_media && <MediaContent media={element.feature_media} />}
-                    {element.feature_description && <m.div className='text-lg leading-10 tracking-widest px-8'>{element.feature_description}</m.div>}
-                </div>
+                        <div className='flex items-start justify-between relative z-10'>
+                            {element.feature_media && <MediaContent media={element.feature_media} />}
+                            {element.feature_description && <m.div className='text-lg leading-10 tracking-widest px-8'>{element.feature_description}</m.div>}
+                        </div>
 
-                {element.description && isModalMounted && (
-                    <AnimatedTextOnScroll
-                        key={`animated-text-${element.id}-${isModalMounted}`}
-                        text={element.description}
-                        customScroller='.experience-modal'
-                        containerRef={modalRef}
-                    />
-                )}
+                        {element.description && isModalMounted && (
+                            <div className='relative z-10'>
+                                <AnimatedTextOnScroll
+                                    key={`animated-text-${element.id}-${isModalMounted}`}
+                                    text={element.description}
+                                    customScroller='.experience-modal'
+                                    containerRef={modalRef}
+                                />
+                            </div>
+                        )}
 
-                {element.project_url && (
-                    <m.div className='w-1/4 self-center'>
-                        <LinkButton link={element.project_url} text={locale === 'fr' ? 'Voir le site' : 'See the website'} />
-                    </m.div>
-                )}
-            </div>
+                        {element.project_url && (
+                            <m.div className='w-1/4 self-center relative z-10'>
+                                <LinkButton link={element.project_url} text={locale === 'fr' ? 'Voir le site' : 'See the website'} />
+                            </m.div>
+                        )}
+                    </div>
+                </Waves>
+            )}
         </m.div>
     )
 }
