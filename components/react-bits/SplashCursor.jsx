@@ -1091,6 +1091,7 @@ function SplashCursor({
                 pointerEvents: 'none',
                 width: '100vw',
                 height: '100vh',
+                zIndex: 5,
                 ...style,
             }}>
             <canvas
