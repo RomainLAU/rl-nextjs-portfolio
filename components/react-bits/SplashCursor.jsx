@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function SplashCursor({
     // You can customize these props if you want
@@ -20,10 +20,21 @@ function SplashCursor({
     style = {},
 }) {
     const canvasRef = useRef(null)
+    const [isHovering, setIsHovering] = useState(false)
 
     useEffect(() => {
         const canvas = canvasRef.current
         if (!canvas) return
+
+        let animationFrameId
+
+        const handleMouseEnter = () => {
+            setIsHovering(true)
+        }
+
+        const handleMouseLeave = () => {
+            setIsHovering(false)
+        }
 
         function pointerPrototype() {
             this.id = -1
@@ -661,13 +672,15 @@ function SplashCursor({
         let colorUpdateTimer = 0.0
 
         function updateFrame() {
+            if (!isHovering) return
+
             const dt = calcDeltaTime()
             if (resizeCanvas()) initFramebuffers()
             updateColors(dt)
             applyInputs()
             step(dt)
             render(null)
-            requestAnimationFrame(updateFrame)
+            animationFrameId = requestAnimationFrame(updateFrame)
         }
 
         function calcDeltaTime() {
@@ -952,33 +965,61 @@ function SplashCursor({
             return hash
         }
 
-        window.addEventListener('mousedown', (e) => {
+        const onMouseDown = (e) => {
             let pointer = pointers[0]
             let posX = scaleByPixelRatio(e.clientX)
             let posY = scaleByPixelRatio(e.clientY)
             updatePointerDownData(pointer, -1, posX, posY)
             clickSplat(pointer)
-        })
+        }
 
-        document.body.addEventListener('mousemove', function handleFirstMouseMove(e) {
+        const onMouseMoveInWindow = (e) => {
+            let pointer = pointers[0]
+            let posX = scaleByPixelRatio(e.clientX)
+            let posY = scaleByPixelRatio(e.clientY)
+            let color = pointer.color
+            updatePointerMoveData(pointer, posX, posY, color)
+        }
+
+        const onTouchStart = (e) => {
+            const touches = e.targetTouches
+            let pointer = pointers[0]
+            for (let i = 0; i < touches.length; i++) {
+                let posX = scaleByPixelRatio(touches[i].clientX)
+                let posY = scaleByPixelRatio(touches[i].clientY)
+                updatePointerDownData(pointer, touches[i].identifier, posX, posY)
+            }
+        }
+
+        const onTouchMove = (e) => {
+            const touches = e.targetTouches
+            let pointer = pointers[0]
+            for (let i = 0; i < touches.length; i++) {
+                let posX = scaleByPixelRatio(touches[i].clientX)
+                let posY = scaleByPixelRatio(touches[i].clientY)
+                updatePointerMoveData(pointer, posX, posY, pointer.color)
+            }
+        }
+
+        const onTouchEnd = (e) => {
+            const touches = e.changedTouches
+            let pointer = pointers[0]
+            for (let i = 0; i < touches.length; i++) {
+                updatePointerUpData(pointer)
+            }
+        }
+
+        const onFirstMouseMove = (e) => {
             let pointer = pointers[0]
             let posX = scaleByPixelRatio(e.clientX)
             let posY = scaleByPixelRatio(e.clientY)
             let color = generateColor()
             updateFrame() // start animation loop
             updatePointerMoveData(pointer, posX, posY, color)
-            document.body.removeEventListener('mousemove', handleFirstMouseMove)
-        })
+            document.body.removeEventListener('mousemove', onFirstMouseMove)
+        }
 
-        window.addEventListener('mousemove', (e) => {
-            let pointer = pointers[0]
-            let posX = scaleByPixelRatio(e.clientX)
-            let posY = scaleByPixelRatio(e.clientY)
-            let color = pointer.color
-            updatePointerMoveData(pointer, posX, posY, color)
-        })
-
-        document.body.addEventListener('touchstart', function handleFirstTouchStart(e) {
+        const onFirstTouchStart = (e) => {
             const touches = e.targetTouches
             let pointer = pointers[0]
             for (let i = 0; i < touches.length; i++) {
@@ -987,42 +1028,41 @@ function SplashCursor({
                 updateFrame() // start animation loop
                 updatePointerDownData(pointer, touches[i].identifier, posX, posY)
             }
-            document.body.removeEventListener('touchstart', handleFirstTouchStart)
-        })
+            document.body.removeEventListener('touchstart', onFirstTouchStart)
+        }
 
-        window.addEventListener('touchstart', (e) => {
-            const touches = e.targetTouches
-            let pointer = pointers[0]
-            for (let i = 0; i < touches.length; i++) {
-                let posX = scaleByPixelRatio(touches[i].clientX)
-                let posY = scaleByPixelRatio(touches[i].clientY)
-                updatePointerDownData(pointer, touches[i].identifier, posX, posY)
-            }
-        })
+        canvas.addEventListener('mouseenter', handleMouseEnter)
+        canvas.addEventListener('mouseleave', handleMouseLeave)
 
-        window.addEventListener(
-            'touchmove',
-            (e) => {
-                const touches = e.targetTouches
-                let pointer = pointers[0]
-                for (let i = 0; i < touches.length; i++) {
-                    let posX = scaleByPixelRatio(touches[i].clientX)
-                    let posY = scaleByPixelRatio(touches[i].clientY)
-                    updatePointerMoveData(pointer, posX, posY, pointer.color)
-                }
-            },
-            false
-        )
+        document.body.addEventListener('mousemove', onFirstMouseMove)
 
-        window.addEventListener('touchend', (e) => {
-            const touches = e.changedTouches
-            let pointer = pointers[0]
-            for (let i = 0; i < touches.length; i++) {
-                updatePointerUpData(pointer)
-            }
-        })
+        window.addEventListener('mousedown', onMouseDown)
+        window.addEventListener('mousemove', onMouseMoveInWindow)
+
+        document.body.addEventListener('touchstart', onFirstTouchStart)
+
+        window.addEventListener('touchstart', onTouchStart)
+        window.addEventListener('touchmove', onTouchMove, false)
+        window.addEventListener('touchend', onTouchEnd)
 
         updateFrame()
+
+        return () => {
+            cancelAnimationFrame(animationFrameId)
+            canvas.removeEventListener('mouseenter', handleMouseEnter)
+            canvas.removeEventListener('mouseleave', handleMouseLeave)
+
+            document.body.removeEventListener('mousemove', onFirstMouseMove)
+
+            window.removeEventListener('mousedown', onMouseDown)
+            window.removeEventListener('mousemove', onMouseMoveInWindow)
+
+            document.body.removeEventListener('touchstart', onFirstTouchStart)
+
+            window.removeEventListener('touchstart', onTouchStart)
+            window.removeEventListener('touchmove', onTouchMove, false)
+            window.removeEventListener('touchend', onTouchEnd)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         SIM_RESOLUTION,
@@ -1060,6 +1100,7 @@ function SplashCursor({
                     width: '100vw',
                     height: '100vh',
                     display: 'block',
+                    pointerEvents: 'auto',
                 }}
             />
         </div>
