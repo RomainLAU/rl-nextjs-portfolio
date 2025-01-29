@@ -55,6 +55,11 @@ body {
     }
 }
 
+.word {
+    transition: opacity 0.3s ease-in;
+    opacity: 0.1;
+}
+
 .modal-open .nav-bar {
     z-index: -1;
 }
