@@ -59,7 +59,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 scrollTrigger: {
                     trigger: container ?? undefined,
                     start: '200vh top',
-                    end: () => `+=${totalScroll + window.innerHeight}`,
+                    end: () => `+=${totalScroll}`,
                     scrub: 2,
                     pin: true,
                     invalidateOnRefresh: true,
@@ -71,7 +71,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
                 scrollTrigger: {
                     trigger: container ?? undefined,
                     start: 'end end',
-                    end: '200vh end',
+                    end: '100vh end',
                     scrub: true,
                 },
             })
@@ -101,26 +101,28 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
     if (isMobile !== false) return null
 
     return (
-        <div ref={containerRef} className='min-h-[100vh]'>
-            <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold'>
-                {title}
-            </h1>
+        <div className='relative'>
+            <div ref={containerRef} className='min-h-[100vh]'>
+                <h1 ref={titleRef} className='fixed top-[15vh] left-[3%] text-4xl font-bold'>
+                    {title}
+                </h1>
 
-            <div className='min-h-[110vh] flex items-end'>
-                <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
-                    {list.map((item, index) => (
-                        <div key={index} className='shrink-0'>
-                            <CardComponent key={`${title}-${item.id}`} element={item} index={index} setSelectedItem={setSelectedItem} />
-                        </div>
-                    ))}
+                <div className='min-h-[110vh] flex items-end'>
+                    <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
+                        {list.map((item, index) => (
+                            <div key={index} className='shrink-0'>
+                                <CardComponent key={`${title}-${item.id}`} element={item} index={index} setSelectedItem={setSelectedItem} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            <div ref={contactRef} className='h-screen flex items-center justify-center relative'>
-                <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12 z-[6]'>
-                    <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
+                <div ref={contactRef} className='h-screen flex items-center justify-center relative'>
+                    <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12 z-[6]'>
+                        <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
+                    </div>
+                    <SplashCursor />
                 </div>
-                <SplashCursor />
             </div>
             <AnimatePresence>{selectedItem && <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />}</AnimatePresence>
         </div>

@@ -100,7 +100,7 @@ export default function DescriptionModal({ element, setSelectedElement }: Descri
         <m.div
             key={`modal-${element.id}`}
             {...modalAnimationProps}
-            className='sticky inset-0 w-screen h-screen bg-black/75 z-1000 flex justify-center items-center'
+            className='sticky inset-0 w-screen h-screen bg-black z-1000 flex justify-center items-center'
             onClick={handleClose}>
             {isModalMounted && (
                 <Waves
@@ -115,11 +115,11 @@ export default function DescriptionModal({ element, setSelectedElement }: Descri
                     maxCursorMove={1000}
                     xGap={12}
                     yGap={36}
-                    className='w-full h-[-webkit-fill-available] border border-solid border-white rounded-md'>
+                    className='w-full h-[-webkit-fill-available]! border border-solid border-white rounded-md'>
                     <div
                         ref={modalRef}
                         onClick={(e) => e.stopPropagation()}
-                        className='experience-modal w-[95%] h-[95%] bg-black overflow-y-scroll absolute left-[2.5%] top-[2.5%] p-12 pb-96 flex flex-col gap-y-48'>
+                        className='experience-modal w-[90%] h-[55%] bg-black overflow-y-scroll absolute inset-[2.5%] p-12 pb-96 flex flex-col gap-y-48'>
                         <VscChromeClose
                             onClick={handleClose}
                             className='text-4xl mix-blend-difference absolute top-10 right-10 cursor-pointer hover:text-red-200 transition-colors z-10'
