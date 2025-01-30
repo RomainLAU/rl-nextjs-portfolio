@@ -965,38 +965,52 @@ function SplashCursor({
             return hash
         }
 
+        const getRelativePosition = (e, canvas) => {
+            const rect = canvas.getBoundingClientRect()
+            const posX = scaleByPixelRatio(e.clientX - rect.left)
+            const posY = scaleByPixelRatio(e.clientY - rect.top)
+            return { posX, posY }
+        }
+
         const onMouseDown = (e) => {
+            const canvas = canvasRef.current
+            if (!canvas) return
+
             let pointer = pointers[0]
-            let posX = scaleByPixelRatio(e.clientX)
-            let posY = scaleByPixelRatio(e.clientY)
+            const { posX, posY } = getRelativePosition(e, canvas)
             updatePointerDownData(pointer, -1, posX, posY)
             clickSplat(pointer)
         }
 
         const onMouseMoveInWindow = (e) => {
+            const canvas = canvasRef.current
+            if (!canvas) return
+
             let pointer = pointers[0]
-            let posX = scaleByPixelRatio(e.clientX)
-            let posY = scaleByPixelRatio(e.clientY)
-            let color = pointer.color
-            updatePointerMoveData(pointer, posX, posY, color)
+            const { posX, posY } = getRelativePosition(e, canvas)
+            updatePointerMoveData(pointer, posX, posY, pointer.color)
         }
 
         const onTouchStart = (e) => {
+            const canvas = canvasRef.current
+            if (!canvas) return
+
             const touches = e.targetTouches
             let pointer = pointers[0]
             for (let i = 0; i < touches.length; i++) {
-                let posX = scaleByPixelRatio(touches[i].clientX)
-                let posY = scaleByPixelRatio(touches[i].clientY)
+                const { posX, posY } = getRelativePosition(touches[i], canvas)
                 updatePointerDownData(pointer, touches[i].identifier, posX, posY)
             }
         }
 
         const onTouchMove = (e) => {
+            const canvas = canvasRef.current
+            if (!canvas) return
+
             const touches = e.targetTouches
             let pointer = pointers[0]
             for (let i = 0; i < touches.length; i++) {
-                let posX = scaleByPixelRatio(touches[i].clientX)
-                let posY = scaleByPixelRatio(touches[i].clientY)
+                const { posX, posY } = getRelativePosition(touches[i], canvas)
                 updatePointerMoveData(pointer, posX, posY, pointer.color)
             }
         }
