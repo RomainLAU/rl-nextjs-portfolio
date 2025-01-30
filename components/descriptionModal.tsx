@@ -100,7 +100,7 @@ export default function DescriptionModal({ element, setSelectedElement }: Descri
         <m.div
             key={`modal-${element.id}`}
             {...modalAnimationProps}
-            className='sticky inset-0 w-screen h-screen bg-black/75 z-[1000] flex justify-center items-center'
+            className='sticky inset-0 w-screen h-screen bg-black/75 z-1000 flex justify-center items-center'
             onClick={handleClose}>
             {isModalMounted && (
                 <Waves

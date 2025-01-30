@@ -109,7 +109,7 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
             <div className='min-h-[110vh] flex items-end'>
                 <div ref={horizontalRef} className='flex gap-x-96 px-10 pr-[30vw]'>
                     {list.map((item, index) => (
-                        <div key={index} className='flex-shrink-0'>
+                        <div key={index} className='shrink-0'>
                             <CardComponent key={`${title}-${item.id}`} element={item} index={index} setSelectedItem={setSelectedItem} />
                         </div>
                     ))}
@@ -117,10 +117,10 @@ export default function HorizontalScrollComponent<T>({ list, title, CardComponen
             </div>
 
             <div ref={contactRef} className='h-screen flex items-center justify-center relative'>
-                <SplashCursor />
-                <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12'>
+                <div ref={buttonRef} className='w-1/4 max-w-[300px] opacity-0 transform translate-y-12 z-[6]'>
                     <LinkButton text={locale === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
+                <SplashCursor />
             </div>
             <AnimatePresence>{selectedItem && <DescriptionModal element={selectedItem} setSelectedElement={setSelectedItem} />}</AnimatePresence>
         </div>

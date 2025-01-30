@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
                 aria-label='language-switcher'
                 onChange={(e) => router.push({ pathname, query }, asPath, { locale: e.target.value })}
                 defaultValue={locale}
-                className='bg-transparent outline-none !bg-black link'>
+                className='bg-transparent outline-hidden bg-black! link'>
                 {locales?.map((element) => (
                     <option aria-label={`switch-to-${element}`} key={element} value={element}>
                         {element}

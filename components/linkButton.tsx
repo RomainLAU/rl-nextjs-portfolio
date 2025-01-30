@@ -18,7 +18,7 @@ export default function LinkButton({ text, link, blank = true }: { text: string;
         <Magnet wrapperClassName='w-full' padding={100} disabled={false} magnetStrength={2}>
             <m.div
                 id='contact'
-                className='w-full h-14 bg-black text-white border border-solid border-white rounded-full overflow-hidden relative z-[1]'
+                className='w-full h-14 bg-black text-white border border-solid border-white rounded-full overflow-hidden relative z-1'
                 onHoverStart={() => setIsHovering(true)}
                 onHoverEnd={() => setIsHovering(false)}
                 onMouseMove={handleMouseMove}
@@ -26,7 +26,7 @@ export default function LinkButton({ text, link, blank = true }: { text: string;
                 <m.a
                     target={blank ? '_blank' : '_self'}
                     href={link}
-                    className='flex items-center justify-center z-[1] pointer-events-visible font-extrabold h-full w-full text-center'
+                    className='flex items-center justify-center z-1 pointer-events-visible font-extrabold h-full w-full text-center'
                     animate={{
                         color: isHovering ? '#000000' : '#ffffff',
                     }}

@@ -168,7 +168,6 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                 />
             ))}
             <div id='contact' className='h-screen flex items-center justify-center flex-col gap-y-10 relative' style={{ scrollSnapAlign: 'center' }}>
-                <SplashCursor />
                 <p className='text-9xl font-extrabold text-center'>
                     {language === 'fr' ? 'Et je suis' : 'And I am'}{' '}
                     <strong className={`${me.status === 'available' ? 'text-green-600' : 'text-red-800'}`}>
@@ -185,9 +184,10 @@ function DesktopView({ me, description }: { me: Me; description: string[] }) {
                     </p>
                 )}
                 <p className='text-xl font-medium text-center'>{language === 'fr' ? 'Alooooors' : 'Soooo'}...</p>
-                <div className='w-1/4'>
+                <div className='w-1/4 z-[6]'>
                     <LinkButton text={language === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
+                <SplashCursor />
             </div>
         </m.div>
     )
