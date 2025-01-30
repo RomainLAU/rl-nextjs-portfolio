@@ -88,7 +88,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                 </m.h2>
             </div>
             {description.map((paragraph: string, index: number) => (
-                <div key={index} className='border border-blue-500 relative w-full max-w-screen'>
+                <div key={index} className='relative w-full max-w-screen'>
                     <PresentationText
                         text={paragraph}
                         image={
