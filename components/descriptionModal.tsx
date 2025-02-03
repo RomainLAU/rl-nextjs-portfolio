@@ -58,7 +58,7 @@ const MediaContent = ({ media }: MediaProps) => {
                 alt={media.alternativeText || ''}
                 width={400}
                 height={200}
-                className='aspect-video w-[40%] md:w-[40vw] h-[40vh] md:h-[25vh] md:max-h-[50dvh]'
+                className='aspect-video object-contain w-[40%] md:w-[40vw] h-[40vh] md:h-[25vh] md:max-h-[50dvh]'
             />
         </m.div>
     )
@@ -132,7 +132,11 @@ export default function DescriptionModal({ element, setSelectedElement }: Descri
 
                         <div className='flex items-start justify-between relative z-10'>
                             {element.feature_media && <MediaContent media={element.feature_media} />}
-                            {element.feature_description && <m.div className='text-lg leading-10 tracking-widest px-8'>{element.feature_description}</m.div>}
+                            {element.feature_description && (
+                                <m.div className={`text-lg leading-10 tracking-widest ${element.feature_media ? 'px-8' : ''}`}>
+                                    {element.feature_description}
+                                </m.div>
+                            )}
                         </div>
 
                         {element.description && isModalMounted && (
