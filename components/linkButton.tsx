@@ -15,7 +15,7 @@ export default function LinkButton({ text, link, blank = true }: { text: string;
     }
 
     return (
-        <Magnet wrapperClassName='w-full' padding={100} disabled={false} magnetStrength={2}>
+        <Magnet wrapperClassName='w-full' padding={50} disabled={false} magnetStrength={1.4}>
             <m.div
                 id='contact'
                 className='w-full h-14 bg-black text-white border border-solid border-white rounded-full overflow-hidden relative z-1'
