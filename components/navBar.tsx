@@ -79,7 +79,7 @@ export default function NavBar() {
                             {language === 'fr' ? 'Projets' : 'Projects'}
                         </Link> */}
                         <Magnet wrapperClassName='w-full' padding={20} disabled={false} magnetStrength={2}>
-                            <Link className={`link ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
+                            <Link className={`link block ${pathname === '/experience' ? 'active' : ''}`} href='/experience'>
                                 {language === 'fr' ? 'Expérience' : 'Experience'}
                             </Link>
                         </Magnet>

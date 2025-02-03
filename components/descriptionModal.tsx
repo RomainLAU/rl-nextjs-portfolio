@@ -122,7 +122,7 @@ export default function DescriptionModal({ element, setSelectedElement }: Descri
                         className='experience-modal w-[90%] h-[55%] bg-black overflow-y-scroll absolute inset-[2.5%] p-12 pb-96 flex flex-col gap-y-48'>
                         <VscChromeClose
                             onClick={handleClose}
-                            className='text-4xl mix-blend-difference absolute top-10 right-10 cursor-pointer hover:text-red-200 transition-colors z-10'
+                            className='text-4xl mix-blend-difference fixed top-20 right-20 cursor-pointer hover:text-red-200 hover:rotate-90 transition-all duration-300 z-100'
                         />
 
                         <div className='flex w-full justify-center flex-col items-center gap-y-4 relative'>
