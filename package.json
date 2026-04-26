@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "typecheck": "tsc -b",
+        "typecheck": "tsc -b tsconfig.check.json",
         "build": "npm run typecheck && next build",
         "start": "next start",
         "lint": "next lint"

@@ -183,7 +183,7 @@ function DesktopView({ me, description }: { me: Me; description: (string | React
                     </p>
                 )}
                 <p className='text-xl font-medium text-center'>{language === 'fr' ? 'Alooooors' : 'Soooo'}...</p>
-                <div className='w-1/4 z-[6]'>
+                <div className='w-1/4 z-6'>
                     <LinkButton text={language === 'fr' ? 'contactez-moi' : 'contact me'} link='mailto:dev@romain-laurent.fr' />
                 </div>
                 <SplashCursor />
