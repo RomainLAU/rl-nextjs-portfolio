@@ -3,8 +3,9 @@
 import { m, useInView, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
-import { ReactNode, useLayoutEffect, useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 
 import useIsMobile from '@/hooks/useIsMobile'
 
@@ -24,7 +25,7 @@ export default function PresentationText({
 
     const isInView = useInView(containerRef, { once: true, amount: 0.1 })
 
-    useLayoutEffect(() => {
+    useGSAP(() => {
         if (!containerRef.current || !textRef.current || !imageRef.current || isMobile !== false) return
 
         gsap.set(textRef.current, { yPercent: index === 0 ? 500 : 300 })
@@ -51,13 +52,7 @@ export default function PresentationText({
         })
 
         exitTimeline.to(textRef.current, { yPercent: -300, duration: 3 }, 0).to(imageRef.current, { yPercent: -100, duration: 3 }, 0)
-
-        return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-            timeline.kill()
-            exitTimeline.kill()
-        }
-    }, [index, isMobile])
+    }, { dependencies: [index, isMobile], scope: containerRef })
 
     if (!!isMobile) {
         return (

@@ -11,10 +11,10 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { useRef } from 'react';
-
 import CustomCursor from '@/components/customCursor';
 import NavBar from '@/components/navBar';
 import PageTransition from '@/components/pageTransition';
+import LoadingScreen from '@/components/loadingScreen';
 import { useGSAP } from '@gsap/react';
 
 import type { AppProps } from 'next/app'
@@ -72,6 +72,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                     </m.div>
                 </AnimatePresence>
                 <PageTransition />
+                <LoadingScreen />
             </LazyMotion>
             <SpeedInsights />
             <Analytics />
