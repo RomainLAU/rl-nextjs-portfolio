@@ -5,8 +5,10 @@ import { ReactNode, useEffect, useState } from 'react';
 
 import LinkButton from '@/components/linkButton';
 import PresentationText from '@/components/presentationText';
-import SplashCursor from '@/components/react-bits/SplashCursor';
+import dynamic from 'next/dynamic';
 import useIsMobile from '@/hooks/useIsMobile';
+
+const SplashCursor = dynamic(() => import('@/components/react-bits/SplashCursor'), { ssr: false });
 import { Me } from '@/types/me';
 
 const apparitionVariants = {
