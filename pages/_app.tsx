@@ -11,9 +11,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { useRef } from 'react';
-import dynamic from 'next/dynamic';
-
-const CustomCursor = dynamic(() => import('@/components/customCursor'), { ssr: false });
+import CustomCursor from '@/components/customCursor';
 import NavBar from '@/components/navBar';
 import PageTransition from '@/components/pageTransition';
 import LoadingScreen from '@/components/loadingScreen';
