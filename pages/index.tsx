@@ -1,9 +1,8 @@
 import { m } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
-import endpoints from '@/apiConfig';
 import LinkButton from '@/components/linkButton';
 import PresentationText from '@/components/presentationText';
 import SplashCursor from '@/components/react-bits/SplashCursor';
@@ -20,31 +19,31 @@ const apparitionTransition = {
     delay: 1.1,
 }
 
+import { me as meEn } from '@/data/en/me';
+import { me as meFr } from '@/data/fr/me';
+
 export async function getStaticProps({ locale }: { locale: string }) {
-    const me: Me[] = await fetch(endpoints.me({ locale })).then((res) => res.json().then((data) => data.data))
-
-    if (!me) {
-        return {
-            notFound: true,
-        }
-    }
-
     return {
         props: {
-            me: me[0],
+            locale,
         },
     }
 }
 
-export default function Home({ me }: { me: Me }) {
-    const [description, setDescription] = useState<string[]>([])
+export default function Home({ locale }: { locale: string }) {
+    const me = locale === 'en' ? meEn : meFr;
+    const [description, setDescription] = useState<(string | ReactNode)[]>([])
     const isMobile = useIsMobile()
 
     useEffect(() => {
         if (me) {
-            setDescription(me.description.split('\n'))
+            if (typeof me.description === 'string') {
+                setDescription(me.description.split('\n'))
+            } else {
+                setDescription(me.description)
+            }
         }
-    }, [me])
+    }, [me, locale])
 
     return (
         <>
@@ -60,7 +59,7 @@ export default function Home({ me }: { me: Me }) {
     )
 }
 
-function MobileView({ me, description }: { me: Me; description: string[] }) {
+function MobileView({ me, description }: { me: Me; description: (string | ReactNode)[] }) {
     const router = useRouter()
     const language = router.locale
 
@@ -87,7 +86,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
                     {me.job}
                 </m.h2>
             </div>
-            {description.map((paragraph: string, index: number) => (
+            {description.map((paragraph, index) => (
                 <div key={index} className='relative w-full max-w-screen'>
                     <PresentationText
                         text={paragraph}
@@ -126,7 +125,7 @@ function MobileView({ me, description }: { me: Me; description: string[] }) {
     )
 }
 
-function DesktopView({ me, description }: { me: Me; description: string[] }) {
+function DesktopView({ me, description }: { me: Me; description: (string | ReactNode)[] }) {
     const router = useRouter()
     const language = router.locale
 

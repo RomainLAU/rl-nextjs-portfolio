@@ -1,0 +1,272 @@
+export const formations = [
+    {
+        "id": 34,
+        "school": "Epitech Digital",
+        "started_at": "2021-10-11",
+        "finished_at": "2023-09-14",
+        "title": "Bachelor manager de projet Web spécialisé en web development",
+        "description": "Durant ma formation, j'ai acquis des compétences en développement web avec divers langages tels que HTML, CSS, PHP, JavaScript, Python et Ruby. À travers de nombreux projets de groupe en collaboration avec les filières de Web Design et Web Marketing, j'ai pu simuler des situations professionnelles, enrichissant ainsi ma compréhension des synergies entre nos expertises. Par la suite, j'ai approfondi mes connaissances en frameworks et technologies modernes, notamment ReactJS, VueJS, TypeScript, NodeJS, MySQL, Django, Symfony et Laravel, me préparant ainsi à relever des défis variés dans le monde du développement web.",
+        "createdAt": "2024-09-01T15:25:43.716Z",
+        "updatedAt": "2024-11-04T15:32:19.627Z",
+        "publishedAt": "2024-10-27T13:14:17.342Z",
+        "locale": "fr",
+        "skills": [
+            {
+                "id": 14,
+                "title": "Django",
+                "createdAt": "2024-09-01T14:05:42.962Z",
+                "updatedAt": "2024-09-01T14:05:42.962Z"
+            },
+            {
+                "id": 12,
+                "title": "Figma",
+                "createdAt": "2024-09-01T14:05:33.268Z",
+                "updatedAt": "2024-09-01T14:05:33.268Z"
+            },
+            {
+                "id": 10,
+                "title": "Git",
+                "createdAt": "2024-09-01T14:05:24.686Z",
+                "updatedAt": "2024-09-01T14:05:24.686Z"
+            },
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 7,
+                "title": "JavaScript",
+                "createdAt": "2024-09-01T14:05:02.006Z",
+                "updatedAt": "2024-09-01T14:05:02.006Z"
+            },
+            {
+                "id": 11,
+                "title": "Linux",
+                "createdAt": "2024-09-01T14:05:29.059Z",
+                "updatedAt": "2024-09-01T14:05:29.059Z"
+            },
+            {
+                "id": 9,
+                "title": "MySQL",
+                "createdAt": "2024-09-01T14:05:15.207Z",
+                "updatedAt": "2024-09-01T14:05:15.207Z"
+            },
+            {
+                "id": 5,
+                "title": "PHP",
+                "createdAt": "2024-09-01T14:04:45.474Z",
+                "updatedAt": "2024-09-01T14:04:45.474Z"
+            },
+            {
+                "id": 8,
+                "title": "PostgreSQL",
+                "createdAt": "2024-09-01T14:05:10.657Z",
+                "updatedAt": "2024-09-01T14:05:10.657Z"
+            },
+            {
+                "id": 4,
+                "title": "Python",
+                "createdAt": "2024-09-01T14:04:14.753Z",
+                "updatedAt": "2024-09-01T14:04:14.753Z"
+            },
+            {
+                "id": 1,
+                "title": "ReactJS",
+                "createdAt": "2024-09-01T13:37:33.234Z",
+                "updatedAt": "2024-09-01T13:37:33.234Z"
+            },
+            {
+                "id": 13,
+                "title": "Symfony",
+                "createdAt": "2024-09-01T14:05:38.050Z",
+                "updatedAt": "2024-09-01T14:05:38.050Z"
+            },
+            {
+                "id": 3,
+                "title": "TypeScript",
+                "createdAt": "2024-09-01T14:04:02.345Z",
+                "updatedAt": "2024-09-01T14:04:02.345Z"
+            },
+            {
+                "id": 15,
+                "title": "VueJS",
+                "createdAt": "2024-09-01T14:05:47.147Z",
+                "updatedAt": "2024-09-01T14:05:47.147Z"
+            }
+        ],
+        "localizations": [
+            {
+                "id": 35,
+                "school": "Epitech Digital",
+                "started_at": "2021-10-11",
+                "finished_at": "2023-09-14",
+                "title": "Bachelor in web project management specializing in web development",
+                "description": "During this training, I learned to develop in various web languages such as HTML/CSS, PHP, JavaScript, Python, and Ruby. I regularly participated in group projects related to the two other fields of the school: Web Design and Web Marketing. These projects allowed us to simulate professional situations by combining our expertise. Later, I deepened my knowledge in ReactJS, VueJS, TypeScript, NodeJS, MySQL, Django, Symfony, and Laravel.",
+                "createdAt": "2024-10-27T13:13:48.619Z",
+                "updatedAt": "2024-11-04T15:32:19.595Z",
+                "publishedAt": "2024-10-27T13:13:50.027Z",
+                "locale": "en"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "school": "IIM Digital School",
+        "started_at": "2023-09-18",
+        "finished_at": "2024-09-06",
+        "title": "Bachelor Coding et Digital innovation",
+        "description": "J'ai décidé de changer d'école pour terminer mon bachelor dans cet établissement, attiré par la qualité de l'enseignement et les opportunités offertes. J'y ai eu l'occasion de développer mes compétences en tant que chef de projet à travers divers projets de groupe, tout en approfondissant mes connaissances techniques en ReactJS, VueJS, Symfony et Laravel. Cette formation m'a permis de me familiariser avec le travail en équipe et de renforcer mes capacités en développement web.",
+        "createdAt": "2024-09-01T15:23:21.616Z",
+        "updatedAt": "2024-11-04T15:34:19.634Z",
+        "publishedAt": "2024-09-01T15:23:23.801Z",
+        "locale": "fr",
+        "skills": [
+            {
+                "id": 12,
+                "title": "Figma",
+                "createdAt": "2024-09-01T14:05:33.268Z",
+                "updatedAt": "2024-09-01T14:05:33.268Z"
+            },
+            {
+                "id": 10,
+                "title": "Git",
+                "createdAt": "2024-09-01T14:05:24.686Z",
+                "updatedAt": "2024-09-01T14:05:24.686Z"
+            },
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 7,
+                "title": "JavaScript",
+                "createdAt": "2024-09-01T14:05:02.006Z",
+                "updatedAt": "2024-09-01T14:05:02.006Z"
+            },
+            {
+                "id": 16,
+                "title": "NextJS",
+                "createdAt": "2024-09-01T14:05:52.300Z",
+                "updatedAt": "2024-09-01T14:05:52.300Z"
+            },
+            {
+                "id": 8,
+                "title": "PostgreSQL",
+                "createdAt": "2024-09-01T14:05:10.657Z",
+                "updatedAt": "2024-09-01T14:05:10.657Z"
+            },
+            {
+                "id": 4,
+                "title": "Python",
+                "createdAt": "2024-09-01T14:04:14.753Z",
+                "updatedAt": "2024-09-01T14:04:14.753Z"
+            },
+            {
+                "id": 1,
+                "title": "ReactJS",
+                "createdAt": "2024-09-01T13:37:33.234Z",
+                "updatedAt": "2024-09-01T13:37:33.234Z"
+            },
+            {
+                "id": 13,
+                "title": "Symfony",
+                "createdAt": "2024-09-01T14:05:38.050Z",
+                "updatedAt": "2024-09-01T14:05:38.050Z"
+            },
+            {
+                "id": 3,
+                "title": "TypeScript",
+                "createdAt": "2024-09-01T14:04:02.345Z",
+                "updatedAt": "2024-09-01T14:04:02.345Z"
+            },
+            {
+                "id": 15,
+                "title": "VueJS",
+                "createdAt": "2024-09-01T14:05:47.147Z",
+                "updatedAt": "2024-09-01T14:05:47.147Z"
+            },
+            {
+                "id": 5,
+                "title": "PHP",
+                "createdAt": "2024-09-01T14:04:45.474Z",
+                "updatedAt": "2024-09-01T14:04:45.474Z"
+            }
+        ],
+        "localizations": [
+            {
+                "id": 1,
+                "school": "IIM Digital School",
+                "started_at": "2023-09-18",
+                "finished_at": "2024-09-06",
+                "title": "Bachelor Coding & Digital innovation",
+                "description": "I decided to change schools to complete my bachelor’s degree at this institution, drawn by the quality of the education and the opportunities available. There, I had the chance to develop my skills as a project manager through various group projects, while also deepening my technical knowledge in ReactJS, VueJS, Symfony, and Laravel. This training allowed me to become familiar with teamwork and to strengthen my capabilities in web development.",
+                "createdAt": "2024-09-01T13:36:04.366Z",
+                "updatedAt": "2024-11-04T15:34:19.595Z",
+                "publishedAt": "2024-10-27T13:12:16.611Z",
+                "locale": "en"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "school": "Cours Secondaire d'Orsay",
+        "started_at": "2006-09-04",
+        "finished_at": "2021-06-17",
+        "title": "Baccalauréat général",
+        "description": "J'ai suivi une spécialité en Arts Plastiques et NSI (Numériques & Sciences Informatiques), ainsi que des options en mathématiques et en italien, avec mention Bien. En NSI, un projet marquant a été la création d'un escape game en 3D durant le confinement, où j'ai développé le jeu sur Unreal Engine en suivant de nombreux tutoriels. En arts plastiques, j'ai réalisé plusieurs projets visuels sur ma calculatrice grâce à Python, en m'inspirant des idées d'un ami, ce qui m'a permis d'explorer de nouvelles approches créatives.",
+        "createdAt": "2024-09-01T15:24:19.688Z",
+        "updatedAt": "2024-11-04T15:30:30.219Z",
+        "publishedAt": "2024-09-01T15:24:20.943Z",
+        "locale": "fr",
+        "skills": [
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 7,
+                "title": "JavaScript",
+                "createdAt": "2024-09-01T14:05:02.006Z",
+                "updatedAt": "2024-09-01T14:05:02.006Z"
+            },
+            {
+                "id": 5,
+                "title": "PHP",
+                "createdAt": "2024-09-01T14:04:45.474Z",
+                "updatedAt": "2024-09-01T14:04:45.474Z"
+            },
+            {
+                "id": 4,
+                "title": "Python",
+                "createdAt": "2024-09-01T14:04:14.753Z",
+                "updatedAt": "2024-09-01T14:04:14.753Z"
+            },
+            {
+                "id": 9,
+                "title": "MySQL",
+                "createdAt": "2024-09-01T14:05:15.207Z",
+                "updatedAt": "2024-09-01T14:05:15.207Z"
+            }
+        ],
+        "localizations": [
+            {
+                "id": 36,
+                "school": "Cours Secondaire d'Orsay",
+                "started_at": "2006-09-04",
+                "finished_at": "2021-06-17",
+                "title": "General Baccalaureate",
+                "description": "I pursued a specialization in Visual Arts and Computer Science (NSI) with additional courses in mathematics and Italian, graduating with honors. A standout project in NSI was developing a 3D escape game during the COVID-19 lockdown, where I used Unreal Engine and followed numerous tutorials. In Visual Arts, I created several visual projects on my calculator using Python, drawing inspiration from discussions with a friend, which allowed me to explore new creative approaches.",
+                "createdAt": "2024-10-27T13:15:31.735Z",
+                "updatedAt": "2024-11-04T15:30:30.202Z",
+                "publishedAt": "2024-10-27T13:15:32.862Z",
+                "locale": "en"
+            }
+        ]
+    }
+];

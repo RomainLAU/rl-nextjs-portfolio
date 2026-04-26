@@ -1,0 +1,104 @@
+export const skills = [
+    {
+        "id": 1,
+        "title": "ReactJS",
+        "createdAt": "2024-09-01T13:37:33.234Z",
+        "updatedAt": "2024-09-01T13:37:33.234Z"
+    },
+    {
+        "id": 2,
+        "title": "React Native",
+        "createdAt": "2024-09-01T14:03:56.196Z",
+        "updatedAt": "2024-09-01T14:03:56.196Z"
+    },
+    {
+        "id": 3,
+        "title": "TypeScript",
+        "createdAt": "2024-09-01T14:04:02.345Z",
+        "updatedAt": "2024-09-01T14:04:02.345Z"
+    },
+    {
+        "id": 4,
+        "title": "Python",
+        "createdAt": "2024-09-01T14:04:14.753Z",
+        "updatedAt": "2024-09-01T14:04:14.753Z"
+    },
+    {
+        "id": 5,
+        "title": "PHP",
+        "createdAt": "2024-09-01T14:04:45.474Z",
+        "updatedAt": "2024-09-01T14:04:45.474Z"
+    },
+    {
+        "id": 6,
+        "title": "HTML/CSS",
+        "createdAt": "2024-09-01T14:04:54.054Z",
+        "updatedAt": "2024-09-01T14:04:54.054Z"
+    },
+    {
+        "id": 7,
+        "title": "JavaScript",
+        "createdAt": "2024-09-01T14:05:02.006Z",
+        "updatedAt": "2024-09-01T14:05:02.006Z"
+    },
+    {
+        "id": 8,
+        "title": "PostgreSQL",
+        "createdAt": "2024-09-01T14:05:10.657Z",
+        "updatedAt": "2024-09-01T14:05:10.657Z"
+    },
+    {
+        "id": 9,
+        "title": "MySQL",
+        "createdAt": "2024-09-01T14:05:15.207Z",
+        "updatedAt": "2024-09-01T14:05:15.207Z"
+    },
+    {
+        "id": 10,
+        "title": "Git",
+        "createdAt": "2024-09-01T14:05:24.686Z",
+        "updatedAt": "2024-09-01T14:05:24.686Z"
+    },
+    {
+        "id": 11,
+        "title": "Linux",
+        "createdAt": "2024-09-01T14:05:29.059Z",
+        "updatedAt": "2024-09-01T14:05:29.059Z"
+    },
+    {
+        "id": 12,
+        "title": "Figma",
+        "createdAt": "2024-09-01T14:05:33.268Z",
+        "updatedAt": "2024-09-01T14:05:33.268Z"
+    },
+    {
+        "id": 13,
+        "title": "Symfony",
+        "createdAt": "2024-09-01T14:05:38.050Z",
+        "updatedAt": "2024-09-01T14:05:38.050Z"
+    },
+    {
+        "id": 14,
+        "title": "Django",
+        "createdAt": "2024-09-01T14:05:42.962Z",
+        "updatedAt": "2024-09-01T14:05:42.962Z"
+    },
+    {
+        "id": 15,
+        "title": "VueJS",
+        "createdAt": "2024-09-01T14:05:47.147Z",
+        "updatedAt": "2024-09-01T14:05:47.147Z"
+    },
+    {
+        "id": 16,
+        "title": "NextJS",
+        "createdAt": "2024-09-01T14:05:52.300Z",
+        "updatedAt": "2024-09-01T14:05:52.300Z"
+    },
+    {
+        "id": 34,
+        "title": "NodeJS",
+        "createdAt": "2024-10-27T13:20:29.667Z",
+        "updatedAt": "2024-10-27T13:20:29.667Z"
+    }
+];

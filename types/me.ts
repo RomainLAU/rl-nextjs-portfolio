@@ -1,6 +1,16 @@
+import React from 'react';
+
+export type MediaFormat = {
+    url: string
+    width: number
+    height: number
+    name: string
+    hash?: string
+}
+
 export type Me = {
     fullname: string
-    description: string
+    description: string | React.ReactNode[]
     job: string
     status: 'available' | 'working'
     images: {
@@ -11,34 +21,10 @@ export type Me = {
         width: number
         height: number
         formats: {
-            large: {
-                url: string
-                hash: string
-                name: string
-                width: number
-                height: number
-            }
-            small: {
-                url: string
-                hash: string
-                name: string
-                width: number
-                height: number
-            }
-            medium: {
-                url: string
-                hash: string
-                name: string
-                width: number
-                height: number
-            }
-            thumbnail: {
-                url: string
-                hash: string
-                name: string
-                width: number
-                height: number
-            }
+            large: MediaFormat
+            small: MediaFormat
+            medium: MediaFormat
+            thumbnail: MediaFormat
         }
     }[]
 }
