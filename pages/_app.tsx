@@ -1,5 +1,6 @@
 import '@/globals.css';
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
     AnimatePresence, domAnimation, LazyMotion, m, useScroll, useSpring, useTransform
 } from 'framer-motion';
@@ -70,6 +71,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                 </AnimatePresence>
                 <PageTransition />
             </LazyMotion>
+            <SpeedInsights />
         </>
     )
 }
