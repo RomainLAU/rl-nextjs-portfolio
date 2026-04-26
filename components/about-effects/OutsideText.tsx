@@ -64,6 +64,7 @@ const OutsideText = ({ children }: { children: ReactNode }) => {
                             height={300}
                             style={{ width: 'auto', height: 'auto' }}
                             priority
+                            unoptimized
                         />
                     </m.div>
                 )}
@@ -78,6 +79,7 @@ const OutsideText = ({ children }: { children: ReactNode }) => {
                         width={300} 
                         height={300} 
                         priority 
+                        unoptimized
                     />
                 ))}
             </div>
