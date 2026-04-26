@@ -1,5 +1,3 @@
-'use client'
-
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import Image from 'next/image'
 import { useRouter } from 'next/router'

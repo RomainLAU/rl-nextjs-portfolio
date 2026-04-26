@@ -1,4 +1,4 @@
-'use client'
+
 
 import { m, useInView, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
