@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactCompiler: true,
     typedRoutes: true,
     images: {
         qualities: [50, 75, 100],
