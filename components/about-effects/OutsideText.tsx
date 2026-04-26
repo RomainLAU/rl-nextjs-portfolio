@@ -68,6 +68,19 @@ const OutsideText = ({ children }: { children: ReactNode }) => {
                     </m.div>
                 )}
             </AnimatePresence>
+            {/* Preload images to avoid flickering on first hover */}
+            <div style={{ position: 'absolute', width: 1, height: 1, opacity: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+                {images.map((img, idx) => (
+                    <Image 
+                        key={`preload-${idx}`} 
+                        src={img} 
+                        alt="" 
+                        width={300} 
+                        height={300} 
+                        priority 
+                    />
+                ))}
+            </div>
         </>
     )
 }
