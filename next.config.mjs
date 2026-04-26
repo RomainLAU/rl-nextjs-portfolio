@@ -63,19 +63,11 @@ const nextConfig = {
                     },
                     {
                         key: 'Permissions-Policy',
-                        value: 'geolocation=(self), microphone=()',
+                        value: 'geolocation=(self), microphone=(), browsing-topics=()',
                     },
                     {
                         key: 'Strict-Transport-Security',
                         value: 'max-age=31536000; includeSubDomains; preload',
-                    },
-                    {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=31536000, immutable',
-                    },
-                    {
-                        key: 'Content-Language',
-                        value: 'fr',
                     },
                     {
                         key: 'X-Robots-Tag',

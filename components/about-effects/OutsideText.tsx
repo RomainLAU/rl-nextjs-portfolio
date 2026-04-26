@@ -4,10 +4,10 @@ import React, { useState, ReactNode } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
-import image1 from 'public/images/image1.jpg'
-import image2 from 'public/images/image2.jpg'
-import image3 from 'public/images/image3.jpg'
-import plage from 'public/images/plage.png'
+import image1 from '@/public/images/image1.jpg'
+import image2 from '@/public/images/image2.jpg'
+import image3 from '@/public/images/image3.jpg'
+import plage from '@/public/images/plage.png'
 
 const OutsideText = ({ children }: { children: ReactNode }) => {
     const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 })
