@@ -1,14 +1,16 @@
 import Head from 'next/head';
 
-import endpoints from '@/apiConfig';
+import { experiences as experiencesEn } from '@/data/en/experiences';
+import { experiences as experiencesFr } from '@/data/fr/experiences';
 import ExperienceCard from '@/components/experienceCard';
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
 import MobileContainer from '@/components/mobileContainer';
 import MobileOrDesktop from '@/components/mobileOrDesktop';
 
 import type { Experience } from '@/types/experience'
+
 export async function getStaticProps({ locale }: { locale: string }) {
-    const experiences: Experience[] = await fetch(endpoints.experiences({ locale })).then((res) => res.json().then((data) => data.data))
+    const experiences = locale === 'en' ? experiencesEn : experiencesFr;
 
     return {
         props: {

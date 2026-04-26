@@ -1,5 +1,3 @@
-'use client'
-
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -101,6 +99,7 @@ export default function ExperienceCard({ element, index, setSelectedItem }: { el
                             width={experience.company_logo.width}
                             height={experience.company_logo.height}
                             className='svg-image w-auto h-full'
+                            style={{ width: 'auto' }}
                             quality={isMobile ? 50 : 100}
                             priority={isInView}
                         />

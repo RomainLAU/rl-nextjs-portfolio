@@ -1,14 +1,16 @@
 import Head from 'next/head';
 
-import endpoints from '@/apiConfig';
 import FormationCard from '@/components/formationCard';
 import HorizontalScrollingContainer from '@/components/horizontalScrollingContainer';
 import MobileContainer from '@/components/mobileContainer';
 import MobileOrDesktop from '@/components/mobileOrDesktop';
 import { Formation } from '@/types/formation';
 
+import { formations as formationsEn } from '@/data/en/formations';
+import { formations as formationsFr } from '@/data/fr/formations';
+
 export async function getStaticProps({ locale }: { locale: string }) {
-    const formations: Formation[] = await fetch(endpoints.formations({ locale })).then((res) => res.json().then((data) => data.data))
+    const formations = locale === 'en' ? formationsEn : formationsFr;
 
     return {
         props: {

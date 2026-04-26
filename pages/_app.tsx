@@ -36,13 +36,13 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
         exit: { opacity: 0 },
-    }
+    } as const
 
     const opacityTransition = {
         duration: 0.9,
         delay: 0.1,
         ease: 'easeOut',
-    }
+    } as const
 
     const currentPath = router.pathname
 

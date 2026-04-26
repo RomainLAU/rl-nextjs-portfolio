@@ -1,7 +1,7 @@
 import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 
 type Environment = 'production' | 'development' | 'other'
-export function middleware(req: NextRequest, ev: NextFetchEvent) {
+export function proxy(req: NextRequest, ev: NextFetchEvent) {
     const currentEnv = process.env.NODE_ENV as Environment
     const isAPI = req.nextUrl.pathname.includes('api')
 

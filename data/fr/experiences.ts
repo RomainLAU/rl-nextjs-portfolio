@@ -1,0 +1,543 @@
+export const experiences = [
+    {
+        "id": 1,
+        "title": "Développeur Full Stack",
+        "company": "COM4DESIGN",
+        "contract": "Alternance",
+        "started_at": "2023-09-11",
+        "finished_at": "2024-09-06",
+        "description": "Durant cette expérience, j’ai eu l’opportunité de travailler sur des projets variés et stimulants qui ont renforcé mes compétences en développement. Le principal défi était une application bancaire en ligne ambitieuse, pour laquelle j’ai développé le frontend avec React Native. L’objectif était de créer une expérience utilisateur intuitive pour permettre aux clients de gérer leurs finances facilement. Mon travail a consisté à intégrer des API sécurisées, à mettre en place des mises à jour en temps réel pour les transactions, et à optimiser les performances de l’application afin qu’elle puisse gérer un trafic élevé tout en restant réactive. L’un des principaux défis a été de garantir une expérience fluide tout en respectant des normes strictes de sécurité et de performance.\n\nEn parallèle, j’ai également travaillé sur deux plateformes immobilières, chacune avec des objectifs et des fonctionnalités uniques. Pour l’un des projets, j’ai dirigé le développement frontend en utilisant ReactJS et TypeScript, intégrant des animations dynamiques avec Framer Motion pour rendre l’interface attrayante et intuitive. L’objectif était de créer une expérience immersive pour les utilisateurs explorant les biens immobiliers, ce qui a nécessité une attention particulière au design, à la réactivité et aux performances. Pour la deuxième plateforme, j’ai mis en place un système multilingue afin de rendre le site accessible à un public international. La mise en œuvre de ces fonctionnalités tout en maintenant un code clair et une intégration fluide des API a été un défi aussi enrichissant qu’exigeant.\n\nDans l’ensemble, ces projets m’ont permis de relever des défis techniques et créatifs tout en collaborant étroitement avec les équipes de design et backend. J’ai appris à gérer les priorités, à optimiser les performances et à livrer des plateformes robustes et évolutives, tout en répondant aux besoins techniques et stratégiques des parties prenantes.",
+        "createdAt": "2024-08-31T01:19:08.605Z",
+        "updatedAt": "2025-01-21T19:08:42.850Z",
+        "publishedAt": "2024-08-31T01:19:13.547Z",
+        "locale": "fr",
+        "project_url": "https://agre.etherial.cloud/",
+        "feature_description": "Ce projet a été passionnant du début à la fin. J’ai eu l’opportunité de laisser libre cours à ma créativité en travaillant sur une interface utilisateur moderne et engageante. Ce que j’ai particulièrement apprécié, c’est de créer des animations dynamiques avec Framer Motion pour rendre l’expérience utilisateur fluide et immersive. J’ai également optimisé l’application pour garantir des performances élevées, même avec un grand volume de contenu. Chaque détail a été pensé pour offrir une navigation intuitive, ce qui a rendu ce projet aussi exigeant qu’épanouissant.",
+        "company_logo": {
+            "id": 5,
+            "name": "Logo-UXID.svg",
+            "alternativeText": "uxid-logo",
+            "caption": null,
+            "width": 130,
+            "height": 122,
+            "formats": {},
+            "hash": "Logo_UXID_2f170d5328",
+            "ext": ".svg",
+            "mime": "image/svg+xml",
+            "size": 7.69,
+            "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1725196531/portfolio/Logo_UXID_2f170d5328.svg",
+            "previewUrl": null,
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/Logo_UXID_2f170d5328",
+                "resource_type": "image"
+            },
+            "createdAt": "2024-08-31T22:01:09.683Z",
+            "updatedAt": "2024-09-01T15:15:33.943Z"
+        },
+        "skills": [
+            {
+                "id": 12,
+                "title": "Figma",
+                "createdAt": "2024-09-01T14:05:33.268Z",
+                "updatedAt": "2024-09-01T14:05:33.268Z"
+            },
+            {
+                "id": 10,
+                "title": "Git",
+                "createdAt": "2024-09-01T14:05:24.686Z",
+                "updatedAt": "2024-09-01T14:05:24.686Z"
+            },
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 8,
+                "title": "PostgreSQL",
+                "createdAt": "2024-09-01T14:05:10.657Z",
+                "updatedAt": "2024-09-01T14:05:10.657Z"
+            },
+            {
+                "id": 1,
+                "title": "ReactJS",
+                "createdAt": "2024-09-01T13:37:33.234Z",
+                "updatedAt": "2024-09-01T13:37:33.234Z"
+            },
+            {
+                "id": 2,
+                "title": "React Native",
+                "createdAt": "2024-09-01T14:03:56.196Z",
+                "updatedAt": "2024-09-01T14:03:56.196Z"
+            },
+            {
+                "id": 3,
+                "title": "TypeScript",
+                "createdAt": "2024-09-01T14:04:02.345Z",
+                "updatedAt": "2024-09-01T14:04:02.345Z"
+            },
+            {
+                "id": 34,
+                "title": "NodeJS",
+                "createdAt": "2024-10-27T13:20:29.667Z",
+                "updatedAt": "2024-10-27T13:20:29.667Z"
+            },
+            {
+                "id": 7,
+                "title": "JavaScript",
+                "createdAt": "2024-09-01T14:05:02.006Z",
+                "updatedAt": "2024-09-01T14:05:02.006Z"
+            }
+        ],
+        "feature_media": {
+            "id": 100,
+            "name": "agre-video-480.mov",
+            "alternativeText": null,
+            "caption": null,
+            "width": null,
+            "height": null,
+            "formats": null,
+            "hash": "agre_video_480_baae4dcf57",
+            "ext": ".mov",
+            "mime": "video/quicktime",
+            "size": 61034.38,
+            "url": "https://res.cloudinary.com/dtsvpdh37/video/upload/v1737485924/portfolio/Others/agre_video_480_baae4dcf57.mov",
+            "previewUrl": "http://res.cloudinary.com/dtsvpdh37/video/upload/c_scale,dl_200,vs_6,w_250/v1/portfolio/Others/agre_video_480_baae4dcf57.gif",
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/Others/agre_video_480_baae4dcf57",
+                "resource_type": "video"
+            },
+            "createdAt": "2025-01-21T18:58:47.297Z",
+            "updatedAt": "2025-01-21T18:58:47.297Z"
+        },
+        "localizations": [
+            {
+                "id": 37,
+                "title": "Full Stack Developer",
+                "company": "COM4DESIGN",
+                "contract": "Work-Study",
+                "started_at": "2023-09-11",
+                "finished_at": "2024-09-06",
+                "description": "During this experience, I had the opportunity to work on diverse and challenging projects that pushed my skills as a developer. The primary focus was an ambitious online banking application, where I developed the frontend using React Native. The goal was to create an intuitive and seamless user experience for customers managing their finances. My work involved integrating secure APIs, implementing real-time updates for transactions, and optimizing the app's performance to handle high traffic without compromising responsiveness. One of the key challenges was ensuring that the app maintained a smooth user experience while adhering to strict security and performance requirements.\n\nIn parallel, I also worked on two real estate platforms, each with unique features and objectives. For one project, I led the frontend development using ReactJS and TypeScript, where I integrated dynamic animations with Framer Motion to make the interface engaging and user-friendly. The focus was on creating an immersive browsing experience for users exploring properties, which required careful attention to design, responsiveness, and performance. On the second platform, I implemented a multilingual system to expand accessibility for an international audience. Balancing these features while maintaining clean code and ensuring smooth API integration presented a rewarding challenge.\n\nAcross all these projects, I faced the common but enriching difficulty of aligning creative solutions with the technical and business needs of the stakeholders. This required close collaboration with the design and backend teams, proactive problem-solving, and meticulous testing to deliver robust and scalable platforms. Each project offered valuable insights into managing priorities, optimizing performance, and delivering a polished user experience.",
+                "createdAt": "2024-10-27T13:20:04.692Z",
+                "updatedAt": "2025-01-21T19:08:42.908Z",
+                "publishedAt": "2024-10-27T13:20:06.039Z",
+                "locale": "en",
+                "project_url": "https://agre.etherial.cloud/",
+                "feature_description": "This project was really interesting from start to finish. I had the opportunity to let all my creativity flow into the frontend development, focusing on delivering a modern and visually appealing interface. One of the aspects I enjoyed the most was implementing dynamic animations using Framer Motion, which made the user experience much more interactive and engaging. I also took great care in optimizing the responsiveness and performance of the platform, ensuring it worked flawlessly across different devices. These details made the project both challenging and rewarding to work on."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Développeur Frontend",
+        "company": "Notice Studio",
+        "contract": "Stage",
+        "started_at": "2022-06-13",
+        "finished_at": "2022-09-23",
+        "description": "Lors de mon expérience chez Notice, j’ai découvert ReactJS et TypeScript, deux technologies que j’ai rapidement mises en pratique pour contribuer à leur landing page et à leur SaaS de génération de contenu. J’ai développé un outil de personnalisation en temps réel pour modifier les couleurs d’un bloc, intégré un indicateur de sauvegarde permettant aux utilisateurs de suivre l’enregistrement de leur travail, et conçu un bot Slack pour partager des statistiques d’activité. J’ai également écrit la documentation pour intégrer leur solution avec ReactJS et collaboré sur une barre de recherche dynamique. Travailler dans l’environnement stimulant de StationF m’a permis de progresser techniquement tout en renforçant ma collaboration avec une équipe dynamique.",
+        "createdAt": "2024-08-31T21:58:02.047Z",
+        "updatedAt": "2025-02-03T19:13:17.800Z",
+        "publishedAt": "2024-08-31T22:00:37.100Z",
+        "locale": "fr",
+        "project_url": "https://notice.studio/",
+        "feature_description": "Lors de mon stage chez Notice, j’ai développé un indicateur de sauvegarde en temps réel pour améliorer l’expérience utilisateur. Inspiré d’outils comme Notion, cet élément permet aux utilisateurs de voir immédiatement si leur travail est enregistré grâce à des animations et des changements d’état visuels. J’ai conçu cette fonctionnalité avec ReactJS et TypeScript, en optimisant la gestion des états pour garantir fluidité et fiabilité. Cette feature m’a permis d’approfondir mes compétences en développement frontend et d’améliorer l’ergonomie du produit en répondant à un besoin utilisateur.",
+        "company_logo": {
+            "id": 4,
+            "name": "logo-notice.svg",
+            "alternativeText": "notice-logo",
+            "caption": null,
+            "width": 100,
+            "height": 100,
+            "formats": {},
+            "hash": "logo_notice_0b8a3e045c",
+            "ext": ".svg",
+            "mime": "image/svg+xml",
+            "size": 4.91,
+            "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1725197163/portfolio/logo_notice_0b8a3e045c.svg",
+            "previewUrl": null,
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/logo_notice_0b8a3e045c",
+                "resource_type": "image"
+            },
+            "createdAt": "2024-08-31T22:01:09.529Z",
+            "updatedAt": "2024-09-01T15:26:05.327Z"
+        },
+        "skills": [
+            {
+                "id": 1,
+                "title": "ReactJS",
+                "createdAt": "2024-09-01T13:37:33.234Z",
+                "updatedAt": "2024-09-01T13:37:33.234Z"
+            },
+            {
+                "id": 12,
+                "title": "Figma",
+                "createdAt": "2024-09-01T14:05:33.268Z",
+                "updatedAt": "2024-09-01T14:05:33.268Z"
+            },
+            {
+                "id": 10,
+                "title": "Git",
+                "createdAt": "2024-09-01T14:05:24.686Z",
+                "updatedAt": "2024-09-01T14:05:24.686Z"
+            },
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 11,
+                "title": "Linux",
+                "createdAt": "2024-09-01T14:05:29.059Z",
+                "updatedAt": "2024-09-01T14:05:29.059Z"
+            },
+            {
+                "id": 3,
+                "title": "TypeScript",
+                "createdAt": "2024-09-01T14:04:02.345Z",
+                "updatedAt": "2024-09-01T14:04:02.345Z"
+            }
+        ],
+        "feature_media": {
+            "id": 133,
+            "name": "notice-saving-saved.jpg",
+            "alternativeText": null,
+            "caption": null,
+            "width": 319,
+            "height": 187,
+            "formats": {
+                "thumbnail": {
+                    "ext": ".jpg",
+                    "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1738609976/portfolio/Images/thumbnail_notice_saving_saved_69a73a5637.jpg",
+                    "hash": "thumbnail_notice_saving_saved_69a73a5637",
+                    "mime": "image/jpeg",
+                    "name": "thumbnail_notice-saving-saved.jpg",
+                    "path": null,
+                    "size": 4.49,
+                    "width": 245,
+                    "height": 144,
+                    "sizeInBytes": 4490,
+                    "provider_metadata": {
+                        "public_id": "portfolio/Images/thumbnail_notice_saving_saved_69a73a5637",
+                        "resource_type": "image"
+                    }
+                }
+            },
+            "hash": "notice_saving_saved_69a73a5637",
+            "ext": ".jpg",
+            "mime": "image/jpeg",
+            "size": 7.59,
+            "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1738609976/portfolio/Images/notice_saving_saved_69a73a5637.jpg",
+            "previewUrl": null,
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/Images/notice_saving_saved_69a73a5637",
+                "resource_type": "image"
+            },
+            "createdAt": "2025-02-03T19:12:56.670Z",
+            "updatedAt": "2025-02-03T19:12:56.670Z"
+        },
+        "localizations": [
+            {
+                "id": 34,
+                "title": "Frontend Developer",
+                "company": "Notice Studio",
+                "contract": "Internship",
+                "started_at": "2022-06-13",
+                "finished_at": "2022-09-23",
+                "description": "At Notice, I discovered ReactJS and TypeScript, which I quickly applied while contributing to their landing page and content generation SaaS. I developed a real-time customization tool to adjust the colors of a block, implemented a save indicator to inform users when their work was saved, and designed a Slack bot to share activity statistics. I also wrote integration documentation for ReactJS and collaborated on a dynamic search bar. Working in the vibrant environment of StationF allowed me to grow technically and develop stronger teamwork skills within a dynamic team.",
+                "createdAt": "2024-10-27T13:16:58.276Z",
+                "updatedAt": "2025-02-03T19:13:17.751Z",
+                "publishedAt": "2024-10-27T13:16:59.987Z",
+                "locale": "en",
+                "project_url": "https://notice.studio/",
+                "feature_description": "During my internship at Notice, I developed a real-time save indicator to enhance the user experience. Inspired by tools like Notion, this feature allows users to instantly see if their work is saved through animations and visual state changes. I designed this functionality using ReactJS and TypeScript, optimizing state management to ensure smoothness and reliability. This feature allowed me to deepen my frontend development skills and improve the product’s usability by addressing a key user need."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Développeur Full Stack",
+        "company": "Deepblock",
+        "contract": "Freelance",
+        "started_at": "2023-01-23",
+        "finished_at": "2023-03-07",
+        "description": "J'ai développé un service permettant d’anticiper des rendez-vous en fonction de la date de naissance des utilisateurs, en utilisant une formule sinusoïdale fournie par le client. Mon travail a inclus l'intégration de cette logique mathématique et la création d’une interface claire et intuitive, accompagnée de graphiques pour visualiser les périodes optimales identifiées. Ce projet m’a permis de renforcer mes compétences en développement tout en proposant une solution innovante et pratique pour les utilisateurs.",
+        "createdAt": "2024-08-31T21:56:34.077Z",
+        "updatedAt": "2025-02-03T20:19:44.389Z",
+        "publishedAt": "2024-08-31T21:56:40.185Z",
+        "locale": "fr",
+        "project_url": "https://www.deepblock.eu/",
+        "feature_description": "J’ai conçu un calendrier interactif permettant aux utilisateurs d’identifier rapidement les meilleures dates pour leurs rendez-vous. Basé sur une fonction sinusoïdale, il analyse les entrées utilisateur et génère des recommandations personnalisées. Entièrement développé en JavaScript natif, il met à jour l'affichage en temps réel sans rechargement de page. Cette approche offre une expérience fluide et intuitive, tout en garantissant une compatibilité optimale sur mobile et desktop.",
+        "company_logo": {
+            "id": 6,
+            "name": "deepblock-logo.svg",
+            "alternativeText": "deepblock-logo",
+            "caption": null,
+            "width": 20,
+            "height": 20,
+            "formats": {},
+            "hash": "deepblock_logo_4e87247f5d",
+            "ext": ".svg",
+            "mime": "image/svg+xml",
+            "size": 0.95,
+            "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1725197337/portfolio/deepblock_logo_4e87247f5d.svg",
+            "previewUrl": null,
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/deepblock_logo_4e87247f5d",
+                "resource_type": "image"
+            },
+            "createdAt": "2024-09-01T00:07:12.060Z",
+            "updatedAt": "2024-09-01T15:28:59.395Z"
+        },
+        "skills": [
+            {
+                "id": 10,
+                "title": "Git",
+                "createdAt": "2024-09-01T14:05:24.686Z",
+                "updatedAt": "2024-09-01T14:05:24.686Z"
+            },
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 7,
+                "title": "JavaScript",
+                "createdAt": "2024-09-01T14:05:02.006Z",
+                "updatedAt": "2024-09-01T14:05:02.006Z"
+            },
+            {
+                "id": 11,
+                "title": "Linux",
+                "createdAt": "2024-09-01T14:05:29.059Z",
+                "updatedAt": "2024-09-01T14:05:29.059Z"
+            },
+            {
+                "id": 5,
+                "title": "PHP",
+                "createdAt": "2024-09-01T14:04:45.474Z",
+                "updatedAt": "2024-09-01T14:04:45.474Z"
+            }
+        ],
+        "feature_media": null,
+        "localizations": [
+            {
+                "id": 36,
+                "title": "Full Stack Developer",
+                "company": "Deepblock",
+                "contract": "Freelancing",
+                "started_at": "2023-01-23",
+                "finished_at": "2023-03-07",
+                "description": "I developed a service that helps users anticipate appointments based on their birth date, using a sinusoidal formula provided by the client. My work included integrating the mathematical logic and designing a clear, intuitive interface, with graphs to visualize the optimal periods identified. This project allowed me to strengthen my development skills while offering an innovative and practical solution for users.",
+                "createdAt": "2024-10-27T13:18:54.722Z",
+                "updatedAt": "2025-02-03T20:19:44.346Z",
+                "publishedAt": "2024-10-27T13:18:56.025Z",
+                "locale": "en",
+                "project_url": "https://www.deepblock.eu/",
+                "feature_description": "I designed an interactive calendar that helps users quickly identify the best dates for their appointments. Based on a sinusoidal function, it processes user inputs and generates personalized recommendations. Fully developed in native JavaScript, it updates the display in real-time without page reloads. This approach ensures a smooth and intuitive experience while maintaining optimal compatibility across mobile and desktop."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Développeur Full Stack",
+        "company": "Entropy",
+        "contract": "Stage",
+        "started_at": "2023-02-20",
+        "finished_at": "2023-08-18",
+        "description": "Chez Entropy, j'ai contribué au développement de Fluidity, une plateforme innovante dédiée à l'analyse et à la visualisation des dynamiques de mobilité dans les villes françaises. Cet outil permet aux urbanistes et aux collectivités locales de prendre des décisions éclairées grâce à des options avancées de filtrage et de visualisation des données. Le projet offrait des défis passionnants, alliant performances backend robustes et expérience utilisateur intuitive sur le frontend.\n\nCôté backend, j'ai travaillé en profondeur sur la base de données, en l'optimisant pour permettre aux utilisateurs de combiner plusieurs filtres, tels que l'âge, la ville ou le moment de la journée, afin d'obtenir des résultats plus précis et pertinents. J'ai également rationalisé le traitement des données pour améliorer les performances des requêtes, garantissant un accès rapide et fiable aux informations.\n\nCôté frontend, j'ai enrichi l'interactivité en implémentant une fonctionnalité de chat, permettant une communication fluide entre les utilisateurs. J'ai également intégré un système de glisser-déposer, facilitant l'organisation des données de manière intuitive et visuelle. Enfin, j'ai entièrement revu la version mobile de l'outil, améliorant considérablement sa réactivité et l'expérience utilisateur. Ces contributions ont permis de transformer Fluidity en un outil performant et convivial pour l'analyse de la mobilité urbaine.",
+        "createdAt": "2024-08-31T13:38:25.833Z",
+        "updatedAt": "2025-01-21T19:20:20.090Z",
+        "publishedAt": "2024-08-31T16:11:11.994Z",
+        "locale": "fr",
+        "project_url": "https://entropy.sc/",
+        "feature_description": "Ce projet m'a permis de mettre en œuvre mes compétences en développement web et en optimisation. Sur Fluidity, j'ai travaillé à améliorer l'expérience utilisateur sur différents appareils en rendant l'interface entièrement responsive. J'ai également réduit considérablement les erreurs et le temps de chargement, tout en clarifiant l'UI pour la rendre plus intuitive. Ces améliorations ont contribué à une meilleure performance et une adoption utilisateur accrue.",
+        "company_logo": {
+            "id": 2,
+            "name": "entropy-logo.svg",
+            "alternativeText": "entropy-logo",
+            "caption": null,
+            "width": 118,
+            "height": 137,
+            "formats": {},
+            "hash": "Isotype_blanc_1f85cf4cfc",
+            "ext": ".svg",
+            "mime": "image/svg+xml",
+            "size": 0.43,
+            "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1725197417/portfolio/Isotype_blanc_1f85cf4cfc.svg",
+            "previewUrl": null,
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/Isotype_blanc_1f85cf4cfc",
+                "resource_type": "image"
+            },
+            "createdAt": "2024-08-31T13:37:16.551Z",
+            "updatedAt": "2024-09-01T15:30:19.079Z"
+        },
+        "skills": [
+            {
+                "id": 12,
+                "title": "Figma",
+                "createdAt": "2024-09-01T14:05:33.268Z",
+                "updatedAt": "2024-09-01T14:05:33.268Z"
+            },
+            {
+                "id": 10,
+                "title": "Git",
+                "createdAt": "2024-09-01T14:05:24.686Z",
+                "updatedAt": "2024-09-01T14:05:24.686Z"
+            },
+            {
+                "id": 6,
+                "title": "HTML/CSS",
+                "createdAt": "2024-09-01T14:04:54.054Z",
+                "updatedAt": "2024-09-01T14:04:54.054Z"
+            },
+            {
+                "id": 11,
+                "title": "Linux",
+                "createdAt": "2024-09-01T14:05:29.059Z",
+                "updatedAt": "2024-09-01T14:05:29.059Z"
+            },
+            {
+                "id": 8,
+                "title": "PostgreSQL",
+                "createdAt": "2024-09-01T14:05:10.657Z",
+                "updatedAt": "2024-09-01T14:05:10.657Z"
+            },
+            {
+                "id": 4,
+                "title": "Python",
+                "createdAt": "2024-09-01T14:04:14.753Z",
+                "updatedAt": "2024-09-01T14:04:14.753Z"
+            },
+            {
+                "id": 3,
+                "title": "TypeScript",
+                "createdAt": "2024-09-01T14:04:02.345Z",
+                "updatedAt": "2024-09-01T14:04:02.345Z"
+            },
+            {
+                "id": 1,
+                "title": "ReactJS",
+                "createdAt": "2024-09-01T13:37:33.234Z",
+                "updatedAt": "2024-09-01T13:37:33.234Z"
+            }
+        ],
+        "feature_media": {
+            "id": 101,
+            "name": "Fluidity.png",
+            "alternativeText": "Screenshot of the Fluidity tool from Entropy",
+            "caption": null,
+            "width": 2880,
+            "height": 1800,
+            "formats": {
+                "large": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1737487063/portfolio/Images/large_Fluidity_f2e692183a.png",
+                    "hash": "large_Fluidity_f2e692183a",
+                    "mime": "image/png",
+                    "name": "large_Fluidity.png",
+                    "path": null,
+                    "size": 511.3,
+                    "width": 1000,
+                    "height": 625,
+                    "sizeInBytes": 511301,
+                    "provider_metadata": {
+                        "public_id": "portfolio/Images/large_Fluidity_f2e692183a",
+                        "resource_type": "image"
+                    }
+                },
+                "small": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1737487063/portfolio/Images/small_Fluidity_f2e692183a.png",
+                    "hash": "small_Fluidity_f2e692183a",
+                    "mime": "image/png",
+                    "name": "small_Fluidity.png",
+                    "path": null,
+                    "size": 177.13,
+                    "width": 500,
+                    "height": 313,
+                    "sizeInBytes": 177129,
+                    "provider_metadata": {
+                        "public_id": "portfolio/Images/small_Fluidity_f2e692183a",
+                        "resource_type": "image"
+                    }
+                },
+                "medium": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1737487063/portfolio/Images/medium_Fluidity_f2e692183a.png",
+                    "hash": "medium_Fluidity_f2e692183a",
+                    "mime": "image/png",
+                    "name": "medium_Fluidity.png",
+                    "path": null,
+                    "size": 324.44,
+                    "width": 750,
+                    "height": 469,
+                    "sizeInBytes": 324437,
+                    "provider_metadata": {
+                        "public_id": "portfolio/Images/medium_Fluidity_f2e692183a",
+                        "resource_type": "image"
+                    }
+                },
+                "thumbnail": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1737487063/portfolio/Images/thumbnail_Fluidity_f2e692183a.png",
+                    "hash": "thumbnail_Fluidity_f2e692183a",
+                    "mime": "image/png",
+                    "name": "thumbnail_Fluidity.png",
+                    "path": null,
+                    "size": 57.27,
+                    "width": 245,
+                    "height": 153,
+                    "sizeInBytes": 57269,
+                    "provider_metadata": {
+                        "public_id": "portfolio/Images/thumbnail_Fluidity_f2e692183a",
+                        "resource_type": "image"
+                    }
+                }
+            },
+            "hash": "Fluidity_f2e692183a",
+            "ext": ".png",
+            "mime": "image/png",
+            "size": 572.83,
+            "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1737487063/portfolio/Images/Fluidity_f2e692183a.png",
+            "previewUrl": null,
+            "provider": "cloudinary",
+            "provider_metadata": {
+                "public_id": "portfolio/Images/Fluidity_f2e692183a",
+                "resource_type": "image"
+            },
+            "createdAt": "2025-01-21T19:17:44.080Z",
+            "updatedAt": "2025-01-21T21:40:35.851Z"
+        },
+        "localizations": [
+            {
+                "id": 35,
+                "title": "Full Stack Developer",
+                "company": "Entropy",
+                "contract": "Internship",
+                "started_at": "2023-02-20",
+                "finished_at": "2023-08-18",
+                "description": "At Entropy, I contributed to Fluidity, an innovative platform dedicated to analyzing and visualizing mobility patterns in French cities. This tool allows urban planners and local authorities to make data-driven decisions by leveraging advanced filtering and visualization options. The project presented exciting challenges, combining the need for robust backend performance with an intuitive and engaging frontend experience.\n\nOn the backend, I worked extensively on the database, optimizing it to allow users to combine multiple filters, such as age, city, and time of day, for more precise and relevant results. I streamlined data processing to improve query performance, ensuring that users could access insights quickly and reliably.\n\nOn the frontend, I focused on enhancing interactivity by implementing a chat feature, enabling seamless communication among users. I also integrated a drag-and-drop system, making data organization intuitive and visually engaging. Furthermore, I overhauled the mobile version of the tool, significantly improving its responsiveness and user experience. These contributions helped transform Fluidity into a powerful, user-friendly tool for urban mobility analysis.",
+                "createdAt": "2024-10-27T13:18:01.699Z",
+                "updatedAt": "2025-01-21T19:20:20.151Z",
+                "publishedAt": "2024-10-27T13:18:02.760Z",
+                "locale": "en",
+                "project_url": "https://entropy.sc/",
+                "feature_description": "This project allowed me to apply my skills in web development and optimization. On Fluidity, I worked to enhance the user experience across various devices by making the interface fully responsive. I also significantly reduced errors and loading times while streamlining the UI to make it more intuitive. These improvements contributed to better performance and increased user adoption."
+            }
+        ]
+    }
+];

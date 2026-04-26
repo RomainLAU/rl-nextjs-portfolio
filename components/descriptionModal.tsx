@@ -1,4 +1,4 @@
-'use client'
+
 
 import { m } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -21,7 +21,7 @@ const modalAnimationProps = {
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0 },
     transition: { duration: 0.4, ease: 'easeIn' },
-}
+} as const
 
 interface MediaProps {
     media: {
@@ -59,6 +59,7 @@ const MediaContent = ({ media }: MediaProps) => {
                 width={400}
                 height={200}
                 className='aspect-video object-contain w-[40%] md:w-[40vw] h-[40vh] md:h-[25vh] md:max-h-[50dvh]'
+                style={{ width: 'auto', height: 'auto' }}
             />
         </m.div>
     )

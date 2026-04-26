@@ -1,4 +1,4 @@
-'use client'
+
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
 interface ScrollAnimatedTextProps {
     text: string
     customScroller?: string
-    containerRef?: RefObject<HTMLDivElement>
+    containerRef?: RefObject<HTMLDivElement | null>
 }
 
 const ANIMATION_DELAY = 100

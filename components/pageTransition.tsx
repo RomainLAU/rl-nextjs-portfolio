@@ -69,35 +69,33 @@ export default function PageTransition() {
     const transition = {
         type: 'tween',
         duration: 1,
-    }
+    } as const
 
     const opacityVariants = {
         initial: { x: '-100%' },
         animate: { x: '0%' },
         exit: { x: '100%' },
-    }
+    } as const
 
     return (
         <AnimatePresence mode='popLayout'>
             {isAnimating && (
-                <>
-                    <motion.div
-                        key={`transition-out-${router.route}`}
-                        variants={opacityVariants}
-                        initial='initial'
-                        animate='animate'
-                        exit='exit'
-                        transition={transition}
-                        style={{
-                            position: 'fixed',
-                            background: colors[colorIndex],
-                            width: '100vw',
-                            height: '100vh',
-                            top: 0,
-                            zIndex: 1000,
-                        }}
-                    />
-                </>
+                <motion.div
+                    key={`transition-out-${router.route}`}
+                    variants={opacityVariants}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+                    transition={transition}
+                    style={{
+                        position: 'fixed',
+                        background: colors[colorIndex],
+                        width: '100vw',
+                        height: '100vh',
+                        top: 0,
+                        zIndex: 1000,
+                    }}
+                />
             )}
         </AnimatePresence>
     )
