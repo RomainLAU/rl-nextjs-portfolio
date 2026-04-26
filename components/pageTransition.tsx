@@ -69,13 +69,13 @@ export default function PageTransition() {
     const transition = {
         type: 'tween',
         duration: 1,
-    }
+    } as const
 
     const opacityVariants = {
         initial: { x: '-100%' },
         animate: { x: '0%' },
         exit: { x: '100%' },
-    }
+    } as const
 
     return (
         <AnimatePresence mode='popLayout'>

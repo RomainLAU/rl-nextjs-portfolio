@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react'
 
 const ColoredText = ({ children }: { children: string }) => {
-    const [coloredText, setColoredText] = useState<JSX.Element[] | null>(null)
+    const [coloredText, setColoredText] = useState<React.ReactNode[] | null>(null)
     const colorIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
     const getColoredText = (text: string) => {

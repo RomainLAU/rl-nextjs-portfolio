@@ -12,12 +12,12 @@ import { Me } from '@/types/me';
 const apparitionVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: { y: 0, opacity: 1 },
-}
+} as const
 
 const apparitionTransition = {
     duration: 1,
     delay: 1.1,
-}
+} as const
 
 import { me as meEn } from '@/data/en/me';
 import { me as meFr } from '@/data/fr/me';
