@@ -62,6 +62,7 @@ const OutsideText = ({ children }: { children: ReactNode }) => {
                             alt="Hover effect"
                             width={300}
                             height={300}
+                            style={{ width: 'auto', height: 'auto' }}
                             priority
                         />
                     </m.div>

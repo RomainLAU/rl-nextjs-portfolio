@@ -59,6 +59,7 @@ const MediaContent = ({ media }: MediaProps) => {
                 width={400}
                 height={200}
                 className='aspect-video object-contain w-[40%] md:w-[40vw] h-[40vh] md:h-[25vh] md:max-h-[50dvh]'
+                style={{ width: 'auto', height: 'auto' }}
             />
         </m.div>
     )

@@ -58,7 +58,8 @@ export default function PresentationText({
             exitTimeline.kill()
         }
     }, [index, isMobile])
-    if (isMobile !== false) {
+
+    if (!!isMobile) {
         return (
             <m.div ref={containerRef} className={`relative flex flex-col items-center mb-8 w-screen ${image ? 'h-[80vh]' : 'h-[50vh]'}`}>
                 <m.div
@@ -79,12 +80,13 @@ export default function PresentationText({
                             transform: isInView ? 'translateY(0)' : 'translateY(-20px)',
                             opacity: isInView ? 1 : 0,
                             transition: 'all 0.8s ease-out 0.2s',
+                            height: '100%',
                         }}
                         src={image.url}
                         alt={image.name}
                         width={image.width}
                         height={image.height}
-                        className='w-3/4'
+                        className='w-3/4 object-contain'
                     />
                 )}
             </m.div>
@@ -92,35 +94,34 @@ export default function PresentationText({
     }
 
     return (
-        <>
-            <section
-                ref={containerRef}
-                className='h-screen w-full flex justify-center items-center relative'
-                style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
-                {image && (
-                    <div ref={imageRef} className='absolute max-h-[90vh] w-1/4 h-auto' style={{ left: '25%' }}>
-                        <Image
-                            priority={index === 0}
-                            className='h-full w-full'
-                            src={image.url ?? ''}
-                            width={image.width ?? 100}
-                            height={image.height ?? 100}
-                            alt={image.name ?? ''}
-                            quality={100}
-                        />
-                    </div>
-                )}
-                <div
-                    ref={textRef}
-                    className='absolute text-9xl font-extrabold mix-blend-difference flex justify-center items-center flex-wrap gap-x-10'
-                    style={{
-                        right: image ? '15%' : '',
-                        textAlign: image ? 'left' : 'center',
-                        maxWidth: image ? '30%' : '80%',
-                    }}>
-                    {text}
+        <section
+            ref={containerRef}
+            className='h-screen w-full flex justify-center items-center relative'
+            style={{ perspective: '500px', scrollSnapAlign: 'center' }}>
+            {image && (
+                <div ref={imageRef} className='absolute max-h-[90vh] w-1/4 h-auto' style={{ left: '25%' }}>
+                    <Image
+                        priority={index === 0}
+                        className='h-full w-full'
+                        src={image.url ?? ''}
+                        width={image.width ?? 100}
+                        height={image.height ?? 100}
+                        alt={image.name ?? ''}
+                        style={{ width: '100%', height: '100%' }}
+                        quality={100}
+                    />
                 </div>
-            </section>
-        </>
+            )}
+            <div
+                ref={textRef}
+                className='absolute text-9xl font-extrabold mix-blend-difference flex justify-center items-center flex-wrap gap-x-10'
+                style={{
+                    right: image ? '15%' : '',
+                    textAlign: image ? 'left' : 'center',
+                    maxWidth: image ? '30%' : '80%',
+                }}>
+                {text}
+            </div>
+        </section>
     )
 }

@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
     return (
-        <Html lang='en'>
+        <Html lang='en' data-scroll-behavior='smooth'>
             <Head>
                 <meta charSet='utf-8' />
                 <meta name='keywords' content='romain, laurent, web, dev, frontend, fullstack, design, french, react, javascript' />

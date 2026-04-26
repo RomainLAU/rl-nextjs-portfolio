@@ -14,21 +14,21 @@ export const me: Me = {
     job: "Frontend Developer",
     status: "available",
     description: [
-        <React.Fragment key="p1">I&apos;m a young and very curious developer</React.Fragment>,
-        <React.Fragment key="p2">I like integrating beautiful web designs</React.Fragment>,
-        <React.Fragment key="p3">But also working on APIs time to time</React.Fragment>,
-        <React.Fragment key="p4">I like to work on entertaining projects</React.Fragment>,
+        <React.Fragment key="p1">I am a young and curious developer</React.Fragment>,
+        <React.Fragment key="p2">I love implementing beautiful designs</React.Fragment>,
+        <React.Fragment key="p3">But also working on APIs</React.Fragment>,
+        <React.Fragment key="p4">I like working on captivating projects</React.Fragment>,
         <div key="p5" className="flex flex-wrap gap-x-10 items-center justify-center">
             Projects that give me <Smiley /> when working
         </div>,
         <div key="p6" className="time text-center w-full">Projects where I feel my time is being used for something</div>,
         <div key="p7" className="smiles text-center w-full">I like to work with great people</div>,
-        <React.Fragment key="p8">But I also like to work <AloneText>alone</AloneText></React.Fragment>,
-        <React.Fragment key="p9">I like <strong className="peaceful">calm</strong> and <strong className="peaceful">quiet</strong> people</React.Fragment>,
+        <React.Fragment key="p8">But I also enjoy working <AloneText>alone</AloneText></React.Fragment>,
+        <React.Fragment key="p9">I like <strong className="peaceful">calm</strong> and <strong className="peaceful">discreet</strong> people</React.Fragment>,
         <div key="p10" className="energyText text-center w-full">But also <EnergyText>funny</EnergyText> and <EnergyText>energetic</EnergyText> people</div>,
-        <React.Fragment key="p11">I like to stay at home ⌂</React.Fragment>,
-        <React.Fragment key="p12">But I want to see the <OutsideText>outside</OutsideText></React.Fragment>,
-        <React.Fragment key="p13">I like <ColoredText>colors</ColoredText></React.Fragment>,
+        <React.Fragment key="p11">I like staying at home ⌂</React.Fragment>,
+        <React.Fragment key="p12">But I also want to see <OutsideText>the outside</OutsideText></React.Fragment>,
+        <React.Fragment key="p13">I love <ColoredText>colors</ColoredText></React.Fragment>,
         <React.Fragment key="p14">But also <RotatingText variant="whiteBackground">black</RotatingText> and <RotatingText variant="blackBackground">white</RotatingText></React.Fragment>
     ],
     images: [
