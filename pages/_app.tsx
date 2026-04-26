@@ -16,6 +16,7 @@ import dynamic from 'next/dynamic';
 const CustomCursor = dynamic(() => import('@/components/customCursor'), { ssr: false });
 import NavBar from '@/components/navBar';
 import PageTransition from '@/components/pageTransition';
+import LoadingScreen from '@/components/loadingScreen';
 import { useGSAP } from '@gsap/react';
 
 import type { AppProps } from 'next/app'
@@ -73,6 +74,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
                     </m.div>
                 </AnimatePresence>
                 <PageTransition />
+                <LoadingScreen />
             </LazyMotion>
             <SpeedInsights />
             <Analytics />

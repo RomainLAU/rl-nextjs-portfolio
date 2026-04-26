@@ -20,7 +20,7 @@ const nextConfig = {
     async headers() {
         const policies = {
             'default-src': ["'self'"],
-            'script-src': ["'self'"],
+            'script-src': ["'self'", "https://va.vercel-scripts.com"],
             'style-src': ["'self'", "'unsafe-inline'"],
             'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
             'media-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
