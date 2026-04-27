@@ -7,6 +7,7 @@ import LinkButton from '@/components/linkButton';
 import PresentationText from '@/components/presentationText';
 import dynamic from 'next/dynamic';
 import useIsMobile from '@/hooks/useIsMobile';
+import { useTransitionState } from '@/context/TransitionContext';
 
 const SplashCursor = dynamic(() => import('@/components/react-bits/SplashCursor'), { ssr: false });
 import { Me } from '@/types/me';
@@ -16,9 +17,14 @@ const apparitionVariants = {
     visible: { y: 0, opacity: 1 },
 } as const
 
-const apparitionTransition = {
+const apparitionTransition1 = {
     duration: 1,
-    delay: 1.1,
+    delay: 0.6,
+} as const
+
+const apparitionTransition2 = {
+    duration: 1,
+    delay: 0.9,
 } as const
 
 import { me as meEn } from '@/data/en/me';
@@ -64,26 +70,24 @@ export default function Home({ locale }: { locale: string }) {
 function MobileView({ me, description }: { me: Me; description: (string | ReactNode)[] }) {
     const router = useRouter()
     const language = router.locale
+    const { isTransitioning } = useTransitionState()
 
     return (
         <m.div className='flex flex-col items-center justify-start w-screen max-w-screen relative'>
             <div className='h-screen max-h-screen w-full flex flex-col items-center gap-y-4'>
                 <m.h1
                     initial='hidden'
-                    animate='visible'
+                    animate={!isTransitioning ? 'visible' : 'hidden'}
                     variants={apparitionVariants}
-                    transition={apparitionTransition}
+                    transition={apparitionTransition1}
                     className='text-4xl md:text-9xl font-extrabold text-center mt-[40dvh] text-white'>
                     {me.fullname}
                 </m.h1>
                 <m.h2
                     initial='hidden'
-                    animate='visible'
+                    animate={!isTransitioning ? 'visible' : 'hidden'}
                     variants={apparitionVariants}
-                    transition={{
-                        duration: 1,
-                        delay: 1.5,
-                    }}
+                    transition={apparitionTransition2}
                     className='text-center text-xl font-medium text-white'>
                     {me.job}
                 </m.h2>
@@ -130,6 +134,7 @@ function MobileView({ me, description }: { me: Me; description: (string | ReactN
 function DesktopView({ me, description }: { me: Me; description: (string | ReactNode)[] }) {
     const router = useRouter()
     const language = router.locale
+    const { isTransitioning } = useTransitionState()
 
     return (
         <m.div className='w-full min-w-screen relative'>
@@ -137,20 +142,17 @@ function DesktopView({ me, description }: { me: Me; description: (string | React
                 <SplashCursor />
                 <m.h1
                     initial='hidden'
-                    animate='visible'
+                    animate={!isTransitioning ? 'visible' : 'hidden'}
                     variants={apparitionVariants}
-                    transition={apparitionTransition}
+                    transition={apparitionTransition1}
                     className='text-4xl md:text-9xl font-extrabold text-center text-white'>
                     {me.fullname}
                 </m.h1>
                 <m.h2
                     initial='hidden'
-                    animate='visible'
+                    animate={!isTransitioning ? 'visible' : 'hidden'}
                     variants={apparitionVariants}
-                    transition={{
-                        duration: 1,
-                        delay: 1.5,
-                    }}
+                    transition={apparitionTransition2}
                     className='text-center text-xl font-medium text-white'>
                     {me.job}
                 </m.h2>

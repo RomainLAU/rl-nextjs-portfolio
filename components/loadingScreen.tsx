@@ -1,5 +1,6 @@
 import { AnimatePresence, m } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { useTransitionState } from '@/context/TransitionContext'
 
 const colors = [
     '#190101', '#320101', '#630303', '#950404', '#c70505',
@@ -16,6 +17,7 @@ export default function LoadingScreen() {
     const [isLoading, setIsLoading] = useState(true)
     const [isTextVisible, setIsTextVisible] = useState(true)
     const [colorIndex, setColorIndex] = useState<number | null>(null)
+    const { setIsTransitioning } = useTransitionState()
 
     useEffect(() => {
         setColorIndex(Math.floor(Math.random() * colors.length))
@@ -38,6 +40,7 @@ export default function LoadingScreen() {
                 // Wait 500ms for text to fade, then slide screen out
                 setTimeout(() => {
                     setIsLoading(false)
+                    setIsTransitioning(false)
                 }, 500)
             }, 600)
         }

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { VscChromeClose, VscMenu } from "react-icons/vsc";
 
 import useIsMobile from "@/hooks/useIsMobile";
+import { useTransitionState } from "@/context/TransitionContext";
 
 import useScrollDirection from "../hooks/useScrollDirection";
 import LanguageSwitcher from "./languageSwitcher";
@@ -20,6 +21,7 @@ export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const language = router.locale;
+  const { isTransitioning } = useTransitionState();
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -59,7 +61,7 @@ export default function NavBar() {
       <m.nav
         className="nav-bar fixed top-0 left-0 w-[calc(100vw-4rem)] p-8 flex items-center text-white font-semibold bg-black justify-between mix-blend-difference"
         initial={{ y: "-100%" }}
-        animate={{ y: shouldShowNavbar ? "0%" : "-100%" }}
+        animate={{ y: shouldShowNavbar && !isTransitioning ? "0%" : "-100%" }}
         transition={{
           type: isAtPageTop || isAtPageBottom ? "tween" : "spring",
           stiffness: isAtPageTop || isAtPageBottom ? 100 : 300,

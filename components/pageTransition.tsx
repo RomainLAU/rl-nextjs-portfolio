@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useTransitionState } from '@/context/TransitionContext'
 
 const colors = [
     '#190101',
@@ -42,16 +43,19 @@ export default function PageTransition() {
     const router = useRouter()
     const [isAnimating, setIsAnimating] = useState(false)
     const [colorIndex, setColorIndex] = useState(Math.floor(Math.random() * colors.length))
+    const { setIsTransitioning } = useTransitionState()
 
     useEffect(() => {
         const handleRouteChangeStart = () => {
             setColorIndex(Math.floor(Math.random() * colors.length))
             setIsAnimating(true)
+            setIsTransitioning(true)
         }
 
         const handleRouteChangeComplete = () => {
             setTimeout(() => {
                 setIsAnimating(false)
+                setIsTransitioning(false)
                 const newColorIndex = Math.random() < 0.5 ? (colorIndex - 1 + colors.length) % colors.length : (colorIndex + 1) % colors.length
                 setColorIndex(newColorIndex)
             }, 1000)

@@ -16,6 +16,7 @@ import NavBar from '@/components/navBar';
 import PageTransition from '@/components/pageTransition';
 import LoadingScreen from '@/components/loadingScreen';
 import { useGSAP } from '@gsap/react';
+import { TransitionProvider } from '@/context/TransitionContext';
 
 import type { AppProps } from 'next/app'
 const inter = Inter({ subsets: ['latin'] })
@@ -50,7 +51,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
     const currentPath = router.pathname
 
     return (
-        <>
+        <TransitionProvider>
             <LazyMotion features={domAnimation}>
                 <Head>
                     <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -76,6 +77,6 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
             </LazyMotion>
             <SpeedInsights />
             <Analytics />
-        </>
+        </TransitionProvider>
     )
 }
