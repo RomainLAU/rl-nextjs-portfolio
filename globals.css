@@ -1,8 +1,11 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-    --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-    --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
 }
 
 /*
@@ -14,196 +17,205 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
-    }
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
 @utility text-balance {
-    text-wrap: balance;
+  text-wrap: balance;
 }
 
 @layer utilities {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
     :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
     }
+  }
 
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --foreground-rgb: 255, 255, 255;
-            --background-start-rgb: 0, 0, 0;
-            --background-end-rgb: 0, 0, 0;
-        }
-    }
+  *,
+  ::before,
+  ::after {
+    box-sizing: inherit;
+    border-width: 0;
+    border-style: none;
+    border-color: transparent;
+  }
 
-    *,
-    ::before,
-    ::after {
-        box-sizing: inherit;
-        border-width: 0;
-        border-style: none;
-        border-color: transparent;
-    }
+  html {
+    width: 100vw;
+    scroll-snap-type: both mandatory;
+    scroll-behavior: smooth;
+  }
 
-    html {
-        width: 100vw;
-        scroll-snap-type: both mandatory;
-        scroll-behavior: smooth;
-    }
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+    max-width: 100vw;
+  }
 
+  @media screen and (max-width: 1024px) {
+    html,
     body {
-        color: rgb(var(--foreground-rgb));
-        background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-        max-width: 100vw;
+      width: max-content;
+      scroll-snap-type: none;
     }
+  }
 
-    @media screen and (max-width: 1024px) {
-        html,
-        body {
-            width: max-content;
-            scroll-snap-type: none;
-        }
-    }
-
-    *::-webkit-scrollbar {
-        display: none;
-    }
+  *::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .word {
-    transition: opacity 0.3s ease-in;
-    opacity: 0.2;
+  transition: opacity 0.3s ease-in;
+  opacity: 0.2;
 }
 
 .modal-open .nav-bar {
-    z-index: -1;
+  z-index: -1;
 }
 
 .nav-bar {
-    z-index: 10;
+  z-index: 10;
 }
 
 .link {
-    position: relative;
-    text-transform: uppercase;
-    font-weight: 700;
-    pointer-events: fill;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  pointer-events: fill;
 }
 
 .link::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    bottom: -10px;
-    left: -10px;
-    right: -10px;
-    background: transparent;
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+  background: transparent;
 }
 
 .mobile-link {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .link::after {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: rgb(var(--foreground-rgb));
-    transition: width 0.3s ease-out;
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: rgb(var(--foreground-rgb));
+  transition: width 0.3s ease-out;
 }
 
 .link:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 .active::after {
-    width: 100%;
+  width: 100%;
 }
 
 p > svg {
-    width: 84px;
-    height: 84px;
-    fill: white;
+  width: 84px;
+  height: 84px;
+  fill: white;
 }
 
 .alone {
-    margin-top: 200px;
-    color: #9393e9;
+  margin-top: 200px;
+  color: #9393e9;
 }
 
 @media screen and (max-width: 1024px) {
-    .alone {
-        line-height: 100px;
-        margin: 100px;
-    }
+  .alone {
+    line-height: 100px;
+    margin: 100px;
+  }
 }
 
 .peaceful {
-    color: lightblue;
-    -webkit-text-stroke: 1px lightblue;
-    transition: color 0.5s ease-in-out;
+  color: lightblue;
+  -webkit-text-stroke: 1px lightblue;
+  transition: color 0.5s ease-in-out;
 }
 
 .peaceful:hover {
-    color: black;
+  color: black;
 }
 
 .energy {
-    color: orange;
+  color: #ff6a00;
+}
+
+.funny {
+  color: #ffd93d;
 }
 
 .outside {
-    color: green;
+  color: green;
 }
 
 .whiteBackground {
-    background-color: white;
-    color: #1f1f1f;
-    transition: all 0.5s ease-in-out;
+  background-color: white;
+  color: #1f1f1f;
+  transition: all 0.5s ease-in-out;
 }
 
 .blackBackground {
-    background-color: #1f1f1f;
-    color: white;
-    transition: all 0.5s ease-in-out;
+  background-color: #1f1f1f;
+  color: white;
+  transition: all 0.5s ease-in-out;
 }
 
 @keyframes smileAnimation {
-    0%,
-    100% {
-        d: path('M 40 70 Q 50 80 60 70');
-    }
-    50% {
-        d: path('M 30 65 Q 50 85 70 65');
-    }
+  0%,
+  100% {
+    d: path("M 40 70 Q 50 80 60 70");
+  }
+  50% {
+    d: path("M 30 65 Q 50 85 70 65");
+  }
 }
 .animate-smile {
-    animation: smileAnimation 2s ease-in-out infinite;
+  animation: smileAnimation 2s ease-in-out infinite;
 }
 @media (max-width: 640px) {
-    svg {
-        width: 50px;
-        height: 50px;
-    }
+  svg {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 /* add a background to transparent and black images */
 
 .svg-container img {
-    position: relative;
-    display: inline-block;
-    background: radial-gradient(circle, white -100%, transparent 55%);
+  position: relative;
+  display: inline-block;
+  background: radial-gradient(circle, white -100%, transparent 55%);
 }
 
 .svg-image {
-    position: relative;
+  position: relative;
 }

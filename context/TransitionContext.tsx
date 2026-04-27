@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, ReactNode, useContext, useState } from "react";
 
 export const TransitionContext = createContext<{
   isTransitioning: boolean;

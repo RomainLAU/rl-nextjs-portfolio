@@ -1,250 +1,260 @@
 export const projects = [
-    {
-        "id": 1,
-        "title": "Alternative Spotify",
-        "description": "Pour un projet scolaire, j'ai eu l'occasion de recréer ma version de Spotify, en utilisant leur API. Ce projet m'a permis de découvrir VueJS, et d'approfondir mes connaissances en TypeScript et en TailwindCSS. J'ai pris beaucoup de plaisir à intégrer tous les détails qui me semblaient important dans l'expérience utilisateur connue de Spotify (musique en cours de lecture qui devient verte, bandeau en bas de l'écran avec les informations de la musique, pouvoir cliquer sur n'importe quel artiste pour découvrir ses musiques les plus écoutées...). J'ai aussi pris soin à rendre tout le projet utilisable sur mobile.",
-        "createdAt": "2024-09-15T03:01:17.557Z",
-        "updatedAt": "2024-09-15T03:01:24.748Z",
-        "publishedAt": "2024-09-15T03:01:24.463Z",
-        "locale": "fr",
-        "link": null,
-        "skills": [
-            {
-                "id": 15,
-                "title": "VueJS",
-                "createdAt": "2024-09-01T14:05:47.147Z",
-                "updatedAt": "2024-09-01T14:05:47.147Z"
+  {
+    id: 1,
+    title: "Alternative Spotify",
+    description:
+      "Pour un projet scolaire, j'ai eu l'occasion de recréer ma version de Spotify, en utilisant leur API. Ce projet m'a permis de découvrir VueJS, et d'approfondir mes connaissances en TypeScript et en TailwindCSS. J'ai pris beaucoup de plaisir à intégrer tous les détails qui me semblaient important dans l'expérience utilisateur connue de Spotify (musique en cours de lecture qui devient verte, bandeau en bas de l'écran avec les informations de la musique, pouvoir cliquer sur n'importe quel artiste pour découvrir ses musiques les plus écoutées...). J'ai aussi pris soin à rendre tout le projet utilisable sur mobile.",
+    createdAt: "2024-09-15T03:01:17.557Z",
+    updatedAt: "2024-09-15T03:01:24.748Z",
+    publishedAt: "2024-09-15T03:01:24.463Z",
+    locale: "fr",
+    link: null,
+    skills: [
+      {
+        id: 15,
+        title: "VueJS",
+        createdAt: "2024-09-01T14:05:47.147Z",
+        updatedAt: "2024-09-01T14:05:47.147Z",
+      },
+      {
+        id: 3,
+        title: "TypeScript",
+        createdAt: "2024-09-01T14:04:02.345Z",
+        updatedAt: "2024-09-01T14:04:02.345Z",
+      },
+      {
+        id: 6,
+        title: "HTML/CSS",
+        createdAt: "2024-09-01T14:04:54.054Z",
+        updatedAt: "2024-09-01T14:04:54.054Z",
+      },
+      {
+        id: 10,
+        title: "Git",
+        createdAt: "2024-09-01T14:05:24.686Z",
+        updatedAt: "2024-09-01T14:05:24.686Z",
+      },
+    ],
+    images: [
+      {
+        id: 67,
+        name: "Capture d’écran 2024-09-15 à 02.56.21.png",
+        alternativeText: null,
+        caption: null,
+        width: 3596,
+        height: 1836,
+        formats: {
+          large: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361814/portfolio/Images/large_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
+            hash: "large_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+            mime: "image/png",
+            name: "large_Capture d’écran 2024-09-15 à 02.56.21.png",
+            path: null,
+            size: 429.18,
+            width: 1000,
+            height: 511,
+            sizeInBytes: 429175,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/large_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+              resource_type: "image",
             },
-            {
-                "id": 3,
-                "title": "TypeScript",
-                "createdAt": "2024-09-01T14:04:02.345Z",
-                "updatedAt": "2024-09-01T14:04:02.345Z"
+          },
+          small: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361813/portfolio/Images/small_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
+            hash: "small_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+            mime: "image/png",
+            name: "small_Capture d’écran 2024-09-15 à 02.56.21.png",
+            path: null,
+            size: 124.93,
+            width: 500,
+            height: 255,
+            sizeInBytes: 124931,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/small_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+              resource_type: "image",
             },
-            {
-                "id": 6,
-                "title": "HTML/CSS",
-                "createdAt": "2024-09-01T14:04:54.054Z",
-                "updatedAt": "2024-09-01T14:04:54.054Z"
+          },
+          medium: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361814/portfolio/Images/medium_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
+            hash: "medium_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+            mime: "image/png",
+            name: "medium_Capture d’écran 2024-09-15 à 02.56.21.png",
+            path: null,
+            size: 258.49,
+            width: 750,
+            height: 383,
+            sizeInBytes: 258486,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/medium_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+              resource_type: "image",
             },
-            {
-                "id": 10,
-                "title": "Git",
-                "createdAt": "2024-09-01T14:05:24.686Z",
-                "updatedAt": "2024-09-01T14:05:24.686Z"
-            }
-        ],
-        "images": [
-            {
-                "id": 67,
-                "name": "Capture d’écran 2024-09-15 à 02.56.21.png",
-                "alternativeText": null,
-                "caption": null,
-                "width": 3596,
-                "height": 1836,
-                "formats": {
-                    "large": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361814/portfolio/Images/large_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
-                        "hash": "large_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                        "mime": "image/png",
-                        "name": "large_Capture d’écran 2024-09-15 à 02.56.21.png",
-                        "path": null,
-                        "size": 429.18,
-                        "width": 1000,
-                        "height": 511,
-                        "sizeInBytes": 429175,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/large_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                            "resource_type": "image"
-                        }
-                    },
-                    "small": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361813/portfolio/Images/small_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
-                        "hash": "small_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                        "mime": "image/png",
-                        "name": "small_Capture d’écran 2024-09-15 à 02.56.21.png",
-                        "path": null,
-                        "size": 124.93,
-                        "width": 500,
-                        "height": 255,
-                        "sizeInBytes": 124931,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/small_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                            "resource_type": "image"
-                        }
-                    },
-                    "medium": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361814/portfolio/Images/medium_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
-                        "hash": "medium_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                        "mime": "image/png",
-                        "name": "medium_Capture d’écran 2024-09-15 à 02.56.21.png",
-                        "path": null,
-                        "size": 258.49,
-                        "width": 750,
-                        "height": 383,
-                        "sizeInBytes": 258486,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/medium_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                            "resource_type": "image"
-                        }
-                    },
-                    "thumbnail": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361813/portfolio/Images/thumbnail_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
-                        "hash": "thumbnail_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                        "mime": "image/png",
-                        "name": "thumbnail_Capture d’écran 2024-09-15 à 02.56.21.png",
-                        "path": null,
-                        "size": 36.7,
-                        "width": 245,
-                        "height": 125,
-                        "sizeInBytes": 36701,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/thumbnail_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                            "resource_type": "image"
-                        }
-                    }
-                },
-                "hash": "Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                "ext": ".png",
-                "mime": "image/png",
-                "size": 858.41,
-                "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361814/portfolio/Images/Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
-                "previewUrl": null,
-                "provider": "cloudinary",
-                "provider_metadata": {
-                    "public_id": "portfolio/Images/Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
-                    "resource_type": "image"
-                },
-                "createdAt": "2024-09-15T02:56:54.889Z",
-                "updatedAt": "2024-09-15T02:56:54.889Z"
-            }
-        ],
-        "localizations": []
-    },
-    {
-        "id": 2,
-        "title": "Masraf",
-        "description": "J'ai eu l'occasion de travailler sur une application bancaire à destination du marché français et belge. Ce projet m'a permis de découvrir et de développer une vraie maitrise de React Native étant donné que j'ai conçu la très grande majorité de l'application (environ 80% de l'app). En plus de l'application, j'ai aussi participé au développement de l'API, par exemple, en intégrant un service externe permettant l'identification des nouveaux membres inscrits.",
-        "createdAt": "2024-09-15T03:12:40.487Z",
-        "updatedAt": "2024-09-15T03:14:04.999Z",
-        "publishedAt": "2024-09-15T03:14:04.719Z",
-        "locale": "fr",
-        "link": null,
-        "skills": [
-            {
-                "id": 2,
-                "title": "React Native",
-                "createdAt": "2024-09-01T14:03:56.196Z",
-                "updatedAt": "2024-09-01T14:03:56.196Z"
+          },
+          thumbnail: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361813/portfolio/Images/thumbnail_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
+            hash: "thumbnail_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+            mime: "image/png",
+            name: "thumbnail_Capture d’écran 2024-09-15 à 02.56.21.png",
+            path: null,
+            size: 36.7,
+            width: 245,
+            height: 125,
+            sizeInBytes: 36701,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/thumbnail_Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+              resource_type: "image",
             },
-            {
-                "id": 3,
-                "title": "TypeScript",
-                "createdAt": "2024-09-01T14:04:02.345Z",
-                "updatedAt": "2024-09-01T14:04:02.345Z"
+          },
+        },
+        hash: "Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+        ext: ".png",
+        mime: "image/png",
+        size: 858.41,
+        url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726361814/portfolio/Images/Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8.png",
+        previewUrl: null,
+        provider: "cloudinary",
+        provider_metadata: {
+          public_id:
+            "portfolio/Images/Capture_d_ecran_2024_09_15_a_02_56_21_af4ba093a8",
+          resource_type: "image",
+        },
+        createdAt: "2024-09-15T02:56:54.889Z",
+        updatedAt: "2024-09-15T02:56:54.889Z",
+      },
+    ],
+    localizations: [],
+  },
+  {
+    id: 2,
+    title: "Masraf",
+    description:
+      "J'ai eu l'occasion de travailler sur une application bancaire à destination du marché français et belge. Ce projet m'a permis de découvrir et de développer une vraie maitrise de React Native étant donné que j'ai conçu la très grande majorité de l'application (environ 80% de l'app). En plus de l'application, j'ai aussi participé au développement de l'API, par exemple, en intégrant un service externe permettant l'identification des nouveaux membres inscrits.",
+    createdAt: "2024-09-15T03:12:40.487Z",
+    updatedAt: "2024-09-15T03:14:04.999Z",
+    publishedAt: "2024-09-15T03:14:04.719Z",
+    locale: "fr",
+    link: null,
+    skills: [
+      {
+        id: 2,
+        title: "React Native",
+        createdAt: "2024-09-01T14:03:56.196Z",
+        updatedAt: "2024-09-01T14:03:56.196Z",
+      },
+      {
+        id: 3,
+        title: "TypeScript",
+        createdAt: "2024-09-01T14:04:02.345Z",
+        updatedAt: "2024-09-01T14:04:02.345Z",
+      },
+      {
+        id: 12,
+        title: "Figma",
+        createdAt: "2024-09-01T14:05:33.268Z",
+        updatedAt: "2024-09-01T14:05:33.268Z",
+      },
+      {
+        id: 10,
+        title: "Git",
+        createdAt: "2024-09-01T14:05:24.686Z",
+        updatedAt: "2024-09-01T14:05:24.686Z",
+      },
+      {
+        id: 6,
+        title: "HTML/CSS",
+        createdAt: "2024-09-01T14:04:54.054Z",
+        updatedAt: "2024-09-01T14:04:54.054Z",
+      },
+      {
+        id: 8,
+        title: "PostgreSQL",
+        createdAt: "2024-09-01T14:05:10.657Z",
+        updatedAt: "2024-09-01T14:05:10.657Z",
+      },
+    ],
+    images: [
+      {
+        id: 68,
+        name: "Image_from_Romain_Laurent_1.png",
+        alternativeText: null,
+        caption: null,
+        width: 414,
+        height: 896,
+        formats: {
+          small: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/small_Image_from_Romain_Laurent_1_9ddc422d3b.png",
+            hash: "small_Image_from_Romain_Laurent_1_9ddc422d3b",
+            mime: "image/png",
+            name: "small_Image_from_Romain_Laurent_1.png",
+            path: null,
+            size: 46.33,
+            width: 231,
+            height: 500,
+            sizeInBytes: 46332,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/small_Image_from_Romain_Laurent_1_9ddc422d3b",
+              resource_type: "image",
             },
-            {
-                "id": 12,
-                "title": "Figma",
-                "createdAt": "2024-09-01T14:05:33.268Z",
-                "updatedAt": "2024-09-01T14:05:33.268Z"
+          },
+          medium: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/medium_Image_from_Romain_Laurent_1_9ddc422d3b.png",
+            hash: "medium_Image_from_Romain_Laurent_1_9ddc422d3b",
+            mime: "image/png",
+            name: "medium_Image_from_Romain_Laurent_1.png",
+            path: null,
+            size: 82.29,
+            width: 347,
+            height: 750,
+            sizeInBytes: 82293,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/medium_Image_from_Romain_Laurent_1_9ddc422d3b",
+              resource_type: "image",
             },
-            {
-                "id": 10,
-                "title": "Git",
-                "createdAt": "2024-09-01T14:05:24.686Z",
-                "updatedAt": "2024-09-01T14:05:24.686Z"
+          },
+          thumbnail: {
+            ext: ".png",
+            url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/thumbnail_Image_from_Romain_Laurent_1_9ddc422d3b.png",
+            hash: "thumbnail_Image_from_Romain_Laurent_1_9ddc422d3b",
+            mime: "image/png",
+            name: "thumbnail_Image_from_Romain_Laurent_1.png",
+            path: null,
+            size: 8.84,
+            width: 72,
+            height: 156,
+            sizeInBytes: 8835,
+            provider_metadata: {
+              public_id:
+                "portfolio/Images/thumbnail_Image_from_Romain_Laurent_1_9ddc422d3b",
+              resource_type: "image",
             },
-            {
-                "id": 6,
-                "title": "HTML/CSS",
-                "createdAt": "2024-09-01T14:04:54.054Z",
-                "updatedAt": "2024-09-01T14:04:54.054Z"
-            },
-            {
-                "id": 8,
-                "title": "PostgreSQL",
-                "createdAt": "2024-09-01T14:05:10.657Z",
-                "updatedAt": "2024-09-01T14:05:10.657Z"
-            }
-        ],
-        "images": [
-            {
-                "id": 68,
-                "name": "Image_from_Romain_Laurent_1.png",
-                "alternativeText": null,
-                "caption": null,
-                "width": 414,
-                "height": 896,
-                "formats": {
-                    "small": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/small_Image_from_Romain_Laurent_1_9ddc422d3b.png",
-                        "hash": "small_Image_from_Romain_Laurent_1_9ddc422d3b",
-                        "mime": "image/png",
-                        "name": "small_Image_from_Romain_Laurent_1.png",
-                        "path": null,
-                        "size": 46.33,
-                        "width": 231,
-                        "height": 500,
-                        "sizeInBytes": 46332,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/small_Image_from_Romain_Laurent_1_9ddc422d3b",
-                            "resource_type": "image"
-                        }
-                    },
-                    "medium": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/medium_Image_from_Romain_Laurent_1_9ddc422d3b.png",
-                        "hash": "medium_Image_from_Romain_Laurent_1_9ddc422d3b",
-                        "mime": "image/png",
-                        "name": "medium_Image_from_Romain_Laurent_1.png",
-                        "path": null,
-                        "size": 82.29,
-                        "width": 347,
-                        "height": 750,
-                        "sizeInBytes": 82293,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/medium_Image_from_Romain_Laurent_1_9ddc422d3b",
-                            "resource_type": "image"
-                        }
-                    },
-                    "thumbnail": {
-                        "ext": ".png",
-                        "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/thumbnail_Image_from_Romain_Laurent_1_9ddc422d3b.png",
-                        "hash": "thumbnail_Image_from_Romain_Laurent_1_9ddc422d3b",
-                        "mime": "image/png",
-                        "name": "thumbnail_Image_from_Romain_Laurent_1.png",
-                        "path": null,
-                        "size": 8.84,
-                        "width": 72,
-                        "height": 156,
-                        "sizeInBytes": 8835,
-                        "provider_metadata": {
-                            "public_id": "portfolio/Images/thumbnail_Image_from_Romain_Laurent_1_9ddc422d3b",
-                            "resource_type": "image"
-                        }
-                    }
-                },
-                "hash": "Image_from_Romain_Laurent_1_9ddc422d3b",
-                "ext": ".png",
-                "mime": "image/png",
-                "size": 16.13,
-                "url": "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/Image_from_Romain_Laurent_1_9ddc422d3b.png",
-                "previewUrl": null,
-                "provider": "cloudinary",
-                "provider_metadata": {
-                    "public_id": "portfolio/Images/Image_from_Romain_Laurent_1_9ddc422d3b",
-                    "resource_type": "image"
-                },
-                "createdAt": "2024-09-15T03:08:37.939Z",
-                "updatedAt": "2024-09-15T03:08:37.939Z"
-            }
-        ],
-        "localizations": []
-    }
+          },
+        },
+        hash: "Image_from_Romain_Laurent_1_9ddc422d3b",
+        ext: ".png",
+        mime: "image/png",
+        size: 16.13,
+        url: "https://res.cloudinary.com/dtsvpdh37/image/upload/v1726362517/portfolio/Images/Image_from_Romain_Laurent_1_9ddc422d3b.png",
+        previewUrl: null,
+        provider: "cloudinary",
+        provider_metadata: {
+          public_id: "portfolio/Images/Image_from_Romain_Laurent_1_9ddc422d3b",
+          resource_type: "image",
+        },
+        createdAt: "2024-09-15T03:08:37.939Z",
+        updatedAt: "2024-09-15T03:08:37.939Z",
+      },
+    ],
+    localizations: [],
+  },
 ];

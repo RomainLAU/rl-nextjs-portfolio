@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import React, { ReactNode, useRef } from "react";
 
-const EnergyText = ({ children }: { children: ReactNode }) => {
+const FunnyText = ({ children }: { children: ReactNode }) => {
   const targetRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -12,24 +12,19 @@ const EnergyText = ({ children }: { children: ReactNode }) => {
     if (isEntering) {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       gsap.to(target, {
-        x: "random(-15, 15)",
-        y: "random(-15, 15)",
-        rotation: "random(-1, 1)",
-        scale: 1.05,
-        duration: 0.1,
+        rotation: "random(-720, 720)",
+        duration: 1,
         repeat: -1,
+        yoyo: true,
         repeatRefresh: true,
-        ease: "none",
+        ease: "back.out(2)",
       });
     } else {
       timeoutRef.current = setTimeout(() => {
         gsap.to(target, {
-          x: 0,
-          y: 0,
           rotation: 0,
-          scale: 1,
-          duration: 0.3,
-          ease: "power1.out",
+          duration: 0.5,
+          ease: "elastic.out(1, 0.1)",
           onComplete: () => {
             gsap.killTweensOf(target);
           },
@@ -44,11 +39,11 @@ const EnergyText = ({ children }: { children: ReactNode }) => {
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
     >
-      <strong ref={targetRef} className="energy inline-block">
+      <strong ref={targetRef} className="funny inline-block cursor-default">
         {children}
       </strong>
     </div>
   );
 };
 
-export default EnergyText;
+export default FunnyText;

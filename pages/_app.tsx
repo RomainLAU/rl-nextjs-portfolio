@@ -1,82 +1,88 @@
-import '@/globals.css';
+import "@/globals.css";
 
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/next"
-
+import { useGSAP } from "@gsap/react";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
-    AnimatePresence, domAnimation, LazyMotion, m, useScroll, useSpring, useTransform
-} from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
-import { useRef } from 'react';
-import CustomCursor from '@/components/customCursor';
-import NavBar from '@/components/navBar';
-import PageTransition from '@/components/pageTransition';
-import LoadingScreen from '@/components/loadingScreen';
-import { useGSAP } from '@gsap/react';
-import { TransitionProvider } from '@/context/TransitionContext';
+  AnimatePresence,
+  domAnimation,
+  LazyMotion,
+  m,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import type { AppProps } from "next/app";
+import { Inter } from "next/font/google";
+import Head from "next/head";
+import { useRef } from "react";
 
-import type { AppProps } from 'next/app'
-const inter = Inter({ subsets: ['latin'] })
+import CustomCursor from "@/components/customCursor";
+import LoadingScreen from "@/components/loadingScreen";
+import NavBar from "@/components/navBar";
+import PageTransition from "@/components/pageTransition";
+import { TransitionProvider } from "@/context/TransitionContext";
+const inter = Inter({ subsets: ["latin"] });
 
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(useGSAP, ScrollTrigger)
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
-    const scrollRef = useRef(null)
-    const { scrollY } = useScroll({ container: scrollRef })
-    const smoothScrollY = useSpring(scrollY, {
-        stiffness: 100,
-        damping: 30,
-        mass: 1,
-    })
+  const scrollRef = useRef(null);
+  const { scrollY } = useScroll({ container: scrollRef });
+  const smoothScrollY = useSpring(scrollY, {
+    stiffness: 100,
+    damping: 30,
+    mass: 1,
+  });
 
-    const y = useTransform(smoothScrollY, (value) => -value)
+  const y = useTransform(smoothScrollY, (value) => -value);
 
-    const opacityVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-        exit: { opacity: 0 },
-    } as const
+  const opacityVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 },
+  } as const;
 
-    const opacityTransition = {
-        duration: 0.9,
-        delay: 0.1,
-        ease: 'easeOut',
-    } as const
+  const opacityTransition = {
+    duration: 0.9,
+    delay: 0.1,
+    ease: "easeOut",
+  } as const;
 
-    const currentPath = router.pathname
+  const currentPath = router.pathname;
 
-    return (
-        <TransitionProvider>
-            <LazyMotion features={domAnimation}>
-                <Head>
-                    <meta name='viewport' content='width=device-width, initial-scale=1' />
-                </Head>
-                <AnimatePresence mode='wait'>
-                    <m.div
-                        key={router.route}
-                        initial='hidden'
-                        animate='visible'
-                        exit='exit'
-                        variants={opacityVariants}
-                        transition={opacityTransition}
-                        style={{ height: currentPath !== '/' ? '100dvh' : 'auto', y }}
-                        className={`${inter.className} relative w-max sm:w-full`}
-                        ref={scrollRef}>
-                        <CustomCursor />
-                        <NavBar />
-                        <Component {...pageProps} />
-                    </m.div>
-                </AnimatePresence>
-                <PageTransition />
-                <LoadingScreen />
-            </LazyMotion>
-            <SpeedInsights />
-            <Analytics />
-        </TransitionProvider>
-    )
+  return (
+    <TransitionProvider>
+      <LazyMotion features={domAnimation}>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+        <AnimatePresence mode="wait">
+          <m.div
+            key={router.route}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={opacityVariants}
+            transition={opacityTransition}
+            style={{ height: currentPath !== "/" ? "100dvh" : "auto", y }}
+            className={`${inter.className} relative w-max sm:w-full`}
+            ref={scrollRef}
+          >
+            <CustomCursor />
+            <NavBar />
+            <Component {...pageProps} />
+          </m.div>
+        </AnimatePresence>
+        <PageTransition />
+        <LoadingScreen />
+      </LazyMotion>
+      <SpeedInsights />
+      <Analytics />
+    </TransitionProvider>
+  );
 }

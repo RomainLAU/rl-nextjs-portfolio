@@ -110,16 +110,16 @@ export default function FormationCard({ element }: { element: Formation }) {
       <m.div
         ref={ref}
         {...initialTransition}
-        className="w-full md:min-w-max md:h-[calc(100dvh-12rem)] shadow-md rounded-lg text-white flex flex-col md:flex-row md:items-center gap-8 md:gap-96"
+        className="flex w-full flex-col gap-8 rounded-lg text-white shadow-md md:h-[calc(100dvh-12rem)] md:min-w-max md:flex-row md:items-center md:gap-96"
       >
         <m.h2
           ref={schoolRef}
-          className="font-bold text-[3em] md:text-[16em] max-w-min leading-none"
+          className="max-w-min text-[3em] leading-none font-bold md:text-[16em]"
           style={{ wordSpacing: isMobile ? "" : "440px" }}
         >
           {formation.school.split(" ").map(renderSchoolWord)}
         </m.h2>
-        <div className="md:h-full w-full md:w-max flex flex-col gap-y-8 justify-center">
+        <div className="flex w-full flex-col justify-center gap-y-8 md:h-full md:w-max">
           <m.p
             ref={dateRef}
             initial={{ opacity: 0, y: -30 }}
@@ -128,7 +128,7 @@ export default function FormationCard({ element }: { element: Formation }) {
               y: isDateInView ? 0 : -30,
             }}
             transition={{ duration: 0.6 }}
-            className="text-[3em] md:text-[calc(10dvh+12em)] font-extrabold font-[ui-monospace] leading-[normal]"
+            className="font-[ui-monospace] text-[3em] leading-[normal] font-extrabold md:text-[calc(10dvh+12em)]"
           >
             {new Date(formation.started_at)
               .toLocaleDateString(locale)
@@ -142,7 +142,7 @@ export default function FormationCard({ element }: { element: Formation }) {
                 y: isDateInView ? 0 : -30,
               }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]"
+              className="font-[ui-monospace] text-[3em] leading-[normal] font-extrabold md:text-[calc(10dvh+12em)]"
             >
               {(formation.finished_at &&
                 new Date(formation.finished_at)
@@ -151,7 +151,7 @@ export default function FormationCard({ element }: { element: Formation }) {
                 "Present"}
             </m.p>
           )}
-          <div className="flex flex-col w-full gap-y-4">
+          <div className="flex w-full flex-col gap-y-4">
             <m.p
               ref={titleRef}
               initial={{ opacity: 0, y: 10 }}
@@ -160,13 +160,13 @@ export default function FormationCard({ element }: { element: Formation }) {
                 y: isTitleInView ? 0 : 10,
               }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-2xl md:text-4xl text-left self-start"
+              className="self-start text-left text-2xl md:text-4xl"
             >
               {formation.title}
             </m.p>
             <m.div
               ref={tagsRef}
-              className="text-xl md:text-2xl md:text-right flex-wrap flex w-full md:w-auto md:flex-nowrap gap-x-4 md:self-end"
+              className="flex w-full flex-wrap gap-x-4 text-xl md:w-auto md:flex-nowrap md:self-end md:text-right md:text-2xl"
             >
               {formation.skills &&
                 formation.skills.map((skill, index) => (
@@ -195,7 +195,7 @@ export default function FormationCard({ element }: { element: Formation }) {
                 y: isDateInView ? 0 : -30,
               }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[3em] md:text-[calc(10dvh+12em)] leading-[normal] font-extrabold font-[ui-monospace]"
+              className="font-[ui-monospace] text-[3em] leading-[normal] font-extrabold md:text-[calc(10dvh+12em)]"
             >
               {(formation.finished_at &&
                 new Date(formation.finished_at)
@@ -207,7 +207,7 @@ export default function FormationCard({ element }: { element: Formation }) {
         </div>
         <m.div
           ref={paragraphRef}
-          className="w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(0.5vh+1em),42px)] whitespace-break-spaces"
+          className="w-full max-w-screen text-xl leading-10 tracking-widest whitespace-break-spaces md:w-[32rem] md:text-[clamp(12px,calc(0.5vh+1em),42px)]"
           style={{
             marginTop: formation.id % 2 === 0 ? "auto" : "0",
             marginBottom: !(formation.id % 2 === 0) ? "auto" : "0",

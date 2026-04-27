@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { VscChromeClose, VscMenu } from "react-icons/vsc";
 
-import useIsMobile from "@/hooks/useIsMobile";
 import { useTransitionState } from "@/context/TransitionContext";
+import useIsMobile from "@/hooks/useIsMobile";
 
 import useScrollDirection from "../hooks/useScrollDirection";
 import LanguageSwitcher from "./languageSwitcher";
@@ -23,9 +23,16 @@ export default function NavBar() {
   const language = router.locale;
   const { isTransitioning } = useTransitionState();
 
+  // Close menu on route/locale change via router events
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [language]);
+    const handleRouteChange = () => {
+      setIsMenuOpen(false);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router]);
 
   const containerVariants = {
     initial: {
@@ -59,7 +66,7 @@ export default function NavBar() {
   return (
     <>
       <m.nav
-        className="nav-bar fixed top-0 left-0 w-[calc(100vw-4rem)] p-8 flex items-center text-white font-semibold bg-black justify-between mix-blend-difference"
+        className="nav-bar fixed top-0 left-0 flex w-[calc(100vw-4rem)] items-center justify-between bg-black p-8 font-semibold text-white mix-blend-difference"
         initial={{ y: "-100%" }}
         animate={{ y: shouldShowNavbar && !isTransitioning ? "0%" : "-100%" }}
         transition={{
@@ -71,7 +78,7 @@ export default function NavBar() {
         }}
       >
         <Link href="/">
-          <p className="text-white pointer-events-none">ROMAIN LAURENT</p>
+          <p className="pointer-events-none text-white">ROMAIN LAURENT</p>
         </Link>
         {isMobile ? (
           <VscMenu
@@ -140,11 +147,11 @@ export default function NavBar() {
             animate={"animate"}
             exit={"exit"}
             transition={{ duration: 0.5 }}
-            className="fixed top-0 left-0 w-screen h-[110dvh] bg-black bg-opacity flex flex-col items-center justify-center gap-y-8 z-10"
+            className="bg-opacity fixed top-0 left-0 z-10 flex h-[110dvh] w-screen flex-col items-center justify-center gap-y-8 bg-black"
           >
             <VscChromeClose
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-4xl mix-blend-difference absolute top-8 right-8"
+              className="absolute top-8 right-8 text-4xl mix-blend-difference"
             />
             {/* <m.div key={'link-projects'} variants={itemVariants}>
                             <Link

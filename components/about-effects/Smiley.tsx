@@ -1,8 +1,7 @@
+import React from "react";
 
+import AnimatedSmiley from "../animatedSmiley";
 
-import React from 'react'
-import AnimatedSmiley from '../animatedSmiley'
+const Smiley = () => <AnimatedSmiley />;
 
-const Smiley = () => <AnimatedSmiley />
-
-export default Smiley
+export default Smiley;
