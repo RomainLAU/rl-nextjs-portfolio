@@ -124,8 +124,8 @@ export default function ExperienceCard({
               height={experience.company_logo.height}
               className="svg-image h-full w-auto"
               style={{ width: "auto" }}
-              quality={isMobile ? 50 : 100}
-              priority={isInView}
+              quality={isMobile ? 50 : 80}
+              priority={index === 0}
             />
           </m.div>
         )}

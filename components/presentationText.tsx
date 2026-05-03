@@ -84,7 +84,7 @@ export default function PresentationText({
         {image && (
           <Image
             priority={index === 0}
-            quality={isMobile ? 50 : 100}
+            quality={isMobile ? 50 : 80}
             style={{
               transform: isInView ? "translateY(0)" : "translateY(-20px)",
               opacity: isInView ? 1 : 0,
@@ -122,7 +122,7 @@ export default function PresentationText({
             height={image.height ?? 100}
             alt={image.name ?? ""}
             style={{ width: "100%", height: "100%" }}
-            quality={100}
+            quality={80}
           />
         </div>
       )}

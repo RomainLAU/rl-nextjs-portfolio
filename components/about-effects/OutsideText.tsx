@@ -2,6 +2,7 @@ import { AnimatePresence, m } from "framer-motion";
 import Image from "next/image";
 import React, { ReactNode, useState } from "react";
 
+import { useTransitionState } from "@/context/TransitionContext";
 import image1 from "@/public/images/image1.jpg";
 import image2 from "@/public/images/image2.jpg";
 import image3 from "@/public/images/image3.jpg";
@@ -11,6 +12,7 @@ const OutsideText = ({ children }: { children: ReactNode }) => {
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
   const [imageIndex, setImageIndex] = useState(-1);
   const images = [image1, image2, image3, plage];
+  const { isTransitioning } = useTransitionState();
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -61,35 +63,36 @@ const OutsideText = ({ children }: { children: ReactNode }) => {
               width={300}
               height={300}
               style={{ width: "auto", height: "auto" }}
+              quality={90}
               priority
-              unoptimized
             />
           </m.div>
         )}
       </AnimatePresence>
-      {/* Preload images to avoid flickering on first hover */}
-      <div
-        style={{
-          position: "absolute",
-          width: 1,
-          height: 1,
-          opacity: 0,
-          overflow: "hidden",
-          pointerEvents: "none",
-        }}
-      >
-        {images.map((img, idx) => (
-          <Image
-            key={`preload-${idx}`}
-            src={img}
-            alt=""
-            width={300}
-            height={300}
-            priority
-            unoptimized
-          />
-        ))}
-      </div>
+      {!isTransitioning && (
+        <div
+          style={{
+            position: "absolute",
+            width: 1,
+            height: 1,
+            opacity: 0,
+            overflow: "hidden",
+            pointerEvents: "none",
+          }}
+        >
+          {images.map((img, idx) => (
+            <Image
+              key={`preload-${idx}`}
+              src={img}
+              alt=""
+              width={300}
+              height={300}
+              priority
+              quality={90}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
