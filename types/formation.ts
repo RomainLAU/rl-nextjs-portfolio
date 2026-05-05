@@ -1,7 +1,7 @@
 import { Skill } from "./skill";
 
 export type Formation = {
-  id: number;
+  id: string;
   school: string;
   title: string;
   description: string;

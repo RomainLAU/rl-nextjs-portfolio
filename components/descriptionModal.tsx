@@ -25,8 +25,11 @@ interface MediaProps {
   media: {
     mime: string;
     url: string;
-    alternativeText?: string;
+    alternativeText?: string | null;
+    width?: number | null;
+    height?: number | null;
   };
+  isVertical?: boolean;
 }
 
 interface DescriptionModalProps {
@@ -42,7 +45,7 @@ interface DescriptionModalProps {
   setSelectedElement: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const MediaContent = ({ media }: MediaProps) => {
+const MediaContent = ({ media, isVertical }: MediaProps) => {
   const isVideo = media.mime.includes("video");
 
   if (isVideo) {
@@ -51,8 +54,23 @@ const MediaContent = ({ media }: MediaProps) => {
         src={media.url}
         controls
         autoPlay
-        className="h-[40vh] w-[40%] md:h-auto md:max-h-[50dvh] md:w-auto"
+        className="h-[40vh] w-[40%] rounded-sm border border-white md:h-auto md:max-h-[50dvh] md:w-auto"
       />
+    );
+  }
+
+  if (isVertical) {
+    return (
+      <m.div className="shrink-0" style={{ width: "35vw" }}>
+        <Image
+          src={media.url}
+          alt={media.alternativeText || ""}
+          width={media.width || 400}
+          height={media.height || 800}
+          className="h-full w-full rounded-sm border border-white object-contain"
+          style={{ width: "35vw", height: "auto" }}
+        />
+      </m.div>
     );
   }
 
@@ -63,8 +81,8 @@ const MediaContent = ({ media }: MediaProps) => {
         alt={media.alternativeText || ""}
         width={400}
         height={200}
-        className="aspect-video h-[40vh] w-[40%] object-contain md:h-[25vh] md:max-h-[50dvh] md:w-[40vw]"
-        style={{ width: "auto", height: "auto" }}
+        className="aspect-video h-[40vh] w-[40%] rounded-sm border border-white object-contain md:h-[25vh] md:max-h-[50dvh] md:w-[40vw]"
+        style={{ width: "100%", height: "auto" }}
       />
     </m.div>
   );
@@ -152,29 +170,70 @@ export default function DescriptionModal({
               </m.h3>
             </div>
 
-            <div className="relative z-10 flex items-start justify-between">
-              {element.feature_media && (
-                <MediaContent media={element.feature_media} />
-              )}
-              {element.feature_description && (
-                <m.div
-                  className={`text-lg leading-10 tracking-widest ${element.feature_media ? "px-8" : ""}`}
-                >
-                  {element.feature_description}
-                </m.div>
-              )}
-            </div>
+            {(() => {
+              const media = element.feature_media;
+              const isVertical =
+                media &&
+                !media.mime.includes("video") &&
+                media.width != null &&
+                media.height != null &&
+                media.height > media.width;
 
-            {element.description && isModalMounted && (
-              <div className="relative z-10">
-                <AnimatedTextOnScroll
-                  key={`animated-text-${element.id}-${isModalMounted}`}
-                  text={element.description}
-                  customScroller=".experience-modal"
-                  containerRef={modalRef}
-                />
-              </div>
-            )}
+              if (
+                isVertical &&
+                element.feature_description &&
+                element.description
+              ) {
+                // Layout vertical : image à gauche, les 2 textes empilés à droite
+                return (
+                  <div className="relative z-10 flex items-stretch gap-x-8">
+                    <MediaContent media={media!} isVertical />
+                    <div className="flex flex-1 flex-col justify-between gap-y-8">
+                      <m.div className="text-lg leading-10 tracking-widest">
+                        {element.feature_description}
+                      </m.div>
+                      {isModalMounted && (
+                        <AnimatedTextOnScroll
+                          key={`animated-text-${element.id}-${isModalMounted}`}
+                          text={element.description}
+                          customScroller=".experience-modal"
+                          containerRef={modalRef}
+                        />
+                      )}
+                    </div>
+                  </div>
+                );
+              }
+
+              // Layout standard : image + feature_description côte à côte, description en dessous
+              return (
+                <>
+                  <div className="relative z-10 flex items-start justify-between">
+                    {media && <MediaContent media={media} />}
+                    {element.feature_description && (
+                      <m.div
+                        className={`text-lg leading-10 tracking-widest ${
+                          media ? "px-8" : ""
+                        }`}
+                      >
+                        {element.feature_description}
+                      </m.div>
+                    )}
+                  </div>
+
+                  {element.description && isModalMounted && (
+                    <div className="relative z-10">
+                      <AnimatedTextOnScroll
+                        key={`animated-text-${element.id}-${isModalMounted}`}
+                        text={element.description}
+                        customScroller=".experience-modal"
+                        containerRef={modalRef}
+                      />
+                    </div>
+                  )}
+                </>
+              );
+            })()}
 
             {element.project_url && (
               <m.div className="relative z-10 w-1/4 self-center">

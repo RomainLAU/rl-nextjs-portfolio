@@ -5,7 +5,6 @@ export type MediaFormat = {
   width: number;
   height: number;
   name: string;
-  hash?: string;
 };
 
 export type Me = {
@@ -14,10 +13,8 @@ export type Me = {
   job: string;
   status: "available" | "working";
   images: {
-    id: number;
     name: string;
-    alternativeText: string;
-    caption: string;
+    alternativeText: string | null;
     width: number;
     height: number;
     formats: {

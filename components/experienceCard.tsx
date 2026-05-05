@@ -115,13 +115,15 @@ export default function ExperienceCard({
         {experience.company_logo && (
           <m.div
             {...initialTransition}
-            className={`h-[40vh] w-[80vw] md:h-full md:max-h-[50dvh] md:w-full ${experience.company === "COM4DESIGN" ? "svg-container" : ""}`}
+            className={`h-[40vh] w-[80vw] md:h-full md:max-h-[50dvh] md:w-full md:max-w-[90%] ${experience.company === "COM4DESIGN" || experience.company === "Sofy" ? "svg-container" : ""}`}
           >
             <Image
               src={experience.company_logo.url}
-              alt={experience.company_logo.alternativeText}
-              width={experience.company_logo.width}
-              height={experience.company_logo.height}
+              alt={
+                experience.company_logo.alternativeText || experience.company
+              }
+              width={experience.company_logo.width || 100}
+              height={experience.company_logo.height || 100}
               className="svg-image h-full w-auto"
               style={{ width: "auto" }}
               quality={isMobile ? 50 : 80}
@@ -168,14 +170,6 @@ export default function ExperienceCard({
           </m.p>
         </div>
         <div className="flex w-full flex-col md:h-full md:gap-y-24">
-          {/* <m.p
-                        ref={companyRef}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: isCompanyInView ? 1 : 0, y: isCompanyInView ? 0 : 10 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className='text-xl md:text-4xl text-left self-start'>
-                        {experience.company} - {experience.contract}
-                    </m.p> */}
           <m.div
             ref={tagsRef}
             className="flex w-full flex-wrap gap-x-4 text-xl md:w-auto md:self-start md:text-left md:text-2xl"
@@ -183,7 +177,7 @@ export default function ExperienceCard({
             {experience.skills &&
               experience.skills.map((skill, skillIndex) => (
                 <m.p
-                  key={`skill-${skill.id}-${experience.title}`}
+                  key={`skill-${skill}-${experience.title}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{
                     opacity: isTagsInView ? 1 : 0,
@@ -198,7 +192,7 @@ export default function ExperienceCard({
                       : 0,
                   }}
                 >
-                  {skill.title}
+                  {skill}
                 </m.p>
               ))}
           </m.div>
@@ -233,16 +227,6 @@ export default function ExperienceCard({
           )}
         </div>
         {isMobile && <AnimatedTextOnScroll text={experience.description} />}
-        {/* <m.div
-                    ref={paragraphRef}
-                    className='w-full max-w-screen md:w-[32rem] text-xl leading-10 tracking-widest md:text-[clamp(12px,calc(0.5vh+1em),42px)] whitespace-break-spaces'
-                    style={{
-                        marginTop: '0',
-                        opacity: isParagraphInView ? 1 : 0,
-                        transition: 'opacity 0.3s ease-in-out',
-                    }}>
-                    {paragraphFragments.map(renderFragment)}
-                </m.div> */}
       </m.div>
     </AnimatePresence>
   );

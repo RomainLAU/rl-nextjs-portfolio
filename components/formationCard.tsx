@@ -7,7 +7,13 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import useIsMobile from "@/hooks/useIsMobile";
 import { Formation } from "@/types/formation";
 
-export default function FormationCard({ element }: { element: Formation }) {
+export default function FormationCard({
+  element,
+  index = 0,
+}: {
+  element: Formation;
+  index?: number;
+}) {
   const formation = element;
   const { locale } = useRouter();
   const isMobile = useIsMobile();
@@ -171,7 +177,7 @@ export default function FormationCard({ element }: { element: Formation }) {
               {formation.skills &&
                 formation.skills.map((skill, index) => (
                   <m.p
-                    key={`skill-${skill.id}-${formation.title}`}
+                    key={`skill-${skill}-${formation.title}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{
                       opacity: isTagsInView ? 1 : 0,
@@ -182,7 +188,7 @@ export default function FormationCard({ element }: { element: Formation }) {
                       delay: isTagsInView ? index * 0.1 : 0,
                     }}
                   >
-                    {skill.title}
+                    {skill}
                   </m.p>
                 ))}
             </m.div>
@@ -207,10 +213,10 @@ export default function FormationCard({ element }: { element: Formation }) {
         </div>
         <m.div
           ref={paragraphRef}
-          className="w-full max-w-screen text-xl leading-10 tracking-widest whitespace-break-spaces md:w-[32rem] md:text-[clamp(12px,calc(0.5vh+1em),42px)]"
+          className="w-full max-w-screen text-xl leading-10 tracking-widest whitespace-break-spaces md:w-lg md:text-[clamp(12px,calc(0.5vh+1em),42px)]"
           style={{
-            marginTop: formation.id % 2 === 0 ? "auto" : "0",
-            marginBottom: !(formation.id % 2 === 0) ? "auto" : "0",
+            marginTop: index % 2 === 0 ? "auto" : "0",
+            marginBottom: !(index % 2 === 0) ? "auto" : "0",
             opacity: isParagraphInView ? 1 : 0,
             transition: "opacity 0.3s ease-in-out",
           }}

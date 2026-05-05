@@ -27,8 +27,8 @@ export default function MobileContainer({
           {title}
         </m.h2>
       </AnimatePresence>
-      {list.map((element: any) => (
-        <CardComponent key={`component-${element.id}`} element={element} />
+      {list.map((element: any, index: number) => (
+        <CardComponent key={`component-${element.id}`} element={element} index={index} />
       ))}
       <m.div
         id="contact"

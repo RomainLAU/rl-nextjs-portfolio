@@ -1,4 +1,1 @@
-export type Skill = {
-  id: number;
-  title: string;
-};
+export type Skill = string;
