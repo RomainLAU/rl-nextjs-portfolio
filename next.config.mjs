@@ -3,7 +3,7 @@ const nextConfig = {
   reactCompiler: true,
   typedRoutes: true,
   images: {
-    qualities: [50, 75, 100],
+    qualities: [50, 75, 80, 100],
     remotePatterns: [
       {
         protocol: "https",
